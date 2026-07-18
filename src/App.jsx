@@ -7,7 +7,7 @@ import './styles/doc.css'
 import './styles/mobile.css'
 
 export default function App() {
-  const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'doc')
+  const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'mobile')
   const [catalog, setCatalog] = React.useState(CATALOG)
   const [sync, setSync] = React.useState({ state: 'loading', matched: 0, attempted: 0, at: null })
   const [menuOpen, setMenuOpen] = React.useState(false)
