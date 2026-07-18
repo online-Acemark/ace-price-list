@@ -1,0 +1,80 @@
+/* App shell — floating controls (no top header) */
+html, body { background: #4a4f55; }
+
+.live-dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: #35D07F; margin-left: 4px; vertical-align: middle;
+}
+
+/* DP trend vs previous ERP price — up = increased, down = decreased */
+.trend { margin-left: 3px; font-size: 0.85em; line-height: 1; vertical-align: middle; }
+.trend-up { color: #E23D3D; }
+.trend-down { color: #1FA85A; }
+
+/* status dot colours (shared by menu + FAB badge) */
+.app-dot, .fab-dot { border-radius: 50%; flex: none; }
+.app-dot { width: 8px; height: 8px; }
+.fab-dot { position: absolute; top: 6px; right: 6px; width: 10px; height: 10px; border: 2px solid var(--charcoal); }
+.app-dot.live, .fab-dot.live { background: #35D07F; }
+.app-dot.loading, .fab-dot.loading { background: var(--ace-cyan); animation: pulse 1s infinite; }
+.app-dot.offline, .fab-dot.offline { background: #F0A020; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ---- Floating controls, bottom-right, above the WhatsApp order button ---- */
+.fab-wrap {
+  position: fixed; z-index: 60;
+  right: 16px; bottom: 74px;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 10px;
+}
+
+.fab-btn {
+  position: relative;
+  width: 50px; height: 50px; border-radius: 50%;
+  background: var(--charcoal); color: #fff;
+  border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+.fab-btn.open { background: var(--ace-cyan); }
+.fab-btn .fab-dot { border-color: var(--charcoal); }
+.fab-btn.open .fab-dot { border-color: var(--ace-cyan); }
+
+.fab-menu {
+  background: #fff; border-radius: 12px; padding: 10px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+  display: flex; flex-direction: column; gap: 8px;
+  width: 210px;
+  animation: fabin 140ms ease;
+}
+@keyframes fabin { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+.fab-sync {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 11px; color: #6B7178; padding: 2px 4px 6px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.fab-seg { display: flex; gap: 4px; background: var(--light-grey); border-radius: 8px; padding: 3px; }
+.fab-seg button {
+  flex: 1; font-family: inherit; font-size: 12px; font-weight: 600;
+  padding: 8px 6px; border: none; border-radius: 6px;
+  background: transparent; color: var(--charcoal); cursor: pointer;
+}
+.fab-seg button.on { background: var(--ace-cyan); color: #fff; }
+
+.fab-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: inherit; font-size: 13px; font-weight: 600; color: var(--charcoal);
+  padding: 9px 8px; border: none; border-radius: 6px;
+  background: transparent; cursor: pointer; text-align: left;
+}
+.fab-item:hover { background: var(--light-grey); }
+.fab-item:disabled { opacity: 0.5; cursor: default; }
+
+.app-loading, .app-error { color: #fff; text-align: center; padding: 80px 20px; font-size: 15px; }
+.app-error { color: #F0A020; }
+
+@media print {
+  .fab-wrap { display: none !important; }
+  html, body { background: #fff; }
+}

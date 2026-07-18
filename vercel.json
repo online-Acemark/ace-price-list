@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/erp-api/:path*",
+      "destination": "http://eksai12.ddns.net:8786/ek_api/:path*"
+    }
+  ]
+}

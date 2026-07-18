@@ -1,0 +1,91 @@
+/* ACEMARK Price List document — Direction B, A4 print-ready (ported from pl-doc.css) */
+.doc-stack { display: flex; flex-direction: column; align-items: center; gap: 18px; padding: 18px 0; background: #4a4f55; }
+
+.doc-page {
+  width: 794px; height: 1123px; background: #fff; position: relative;
+  display: flex; flex-direction: column; overflow: hidden;
+  font-family: var(--font-sans);
+}
+
+.doc-header {
+  background: var(--charcoal); color: #fff; border-bottom: 3px solid var(--ace-cyan);
+  padding: 13px 28px; display: flex; justify-content: space-between; align-items: center; flex: none;
+}
+.doc-firm { font-size: 17px; font-weight: 700; letter-spacing: 0.02em; }
+.doc-firm span { color: var(--ace-cyan); }
+.doc-div { font-size: 10px; font-weight: 600; white-space: nowrap; }
+.doc-sub { font-size: 8px; opacity: 0.75; margin-top: 2px; }
+.doc-footer {
+  position: absolute; bottom: 0; left: 0; right: 0; border-top: 1px solid var(--border-subtle);
+  padding: 7px 28px; display: flex; justify-content: space-between; font-size: 7.5px; color: #6B7178; background: #fff;
+}
+
+.cat-band {
+  background: var(--light-grey); border-bottom: 1px solid var(--border-subtle);
+  padding: 13px 28px; display: flex; align-items: center; gap: 18px; flex: none;
+}
+.cat-band-text { flex: 1; }
+.cat-no { font-size: 9.5px; font-weight: 700; color: var(--ace-cyan); letter-spacing: 0.12em; }
+.cat-title { font-size: 23px; font-weight: 700; color: var(--charcoal); text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.1; }
+.cat-photos { display: flex; gap: 7px; }
+
+.cat-cols { padding: 13px 28px 40px; column-count: 3; column-gap: 14px; }
+.fam { break-inside: avoid; margin-bottom: 13px; }
+.fam-head { border-left: 3px solid var(--ace-cyan); padding-left: 7px; margin-bottom: 4px; }
+.fam-name { font-size: 10px; font-weight: 700; color: var(--charcoal); line-height: 1.25; display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+.fam-meta { font-size: 7.5px; color: #6B7178; margin-top: 1px; }
+.fam table { width: 100%; border-collapse: collapse; }
+.fam th {
+  font-size: 7.5px; font-weight: 700; color: var(--charcoal); text-align: right;
+  border-bottom: 2px solid var(--ace-cyan); padding: 2.5px 5px; letter-spacing: 0.04em;
+}
+.fam td { font-size: 8.5px; text-align: right; padding: 2px 5px; border-bottom: 1px solid var(--border-subtle); color: var(--body-text); }
+.fam th.l, .fam td.l { text-align: left; }
+.fam td.l { font-weight: 600; color: var(--charcoal); }
+.fam td.dp { font-weight: 700; color: var(--charcoal); }
+.fam td.pending { background: var(--bg-accent-tint); }
+
+.cat-notes { break-inside: avoid; background: var(--bg-accent-tint); border-radius: 5px; padding: 8px 10px; font-size: 8px; color: var(--body-text); line-height: 1.55; }
+.cat-notes b { letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
+
+.tag { display: inline-block; font-size: 7px; font-weight: 700; letter-spacing: 0.08em; padding: 1.5px 5px; border-radius: 3px; white-space: nowrap; }
+.tag-NEW { background: var(--ace-cyan); color: #fff; }
+.tag-RATEREVISED { background: transparent; color: var(--charcoal); border: 1px solid var(--charcoal); }
+.tag-MOQ500 { background: var(--light-grey); color: var(--body-text); border: 1px solid var(--border-subtle); }
+
+.doc-cover { justify-content: space-between; }
+.cover-top { background: var(--charcoal); color: #fff; border-bottom: 4px solid var(--ace-cyan); padding: 90px 56px 48px; }
+.cover-firm { font-size: 44px; font-weight: 700; letter-spacing: 0.02em; }
+.cover-firm span { color: var(--ace-cyan); }
+.cover-tag { font-size: 17px; font-weight: 600; margin-top: 10px; }
+.cover-eff { font-size: 12px; opacity: 0.75; margin-top: 4px; }
+.cover-body { flex: 1; display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; padding: 44px 56px; align-content: start; }
+.cover-index-head { font-size: 11px; font-weight: 700; color: var(--ace-cyan); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.cover-index-div { font-size: 10px; font-weight: 700; color: var(--charcoal); letter-spacing: 0.1em; text-transform: uppercase; margin: 14px 0 2px; }
+.cover-index-div:first-of-type { margin-top: 0; }
+.cover-index-row { display: flex; align-items: baseline; gap: 8px; padding: 4.5px 0; border-bottom: 1px solid var(--border-subtle); }
+.ci-no { font-size: 10px; font-weight: 700; color: var(--ace-cyan); width: 30px; flex: none; }
+.ci-title { font-size: 13px; font-weight: 600; color: var(--charcoal); white-space: nowrap; }
+.ci-dots { flex: 1; border-bottom: 1px dotted var(--border-subtle); }
+.ci-pg { font-size: 11px; color: #6B7178; }
+.cover-legend p { font-size: 10.5px; color: var(--body-text); line-height: 1.6; margin: 0 0 10px; }
+.cover-foot { border-top: 1px solid var(--border-subtle); padding: 14px 56px 22px; display: flex; justify-content: space-between; font-size: 8.5px; color: #6B7178; }
+
+.of-body { padding: 24px 40px; display: flex; flex-direction: column; gap: 28px; flex: 1; }
+.of-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 32px; }
+.of-field { display: flex; align-items: baseline; gap: 10px; }
+.of-field.wide { grid-column: 1 / -1; }
+.of-label { font-size: 11px; font-weight: 700; color: var(--charcoal); white-space: nowrap; letter-spacing: 0.04em; }
+.of-line { flex: 1; border-bottom: 1px solid var(--charcoal); min-height: 18px; }
+.of-note { background: var(--bg-accent-tint); border-radius: 6px; padding: 14px 16px; font-size: 10.5px; color: var(--body-text); line-height: 1.7; }
+.of-note b { display: block; letter-spacing: 0.08em; margin-bottom: 4px; color: var(--charcoal); }
+.of-sign { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: auto; padding-bottom: 30px; }
+.of-sign-box { border-top: 1px solid var(--charcoal); padding-top: 6px; font-size: 10px; color: #6B7178; text-align: center; }
+
+@media print {
+  .app-bar { display: none !important; }
+  html, body { background: #fff; }
+  .doc-stack { gap: 0; padding: 0; background: #fff; }
+  .doc-page { page-break-after: always; }
+}
+@page { size: A4; margin: 0; }
