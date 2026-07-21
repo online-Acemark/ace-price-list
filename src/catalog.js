@@ -288,7 +288,7 @@ const CATALOG = [
     ],
     "notes": [
      "5-line combined Crown & 4-line one-side: ₹1 extra from regular rates · Combined: ₹0.30 extra",
-     "Variety: 1 Line, 2 Line, 3 Line, 4 Line, Plain · 2 Cartons = 1 Bundle"
+     "Variety: 1 Line, 2 Line, 3 Line, 4 Line, Plain"
     ]
    },
    {

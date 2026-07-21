@@ -195,6 +195,12 @@ function cleanPages(pp) {
   return s && s.toUpperCase() !== 'N/A' ? s : ''
 }
 
+// "1 Line, 2 Line, 4 Line, Plain, Dabba" — numbered rullings first, then the rest
+function sortVarieties(list) {
+  const rank = (s) => { const m = String(s).match(/^(\d+)\s*line/i); return m ? Number(m[1]) : 99 }
+  return list.sort((a, b) => rank(a) - rank(b) || String(a).localeCompare(String(b)))
+}
+
 function commonCode(codes) {
   // most frequent leading-letters prefix among the product codes
   const counts = new Map()
@@ -256,9 +262,12 @@ export function buildCatalogFromApi(records, curated) {
     const sub = (String(r.SubCat || '').trim()) || erpCat
     if (!rawTree.has(div)) rawTree.set(div, new Map())
     const subs = rawTree.get(div)
-    if (!subs.has(sub)) subs.set(sub, { sub, erpCat, codes: [], rows: new Map() })
+    if (!subs.has(sub)) subs.set(sub, { sub, erpCat, codes: [], rows: new Map(), varieties: new Set() })
     const fam = subs.get(sub)
     fam.codes.push(String(r.ProductCode || ''))
+    // rulling / variety list for this family (N/A excluded)
+    const variety = String(r.ProdVariety || '').trim()
+    if (variety && variety.toUpperCase() !== 'N/A') fam.varieties.add(variety)
     const label = cleanPages(r.ProdPages) ||
       (r.ProdVariety && r.ProdVariety !== 'N/A' ? String(r.ProdVariety) : String(r.ProductCode))
     if (!fam.rows.has(label)) fam.rows.set(label, new Map())
@@ -311,8 +320,10 @@ export function buildCatalogFromApi(records, curated) {
       const cat = catMap.get(catTitle)
       if (catOrder < cat.order) cat.order = catOrder
       if (catNotes && !cat.notes) cat.notes = catNotes
-      if (!cat.fams.has(mergeKey)) cat.fams.set(mergeKey, { name, code, size, tag, rowsMap: new Map() })
-      const dst = cat.fams.get(mergeKey).rowsMap
+      if (!cat.fams.has(mergeKey)) cat.fams.set(mergeKey, { name, code, size, tag, rowsMap: new Map(), varieties: new Set() })
+      const dstFam = cat.fams.get(mergeKey)
+      for (const v of fam.varieties) dstFam.varieties.add(v)
+      const dst = dstFam.rowsMap
       for (const [label, bucket] of fam.rows) {
         if (!dst.has(label)) dst.set(label, new Map())
         const d = dst.get(label)
@@ -325,7 +336,11 @@ export function buildCatalogFromApi(records, curated) {
     const pages = cats.map(([title, cat]) => {
       catNo++
       const families = [...cat.fams.values()]
-        .map((f) => ({ name: f.name, code: f.code, size: f.size || null, tag: f.tag || null, col: null, rows: buildRows(f.rowsMap) }))
+        .map((f) => ({
+          name: f.name, code: f.code, size: f.size || null, tag: f.tag || null, col: null,
+          rulling: sortVarieties([...f.varieties]).join(', '),
+          rows: buildRows(f.rowsMap),
+        }))
         .sort((a, b) => a.name.localeCompare(b.name))
       return { catNo: letter + '-' + catNo, title, families, notes: cat.notes || null }
     })

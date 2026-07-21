@@ -57,12 +57,13 @@ function FamilyTable({ f }) {
             <tr key={j}>
               <td className="l">{r.label}</td>
               <td className={r.mrp === '' ? 'pending' : ''}>{r.mrp}</td>
-              <td className={'dp' + (r.dp === '' ? ' pending' : '')}>{r.dp}{r._live ? <span className="live-dot" title="Live price" /> : null}<TrendArrow row={r} /></td>
+              <td className={'dp' + (r.dp === '' ? ' pending' : '')}>{r.dp}<TrendArrow row={r} /></td>
               <td>{r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      {f.rulling ? <div className="fam-rulling"><b>Rulling:</b> {f.rulling}</div> : null}
     </div>
   )
 }

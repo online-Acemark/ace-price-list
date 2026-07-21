@@ -45,6 +45,9 @@
 .fam td.dp { font-weight: 700; color: var(--charcoal); }
 .fam td.pending { background: var(--bg-accent-tint); }
 
+.fam-rulling { font-size: 7px; color: #6B7178; line-height: 1.45; padding: 2px 5px 0; }
+.fam-rulling b { color: var(--charcoal); font-weight: 700; }
+
 .cat-notes { break-inside: avoid; background: var(--bg-accent-tint); border-radius: 5px; padding: 8px 10px; font-size: 8px; color: var(--body-text); line-height: 1.55; }
 .cat-notes b { letter-spacing: 0.06em; display: block; margin-bottom: 2px; }
 

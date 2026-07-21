@@ -25,12 +25,13 @@ function MFamilyCard({ f }) {
             <tr key={j}>
               <td className="l">{r.label}</td>
               <td className={r.mrp === '' ? 'pending' : ''}>{r.mrp}</td>
-              <td className={'dp' + (r.dp === '' ? ' pending' : '')}>{r.dp}{r._live ? <span className="live-dot" title="Live price" /> : null}<TrendArrow row={r} /></td>
+              <td className={'dp' + (r.dp === '' ? ' pending' : '')}>{r.dp}<TrendArrow row={r} /></td>
               <td>{r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      {f.rulling ? <div className="mfam-rulling"><b>Rulling:</b> {f.rulling}</div> : null}
     </div>
   )
 }
@@ -63,18 +64,21 @@ export default function MobileView({ catalog }) {
     return s >= 0 && s < catalog.length ? s : 0
   })
   const [query, setQuery] = React.useState('')
+  const [activeCat, setActiveCat] = React.useState(null) // null = All
   const div = catalog[divIdx]
   const q = query.trim().toLowerCase()
 
   React.useEffect(() => { localStorage.setItem('aceml-div', String(divIdx)) }, [divIdx])
+  // division badalne par category filter reset
+  React.useEffect(() => { setActiveCat(null) }, [divIdx])
 
-  const jump = (catNo) => {
-    const el = document.getElementById('cat-' + catNo)
-    if (el) {
-      const y = el.getBoundingClientRect().top + window.pageYOffset - 150
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
+  const selectCat = (catNo, el) => {
+    setActiveCat(catNo)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (el) el.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' })
   }
+
+  const shownPages = activeCat ? div.pages.filter((p) => p.catNo === activeCat) : div.pages
 
   let searchResults = null
   if (q) {
@@ -102,10 +106,20 @@ export default function MobileView({ catalog }) {
           <input type="search" placeholder="Search product or code…" value={query} onChange={(e) => setQuery(e.target.value)} />
         </div>
         {!q && (
-          <div className="mchips">
-            {div.pages.map((p, i) => (
-              <button key={i} className="mchip" onClick={() => jump(p.catNo)}>{p.title}</button>
-            ))}
+          <div className="mchips-wrap">
+            <div className="mchips">
+              <button
+                className={'mchip' + (activeCat === null ? ' on' : '')}
+                onClick={(e) => selectCat(null, e.currentTarget)}
+              >All</button>
+              {div.pages.map((p, i) => (
+                <button
+                  key={i}
+                  className={'mchip' + (activeCat === p.catNo ? ' on' : '')}
+                  onClick={(e) => selectCat(p.catNo, e.currentTarget)}
+                >{p.title}</button>
+              ))}
+            </div>
           </div>
         )}
       </header>
@@ -122,7 +136,7 @@ export default function MobileView({ catalog }) {
         </div>
       ) : (
         <main>
-          {div.pages.map((p, i) => <MCategory key={i} page={p} />)}
+          {shownPages.map((p, i) => <MCategory key={i} page={p} />)}
         </main>
       )}
 
