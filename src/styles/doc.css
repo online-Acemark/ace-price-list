@@ -92,3 +92,6 @@
   .doc-page { page-break-after: always; }
 }
 @page { size: A4; margin: 0; }
+
+/* PL item jo ERP me nahi mila — saved price */
+.fam td.dp.nomatch { background: #FFF4DC; box-shadow: inset 2px 0 0 #F0A020; }

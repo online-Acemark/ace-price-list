@@ -97,3 +97,7 @@
   padding: 11px 18px; border-radius: 999px; box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 @media (max-width: 512px) { .mwa { right: 16px; } }
+
+/* PL item jo ERP me nahi mila — saved price dikha rahe hain */
+.mfam td.dp.nomatch { background: #FFF4DC; box-shadow: inset 2px 0 0 #F0A020; }
+.mfam tr:nth-child(even) td.dp.nomatch { background: #FFF4DC; }

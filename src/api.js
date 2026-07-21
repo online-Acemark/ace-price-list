@@ -46,7 +46,13 @@ export function buildIndex(records) {
     if (!dp || dp <= 0) continue
     liveCount++
     const code = norm(r.ProductCode)
-    const price = { mrp: Number(r.NewMRP) || null, dp, odp: Number(r.OldDP) || 0, pack: r.Pack, crt: r.CRT, bld: r.Bld, name: String(r.ProductName || '').toUpperCase() }
+    const variety = String(r.ProdVariety || '').trim()
+    const price = {
+      mrp: Number(r.NewMRP) || null, dp, odp: Number(r.OldDP) || 0,
+      pack: r.Pack, crt: r.CRT, bld: r.Bld,
+      name: String(r.ProductName || '').toUpperCase(),
+      variety: variety && variety.toUpperCase() !== 'N/A' ? variety : '',
+    }
 
     // exact full-code index (precise, unambiguous)
     add(byCode, code, dp, price)
@@ -62,8 +68,9 @@ function add(map, key, dp, price) {
   let bucket = map.get(key)
   if (!bucket) map.set(key, (bucket = new Map()))
   const dpKey = dp.toFixed(2)
-  const cur = bucket.get(dpKey) || { ...price, count: 0 }
+  const cur = bucket.get(dpKey) || { ...price, count: 0, varieties: new Set() }
   cur.count++
+  if (price.variety) cur.varieties.add(price.variety)
   bucket.set(dpKey, cur)
 }
 
@@ -138,11 +145,14 @@ export function applyLivePrices(catalog, index) {
     pages: div.pages.map((p) => ({
       ...p,
       families: p.families.map((f) => {
+        const famVarieties = new Set()
         let rows = f.rows.map((row) => {
           attempted++
           const live = resolveRow(index, f.code, row.label, f.name)
-          if (!live) return { ...row, bld: row.bld ?? '' }
+          // PL item jo ERP me nahi mila — dikhega par highlight ke saath
+          if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++
+          if (live.varieties) for (const v of live.varieties) famVarieties.add(v)
           // DP trend vs the ERP's previous dealer price (OldDP)
           const trend = live.odp && Math.abs(live.dp - live.odp) > 0.005
             ? (live.dp > live.odp ? 'up' : 'down') : null
@@ -169,7 +179,7 @@ export function applyLivePrices(catalog, index) {
           rows = rows.map((r) => (!r._live && r.crt !== '' && r.crt != null && (r.bld === '' || r.bld == null))
             ? { ...r, bld: r.crt, crt: '' } : r)
         }
-        return { ...f, rows }
+        return { ...f, rows, rulling: sortVarieties([...famVarieties]).join(', ') }
       }),
     })),
   }))

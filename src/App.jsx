@@ -1,10 +1,14 @@
 import React from 'react'
 import CATALOG from './catalog.js'
-import { fetchPriceList, buildCatalogFromApi } from './api.js'
+import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices } from './api.js'
 import DocView from './components/DocView.jsx'
 import MobileView from './components/MobileView.jsx'
 import './styles/doc.css'
 import './styles/mobile.css'
+
+// Divisions covered by the printed price list (PL) — these show only the PDF's
+// items. Everything else comes straight from the ERP.
+const PL_DIVISIONS = ['School Stationery', 'Office Stationery']
 
 export default function App() {
   const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'mobile')
@@ -18,14 +22,24 @@ export default function App() {
     setSync((s) => ({ ...s, state: 'loading' }))
     try {
       const records = await fetchPriceList()
-      // Divisions, categories, families and rows all come from the ERP.
-      // Curated CATALOG only supplies size/tag overlay where a code matches.
-      const built = buildCatalogFromApi(records, CATALOG)
+
+      // School + Office = "PL" list (the 01.04.2026 price-list PDF). The curated
+      // CATALOG decides WHICH items show; the ERP supplies the live prices.
+      const index = buildIndex(records)
+      const plSource = CATALOG.filter((d) => PL_DIVISIONS.includes(d.division))
+      const { catalog: pl, matched, attempted } = applyLivePrices(plSource, index)
+
+      // Corporate + Others aren't in the PDF — keep them straight from the ERP.
+      const extra = buildCatalogFromApi(records, CATALOG)
+        .filter((d) => !PL_DIVISIONS.includes(d.division))
+
+      const built = [...pl, ...extra]
       setCatalog(built)
       const rows = built.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)
-      setSync({ state: 'live', divisions: built.length, rows, at: new Date() })
+      setSync({ state: 'live', divisions: built.length, rows, at: new Date(), unmatched: attempted - matched })
     } catch (e) {
-      setCatalog(CATALOG) // offline: fall back to the saved curated catalogue
+      // offline: saved PL catalogue only (no ERP-only divisions)
+      setCatalog(CATALOG.filter((d) => PL_DIVISIONS.includes(d.division)))
       setSync({ state: 'offline', divisions: 0, rows: 0, at: null, error: String(e.message || e) })
     }
   }, [])
@@ -34,7 +48,9 @@ export default function App() {
 
   const syncText = {
     loading: 'Loading from ERP…',
-    live: sync.at ? `Live · ${sync.divisions} divisions · ${sync.rows} rows · ${timeStr(sync.at)}` : 'Live',
+    live: sync.at
+      ? `Live · ${sync.divisions} divisions · ${sync.rows} rows${sync.unmatched ? ` · ${sync.unmatched} not in ERP` : ''} · ${timeStr(sync.at)}`
+      : 'Live',
     offline: 'Offline — saved catalogue',
   }[sync.state]
 

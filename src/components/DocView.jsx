@@ -57,7 +57,10 @@ function FamilyTable({ f }) {
             <tr key={j}>
               <td className="l">{r.label}</td>
               <td className={r.mrp === '' ? 'pending' : ''}>{r.mrp}</td>
-              <td className={'dp' + (r.dp === '' ? ' pending' : '')}>{r.dp}<TrendArrow row={r} /></td>
+              <td
+                className={'dp' + (r.dp === '' ? ' pending' : '') + (r._unmatched ? ' nomatch' : '')}
+                title={r._unmatched ? 'ERP me nahi mila — saved price' : undefined}
+              >{r.dp}<TrendArrow row={r} /></td>
               <td>{r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
             </tr>
           ))}
