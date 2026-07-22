@@ -7,6 +7,9 @@
 
 // Config comes from .env (Vite exposes VITE_* to the client). Hardcoded values
 // are only fallbacks so the app still runs if .env is missing.
+import CATALOGUE_SIZES from './catalogue-sizes.js'
+import { SECTION_TITLES, CODE_SECTION, NAME_OVERRIDES } from './catalogue-sections.js'
+
 const ENV = import.meta.env || {}
 const PROXY_URL = ENV.VITE_ERP_PROXY_PATH || '/erp-api/googleAutomation/PriceList.ashx'
 const DIRECT_URL = ENV.VITE_ERP_API_URL || 'http://eksai12.ddns.net:8786/ek_api/googleAutomation/PriceList.ashx'
@@ -33,6 +36,16 @@ async function tryFetch(url) {
 }
 
 const norm = (s) => String(s == null ? '' : s).toUpperCase().replace(/\s+/g, '')
+
+// Size for a family code, from the product catalogue PDF. A family code can be
+// a "/" list (e.g. "SH/VB/RB") — use the first variant the catalogue knows.
+export function catalogueSize(code) {
+  for (const c of String(code || '').split('/')) {
+    const hit = CATALOGUE_SIZES[norm(c)]
+    if (hit) return hit
+  }
+  return null
+}
 
 // Build a resolver from the raw API records. Groups every live-priced record
 // (NewDP > 0) under a key of  <leading family letters> + <first page number>,
@@ -179,7 +192,13 @@ export function applyLivePrices(catalog, index) {
           rows = rows.map((r) => (!r._live && r.crt !== '' && r.crt != null && (r.bld === '' || r.bld == null))
             ? { ...r, bld: r.crt, crt: '' } : r)
         }
-        return { ...f, rows, rulling: sortVarieties([...famVarieties]).join(', ') }
+        return {
+          ...f,
+          // size: curated first, else the product catalogue (API has no size)
+          size: f.size && f.size !== '—' ? f.size : catalogueSize(f.code),
+          rows,
+          rulling: sortVarieties([...famVarieties]).join(', '),
+        }
       }),
     })),
   }))
@@ -347,7 +366,7 @@ export function buildCatalogFromApi(records, curated) {
       catNo++
       const families = [...cat.fams.values()]
         .map((f) => ({
-          name: f.name, code: f.code, size: f.size || null, tag: f.tag || null, col: null,
+          name: f.name, code: f.code, size: f.size || catalogueSize(f.code), tag: f.tag || null, col: null,
           rulling: sortVarieties([...f.varieties]).join(', '),
           rows: buildRows(f.rowsMap),
         }))
@@ -356,4 +375,73 @@ export function buildCatalogFromApi(records, curated) {
     })
     return { division: div, effective: '01.04.2026', pages }
   })
+}
+
+// ---------------------------------------------------------------------------
+// Regroup the PL (price-list) families under the PRODUCT CATALOGUE's own
+// section numbers (S-1..S-11 / O-1..O-9) so the app lines up with the printed
+// catalogue instead of the price-list PDF's different numbering.
+// ---------------------------------------------------------------------------
+
+const SEC_KEY = (() => {
+  const m = new Map()
+  for (const [k, v] of Object.entries(CODE_SECTION)) {
+    const K = k.toUpperCase().trim()
+    if (!m.has(K)) m.set(K, v)
+    for (const part of K.split('/')) if (part.length >= 2 && !m.has(part)) m.set(part, v)
+  }
+  return m
+})()
+
+function codeVariants(code) {
+  const out = new Set()
+  for (let c of String(code || '').split('/')) {
+    c = c.trim().toUpperCase(); if (!c) continue
+    out.add(c)
+    out.add(c.replace(/^\d+/, ''))   // 12BR -> BR (long-book variants)
+    out.add(c.replace(/\d+$/, ''))   // LC72 -> LC, PW100 -> PW
+  }
+  return [...out].filter(Boolean)
+}
+
+export function sectionForFamily(name, code) {
+  const over = NAME_OVERRIDES[String(name || '').toUpperCase().trim()]
+  if (over) return over
+  const vs = codeVariants(code)
+  for (const v of vs) if (SEC_KEY.has(v)) return SEC_KEY.get(v)
+  for (const v of vs) {
+    if (v.length < 2) continue
+    for (const [k, s] of SEC_KEY) if (k.startsWith(v) || v.startsWith(k)) return s
+  }
+  return null
+}
+
+const secNum = (s) => Number(String(s).split('-')[1] || 999)
+
+// catalog: PL divisions (already price-merged). Returns the same shape, but with
+// families regrouped into the catalogue's sections.
+export function regroupByCatalogue(catalog) {
+  const buckets = new Map()   // section -> families[]
+  const loose = []            // families with no catalogue section
+  for (const div of catalog) {
+    for (const p of div.pages) {
+      for (const f of p.families) {
+        const sec = sectionForFamily(f.name, f.code)
+        if (!sec) { loose.push({ f, div: div.division }); continue }
+        if (!buckets.has(sec)) buckets.set(sec, [])
+        buckets.get(sec).push(f)
+      }
+    }
+  }
+  const effective = catalog[0]?.effective
+  const build = (letter, divisionName) => {
+    const pages = [...buckets.keys()]
+      .filter((s) => s.startsWith(letter + '-'))
+      .sort((a, b) => secNum(a) - secNum(b))
+      .map((s) => ({ catNo: s, title: SECTION_TITLES[s] || s, families: buckets.get(s), notes: null }))
+    const extras = loose.filter((l) => l.div === divisionName).map((l) => l.f)
+    if (extras.length) pages.push({ catNo: letter + '-·', title: 'Other', families: extras, notes: null })
+    return { division: divisionName, effective, pages }
+  }
+  return [build('S', 'School Stationery'), build('O', 'Office Stationery')]
 }

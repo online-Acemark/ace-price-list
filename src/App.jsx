@@ -1,6 +1,6 @@
 import React from 'react'
 import CATALOG from './catalog.js'
-import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices } from './api.js'
+import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices, regroupByCatalogue } from './api.js'
 import DocView from './components/DocView.jsx'
 import MobileView from './components/MobileView.jsx'
 import './styles/doc.css'
@@ -27,7 +27,9 @@ export default function App() {
       // CATALOG decides WHICH items show; the ERP supplies the live prices.
       const index = buildIndex(records)
       const plSource = CATALOG.filter((d) => PL_DIVISIONS.includes(d.division))
-      const { catalog: pl, matched, attempted } = applyLivePrices(plSource, index)
+      const { catalog: priced, matched, attempted } = applyLivePrices(plSource, index)
+      // regroup under the product catalogue's own S-/O- section numbers
+      const pl = regroupByCatalogue(priced)
 
       // Corporate + Others aren't in the PDF — keep them straight from the ERP.
       const extra = buildCatalogFromApi(records, CATALOG)
