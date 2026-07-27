@@ -28,7 +28,11 @@ export async function fetchPriceList() {
 async function tryFetch(url) {
   const headers = { Accept: 'application/json' }
   if (API_KEY) { headers.Authorization = 'Bearer ' + API_KEY; headers['x-api-key'] = API_KEY }
-  const res = await fetch(url, { headers })
+  // The ERP sends "Cache-Control: private", so the browser can serve a stale
+  // copy on refresh. Bypass the cache and add a unique param so every load /
+  // Refresh really hits the ERP and shows the latest prices.
+  const bust = url + (url.includes('?') ? '&' : '?') + '_=' + Date.now()
+  const res = await fetch(bust, { headers, cache: 'no-store' })
   if (!res.ok) throw new Error('HTTP ' + res.status)
   const json = await res.json()
   if (!json || !Array.isArray(json.DataRec)) throw new Error('bad payload')
@@ -75,7 +79,14 @@ export function buildIndex(records) {
     // family C + 80 pages + variety 1, so parsing the code would key it as 801.
     const alpha = (code.match(/^([A-Z]+)/) || [, ''])[1]
     const pgm = String(r.ProdPages || '').match(/\d+/)
-    if (alpha && pgm) add(groups, alpha + '|' + String(Number(pgm[0])), dp, price)
+    if (pgm) {
+      const pg = String(Number(pgm[0]))
+      if (alpha) add(groups, alpha + '|' + pg, dp, price)
+      // key on the code up to the page number, so mixed codes like "A5M481"
+      // (family A5M + 48 pages + variety 1) index as "A5M|48", not "A|48".
+      const i = code.indexOf(pg)
+      if (i > 0) add(groups, code.slice(0, i) + '|' + pg, dp, price)
+    }
     // keep the code-digit key too, for products with no ProdPages
     const m = code.match(/^([A-Z]*)(\d+)/)
     if (m) add(groups, m[1] + '|' + String(Number(m[2])), dp, price)
@@ -115,7 +126,8 @@ const STOP = new Set(['ACE', 'MARK', 'ECO', 'THE', 'AND', 'NET', 'RATE', 'RATES'
 function famTokens(name) {
   return new Set(
     String(name || '').toUpperCase().replace(/[^A-Z0-9 ]/g, ' ').split(/\s+/)
-      .filter((w) => w.length >= 3 && !STOP.has(w))
+      // keep words of 3+ chars, plus short size codes with a digit (A5, B5, A4)
+      .filter((w) => (w.length >= 3 || /\d/.test(w)) && !STOP.has(w))
   )
 }
 
@@ -168,6 +180,7 @@ export function resolveRow(index, familyCode, rowLabel, familyName) {
 const CODE_ALIAS = {
   'Prime Rough Note Book': 'PRS',
   'Graph Paper Sheet': 'GP',
+  'Mark A5 N/B': 'A5M', // catalog code "A5", ERP codes are "A5M481" etc.
 }
 
 // Apply live prices onto a copy of the catalog. Returns { catalog, matched }.

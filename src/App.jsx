@@ -9,6 +9,8 @@ import './styles/mobile.css'
 // Divisions covered by the printed price list (PL) — these show only the PDF's
 // items. Everything else comes straight from the ERP.
 const PL_DIVISIONS = ['School Stationery', 'Office Stationery']
+// Divisions shown in the A4 print document (Others stays mobile-only)
+const DOC_DIVISIONS = ['School Stationery', 'Office Stationery', 'Corporate']
 
 export default function App() {
   const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'mobile')
@@ -17,6 +19,23 @@ export default function App() {
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   React.useEffect(() => { localStorage.setItem('ace-view', view) }, [view])
+
+  // Nice filename when the browser saves the print as PDF
+  React.useEffect(() => {
+    const orig = document.title
+    const before = () => { document.title = 'ACEMARK Price List (C.G.) 01.08.2026' }
+    const after = () => { document.title = orig }
+    window.addEventListener('beforeprint', before)
+    window.addEventListener('afterprint', after)
+    return () => { window.removeEventListener('beforeprint', before); window.removeEventListener('afterprint', after) }
+  }, [])
+
+  // Always print the A4 document — switch to it first (works even from mobile view)
+  const printDoc = React.useCallback(() => {
+    setMenuOpen(false)
+    setView('doc')
+    setTimeout(() => window.print(), 250)
+  }, [])
 
   const load = React.useCallback(async () => {
     setSync((s) => ({ ...s, state: 'loading' }))
@@ -59,7 +78,7 @@ export default function App() {
   return (
     <>
       {view === 'doc'
-        ? <DocView catalog={catalog.filter((d) => PL_DIVISIONS.includes(d.division))} />
+        ? <DocView catalog={catalog.filter((d) => DOC_DIVISIONS.includes(d.division))} />
         : <MobileView catalog={catalog} />}
 
       {/* Floating controls — sits above the WhatsApp order button */}
@@ -74,14 +93,15 @@ export default function App() {
               <button className={view === 'doc' ? 'on' : ''} onClick={() => { setView('doc'); setMenuOpen(false) }}>A4 Document</button>
               <button className={view === 'mobile' ? 'on' : ''} onClick={() => { setView('mobile'); setMenuOpen(false) }}>Mobile</button>
             </div>
-            <button className="fab-item" onClick={load} disabled={sync.state === 'loading'}>
-              <RefreshIcon /> {sync.state === 'loading' ? 'Refreshing…' : 'Refresh prices'}
+            <button className="fab-item" onClick={printDoc}>
+              <PrintIcon /> Print
             </button>
-            {view === 'doc' && (
-              <button className="fab-item" onClick={() => { setMenuOpen(false); setTimeout(() => window.print(), 50) }}>
-                <PrintIcon /> Print / PDF
-              </button>
-            )}
+            <button className="fab-item" onClick={printDoc} title="In the dialog choose “Save as PDF”">
+              <DownloadIcon /> Download PDF
+            </button>
+            <button className="fab-item" onClick={load} disabled={sync.state === 'loading'}>
+              <RefreshIcon /> {sync.state === 'loading' ? 'Refreshing…' : 'Refresh data'}
+            </button>
           </div>
         )}
         <button
@@ -113,4 +133,7 @@ const RefreshIcon = () => (
 )
 const PrintIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M19 8H5a3 3 0 0 0-3 3v6h4v4h12v-4h4v-6a3 3 0 0 0-3-3zm-3 11H8v-5h8v5zm3-7a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM18 3H6v4h12V3z"/></svg>
+)
+const DownloadIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 17.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 19h14v2H5z"/></svg>
 )
