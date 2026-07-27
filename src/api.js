@@ -70,7 +70,13 @@ export function buildIndex(records) {
     // exact full-code index (precise, unambiguous)
     add(byCode, code, dp, price)
 
-    // page-group index — collapses rulling/variety variants (C801, C802, C80K…)
+    // page-group index — collapses rulling/variety variants (C801, C802, C80K…).
+    // The page comes from ProdPages, NOT from the digits in the code: "C801" is
+    // family C + 80 pages + variety 1, so parsing the code would key it as 801.
+    const alpha = (code.match(/^([A-Z]+)/) || [, ''])[1]
+    const pgm = String(r.ProdPages || '').match(/\d+/)
+    if (alpha && pgm) add(groups, alpha + '|' + String(Number(pgm[0])), dp, price)
+    // keep the code-digit key too, for products with no ProdPages
     const m = code.match(/^([A-Z]*)(\d+)/)
     if (m) add(groups, m[1] + '|' + String(Number(m[2])), dp, price)
   }
@@ -90,7 +96,11 @@ function add(map, key, dp, price) {
 function pick(bucket) {
   if (!bucket || bucket.size === 0) return null
   if (bucket.size === 1) return bucket.values().next().value
-  return null // ambiguous — caller keeps the saved price
+  // Several distinct DPs under one page — that is normal: most rullings share
+  // the regular rate and a few variants (Combind etc.) cost a little extra.
+  // Take the rate the majority of variants carry; a genuine tie stays unmatched.
+  const byCount = [...bucket.values()].sort((a, b) => b.count - a.count)
+  return byCount[0].count > byCount[1].count ? byCount[0] : null
 }
 
 // Resolve one catalog row to a live price. Conservative: only returns a value
@@ -122,7 +132,12 @@ function nameOk(tokens, hitName) {
 export function resolveRow(index, familyCode, rowLabel, familyName) {
   const label = norm(rowLabel)
   const codes = String(familyCode || '').split('/').map(norm).filter(Boolean)
-  const pageMatch = String(rowLabel).match(/\d+/)
+  // Only treat the label as a page count when it really is one ("80P", "236P",
+  // "28P (No.2)", "100 Sheet"). Pack specs like "1x16 (No.0)" or "Half Size"
+  // must NOT yield a page number, or they match an unrelated product.
+  const rawLabel = String(rowLabel)
+  const isPageLike = !/\d\s*[×x]\s*\d/i.test(rawLabel)
+  const pageMatch = isPageLike ? rawLabel.match(/\d+/) : null
   const page = pageMatch ? String(Number(pageMatch[0])) : null
   const tokens = famTokens(familyName)
 
@@ -148,6 +163,13 @@ export function resolveRow(index, familyCode, rowLabel, familyName) {
   return null
 }
 
+// A few families use a different code in the ERP than in the price list.
+// Keyed by family name so a short/ambiguous code can't match the wrong product.
+const CODE_ALIAS = {
+  'Prime Rough Note Book': 'PRS',
+  'Graph Paper Sheet': 'GP',
+}
+
 // Apply live prices onto a copy of the catalog. Returns { catalog, matched }.
 export function applyLivePrices(catalog, index) {
   let matched = 0, attempted = 0
@@ -159,9 +181,10 @@ export function applyLivePrices(catalog, index) {
       ...p,
       families: p.families.map((f) => {
         const famVarieties = new Set()
+        const lookupCode = CODE_ALIAS[f.name] || f.code
         let rows = f.rows.map((row) => {
           attempted++
-          const live = resolveRow(index, f.code, row.label, f.name)
+          const live = resolveRow(index, lookupCode, row.label, f.name)
           // PL item jo ERP me nahi mila — dikhega par highlight ke saath
           if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++
@@ -373,7 +396,7 @@ export function buildCatalogFromApi(records, curated) {
         .sort((a, b) => a.name.localeCompare(b.name))
       return { catNo: letter + '-' + catNo, title, families, notes: cat.notes || null }
     })
-    return { division: div, effective: '01.04.2026', pages }
+    return { division: div, effective: '01.08.2026', pages }
   })
 }
 

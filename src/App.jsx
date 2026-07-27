@@ -58,7 +58,9 @@ export default function App() {
 
   return (
     <>
-      {view === 'doc' ? <DocView catalog={catalog} /> : <MobileView catalog={catalog} />}
+      {view === 'doc'
+        ? <DocView catalog={catalog.filter((d) => PL_DIVISIONS.includes(d.division))} />
+        : <MobileView catalog={catalog} />}
 
       {/* Floating controls — sits above the WhatsApp order button */}
       <div className="fab-wrap">

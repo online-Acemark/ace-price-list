@@ -27,8 +27,8 @@ function DocHeader({ pageNo, division, effective }) {
         <div className="doc-sub">{FIRM.address} · {FIRM.phones} · {FIRM.web}</div>
       </div>
       <div style={{ textAlign: 'right' }}>
-        <div className="doc-div">Price List · {division}</div>
-        <div className="doc-sub">Effective {effective} · Page {pageNo}</div>
+        <div className="doc-div">Price List (C.G.) · {division}</div>
+        <div className="doc-sub">Effective {effective}{pageNo ? ' · Page ' + pageNo : ''}</div>
       </div>
     </div>
   )
@@ -71,18 +71,18 @@ function FamilyTable({ f }) {
   )
 }
 
-function CategoryPage({ page, pageNo, division, effective }) {
+// A category as a flowing section (no page frame): band + its product tables.
+// Many sections pack onto each A4 sheet, filling the blank space.
+function CategorySection({ page, division }) {
   return (
-    <div className="doc-page" data-screen-label={page.catNo + ' ' + page.title}>
-      <DocHeader pageNo={pageNo} division={division} effective={effective} />
+    <section className="cat-section" data-screen-label={page.catNo + ' ' + page.title}>
       <div className="cat-band">
+        <div className="cat-no-badge">{page.catNo}</div>
         <div className="cat-band-text">
-          <div className="cat-no">{page.catNo} · {division.toUpperCase()}</div>
+          <div className="cat-kicker">{division.toUpperCase()}</div>
           <div className="cat-title">{page.title}</div>
         </div>
-        <div className="cat-photos">
-          {page.families.slice(0, 6).map((f, i) => <DocPhotoPH key={i} w="52px" h="66px" label={f.code} />)}
-        </div>
+        <div className="cat-count">{page.families.length} {page.families.length === 1 ? 'range' : 'ranges'}</div>
       </div>
       <div className="cat-cols">
         {page.families.map((f, i) => <FamilyTable key={i} f={f} />)}
@@ -93,8 +93,7 @@ function CategoryPage({ page, pageNo, division, effective }) {
           </div>
         ) : null}
       </div>
-      <DocFooter />
-    </div>
+    </section>
   )
 }
 
@@ -107,8 +106,11 @@ function CoverPage({ catalog, effective }) {
   return (
     <div className="doc-page doc-cover" data-screen-label="Cover">
       <div className="cover-top">
+        <div className="cover-year">2026</div>
         <div className="cover-firm">{FIRM.name} <span>{FIRM.name2}</span></div>
-        <div className="cover-tag">Price List · {catalog.map((d) => d.division).join(' + ')}</div>
+        <div className="cover-rule" />
+        <div className="cover-tag">Price List · Chhattisgarh (C.G.)</div>
+        <div className="cover-sub2">{catalog.map((d) => d.division).join(' + ')}</div>
         <div className="cover-eff">Effective {effective}</div>
       </div>
       <div className="cover-body">
@@ -151,7 +153,7 @@ function OrderFormPage({ pageNo, effective }) {
     </div>
   )
   return (
-    <div className="doc-page" data-screen-label="Order Form">
+    <div className="doc-page doc-fixed" data-screen-label="Order Form">
       <DocHeader pageNo={pageNo} division="Order Form" effective={effective} />
       <div className="cat-band">
         <div className="cat-band-text">
@@ -188,16 +190,24 @@ function OrderFormPage({ pageNo, effective }) {
 
 export default function DocView({ catalog }) {
   const effective = catalog[0]?.effective
-  let pg = 1
+  const divs = catalog.map((d) => d.division).join(' · ')
   return (
     <div className="doc-stack">
       <CoverPage catalog={catalog} effective={effective} />
-      {catalog.map((d, di) =>
-        d.pages.map((p, i) => (
-          <CategoryPage key={di + '-' + i} page={p} pageNo={++pg} division={d.division} effective={effective} />
-        ))
-      )}
-      <OrderFormPage pageNo={++pg} effective={effective} />
+      {/* One A4-width sheet: categories flow and pack, paginating to real A4
+          pages on print instead of one category per (mostly blank) page. */}
+      <div className="doc-page doc-flow" data-screen-label="Price List">
+        <DocHeader division={divs} effective={effective} />
+        <div className="flow-body">
+          {catalog.map((d, di) =>
+            d.pages.map((p, i) => (
+              <CategorySection key={di + '-' + i} page={p} division={d.division} />
+            ))
+          )}
+        </div>
+        <DocFooter />
+      </div>
+      <OrderFormPage pageNo={0} effective={effective} />
     </div>
   )
 }

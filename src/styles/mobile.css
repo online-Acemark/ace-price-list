@@ -55,13 +55,12 @@
 .mfam-head { background: var(--light-grey); padding: 9px 12px; border-bottom: 1px solid var(--border-subtle); }
 .mfam-name { font-size: 13px; font-weight: 700; color: var(--charcoal); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 .mfam-meta { font-size: 10px; color: #6B7178; margin-top: 2px; }
-.mfam table { width: 100%; border-collapse: collapse; }
+.mfam table { width: 100%; border-collapse: collapse; border: 1px solid var(--charcoal); }
 .mfam th {
   font-size: 9px; font-weight: 700; color: #fff; background: var(--charcoal); text-align: right;
-  padding: 5px 10px; letter-spacing: 0.05em;
+  padding: 5px 10px; letter-spacing: 0.05em; border: 1px solid var(--charcoal);
 }
-.mfam td { font-size: 12px; text-align: right; padding: 5px 10px; border-bottom: 1px solid var(--border-subtle); color: var(--body-text); }
-.mfam tr:last-child td { border-bottom: none; }
+.mfam td { font-size: 12px; text-align: right; padding: 5px 10px; border: 1px solid #D4DAE0; color: var(--body-text); }
 .mfam th.l, .mfam td.l { text-align: left; }
 .mfam td.l { font-weight: 600; color: var(--charcoal); }
 .mfam td.dp { font-weight: 700; color: var(--charcoal); }

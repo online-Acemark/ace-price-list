@@ -3,7 +3,7 @@
 const CATALOG = [
  {
   "division": "School Stationery",
-  "effective": "01.04.2026",
+  "effective": "01.08.2026",
   "pages": [
    {
     "catNo": "S-1",
@@ -1942,7 +1942,7 @@ const CATALOG = [
  },
  {
   "division": "Office Stationery",
-  "effective": "01.04.2026",
+  "effective": "01.08.2026",
   "pages": [
    {
     "catNo": "O-1",
@@ -4733,7 +4733,7 @@ const CATALOG = [
  },
  {
   "division": "General & Diaries",
-  "effective": "01.04.2026",
+  "effective": "01.08.2026",
   "pages": [
    {
     "catNo": "G-1",
