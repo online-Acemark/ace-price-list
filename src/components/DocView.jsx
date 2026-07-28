@@ -124,12 +124,15 @@ function MeasureLayer({ cats, effective, onMeasured }) {
   React.useLayoutEffect(() => {
     const root = ref.current
     if (!root) return
+    // float-precise heights: integer offsetHeight rounding accumulates a few px
+    // over a stacked column and can push the last table past the page edge
+    const H = (el) => (el ? el.getBoundingClientRect().height : 0)
     const m = { headerH: 0, footerH: 0, bands: {}, blocks: {} }
-    m.headerH = root.querySelector('.doc-header')?.offsetHeight || 0
-    m.footerH = root.querySelector('.doc-footer')?.offsetHeight || 0
-    for (const el of root.querySelectorAll('[data-m="band"]')) m.bands[el.dataset.cat] = el.offsetHeight
+    m.headerH = H(root.querySelector('.doc-header'))
+    m.footerH = H(root.querySelector('.doc-footer'))
+    for (const el of root.querySelectorAll('[data-m="band"]')) m.bands[el.dataset.cat] = H(el)
     for (const el of root.querySelectorAll('[data-m="block"]')) {
-      ;(m.blocks[el.dataset.cat] = m.blocks[el.dataset.cat] || []).push(el.offsetHeight)
+      ;(m.blocks[el.dataset.cat] = m.blocks[el.dataset.cat] || []).push(H(el))
     }
     onMeasured(m)
   }, [cats, fontTick, onMeasured])
@@ -174,26 +177,37 @@ function paginate(cats, m) {
     let cont = false
 
     while (true) {
-      // Band + at least the next block must fit, else move to a fresh page.
-      const firstBlock = blocks[i] || 0
-      if (cur.items.length && cur.used + bandH + COLS_PAD_TOP + firstBlock > bodyH) newPage()
-      const cap = Math.max(0, bodyH - cur.used - bandH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM)
+      // sectionExtra = the 4px .cat-section + .cat-section band margin.
+      let sectionExtra = cur.items.length ? 4 : 0
+      let cap = Math.max(0, bodyH - cur.used - sectionExtra - bandH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM)
+      // Band + the next block must fit in the space left, else fresh page.
+      if (cur.items.length && (blocks[i] || 0) > cap) {
+        newPage()
+        sectionExtra = 0
+        cap = Math.max(0, bodyH - bandH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM)
+      }
+      const freshPage = cur.items.length === 0
 
-      // Greedy reading-order fill: down column 1, then column 2.
-      const fill = (col) => {
+      // Greedy reading-order fill: down column 1, then column 2. A block that
+      // doesn't fit waits for the next page — it is only force-placed when it
+      // is taller than a whole empty page (unavoidable overflow).
+      const fill = (col, allowOversize) => {
         let h = 0
         while (i < blocks.length) {
           const bh = blocks[i]
           const nh = h + (col.length ? FAM_GAP : 0) + bh
-          if (col.length && nh > cap) break
+          if (nh > cap) {
+            if (!col.length && allowOversize) { col.push(i); i++; h = bh }
+            break
+          }
           col.push(i); i++; h = nh
-          if (bh > cap) break // oversized block sits alone
         }
         return h
       }
       let col1 = [], col2 = []
-      let h1 = fill(col1)
-      let h2 = fill(col2)
+      let h1 = fill(col1, freshPage)
+      let h2 = fill(col2, false)
+      if (!col1.length && !col2.length && i < blocks.length) { newPage(); continue }
 
       // Category finished on this page → re-split its last chunk so the two
       // columns come out balanced instead of everything piling into column 1.
@@ -212,7 +226,7 @@ function paginate(cats, m) {
       }
 
       cur.items.push({ cat, cont, col1, col2 })
-      cur.used += bandH + COLS_PAD_TOP + Math.max(h1, h2) + CHUNK_PAD_BOTTOM
+      cur.used += sectionExtra + bandH + COLS_PAD_TOP + Math.max(h1, h2) + CHUNK_PAD_BOTTOM
 
       const pgNo = pages.length + 1 // + cover
       if (!ranges[cat.catNo]) ranges[cat.catNo] = { from: pgNo, to: pgNo }
@@ -342,10 +356,30 @@ function OrderFormPage({ pageNo, effective }) {
   )
 }
 
+// A table longer than one A4 column would get clipped — split big families
+// into balanced chunks of ≤ MAX_FAM_ROWS rows ("(contd.)" carries the name on).
+const MAX_FAM_ROWS = 22
+function splitFamilies(families) {
+  return families.flatMap((f) => {
+    if (f.rows.length <= MAX_FAM_ROWS + 2) return [f]
+    const parts = Math.ceil(f.rows.length / MAX_FAM_ROWS)
+    const per = Math.ceil(f.rows.length / parts)
+    return Array.from({ length: parts }, (_, i) => ({
+      ...f,
+      name: i === 0 ? f.name : f.name + ' (contd.)',
+      rows: f.rows.slice(i * per, (i + 1) * per),
+    }))
+  })
+}
+
 export default function DocView({ catalog }) {
   const effective = catalog[0]?.effective
   const cats = React.useMemo(
-    () => catalog.flatMap((d) => d.pages.map((p) => ({ ...p, division: d.division }))),
+    () => catalog.flatMap((d) => d.pages.map((p) => ({
+      ...p,
+      division: d.division,
+      families: splitFamilies(p.families),
+    }))),
     [catalog]
   )
   const [measures, setMeasures] = React.useState(null)

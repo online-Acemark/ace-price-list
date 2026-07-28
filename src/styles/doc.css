@@ -35,8 +35,10 @@
 .sheet-col .fam { margin-bottom: 0; }
 .cat-contd { font-size: 13px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.02em; }
 
-/* hidden measuring pass (true print width, never visible, never printed) */
-.doc-measure { position: fixed; left: -10000px; top: 0; width: 794px; height: auto; visibility: hidden; box-shadow: none; z-index: -1; display: block; }
+/* hidden measuring pass (true print width, never visible, never printed).
+   transform:none is critical — the phone-fit scale would shrink every
+   getBoundingClientRect() reading and wreck the pagination maths. */
+.doc-measure { position: fixed; left: -10000px; top: 0; width: 794px; height: auto; visibility: hidden; box-shadow: none; z-index: -1; display: block; transform: none; margin-bottom: 0; }
 .doc-measure .doc-footer { position: static; }
 
 /* ---- running header (category pages) — slim & refined ---- */

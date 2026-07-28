@@ -67,6 +67,7 @@ export function catalogueSize(code) {
 export function buildIndex(records) {
   const groups = new Map() // pageKey -> Map(dp -> {mrp,dp,pack,crt,count})
   const byCode = new Map() // exact normalised ProductCode -> Map(dp -> {...})
+  const byId = new Map()   // ERP ProductID -> price (exact, always preferred)
   let liveCount = 0
   for (const r of records) {
     const dp = Number(r.NewDP)
@@ -81,6 +82,10 @@ export function buildIndex(records) {
       name: String(r.ProductName || '').toUpperCase(),
       variety: variety && variety.toUpperCase() !== 'N/A' ? variety : '',
     }
+
+    // exact ProductID index — one record per id, no ambiguity possible
+    const pid = Number(r.ProductID)
+    if (pid) byId.set(pid, { ...price, count: 1, varieties: new Set(price.variety ? [price.variety] : []) })
 
     // exact full-code index (precise, unambiguous)
     add(byCode, code, dp, price)
@@ -102,7 +107,7 @@ export function buildIndex(records) {
     const m = code.match(/^([A-Z]*)(\d+)/)
     if (m) add(groups, m[1] + '|' + String(Number(m[2])), dp, price)
   }
-  return { groups, byCode, liveCount, total: records.length }
+  return { groups, byCode, byId, liveCount, total: records.length }
 }
 
 function add(map, key, dp, price) {
@@ -214,7 +219,9 @@ export function applyLivePrices(catalog, index) {
         const lookupCode = CODE_ALIAS[f.name] || f.code
         let rows = f.rows.map((row) => {
           attempted++
-          const live = resolveRow(index, lookupCode, row.label, f.name)
+          // saved ProductID = exact ERP record; fall back to code/page matching
+          const live = (row.id && index.byId.get(Number(row.id))) ||
+            resolveRow(index, lookupCode, row.label, f.name)
           // PL item jo ERP me nahi mila — dikhega par highlight ke saath
           if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++
