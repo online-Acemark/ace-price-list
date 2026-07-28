@@ -1,5 +1,5 @@
-// AUTO-GENERATED from data-school/office/general.js — curated catalog structure
-// (sizes, notes, tags, ordering). Prices here are the saved fallback; live prices come from the API.
+// AUTO-GENERATED from "PRICE LIST CG (ALL) 01.08.2026 NEW.xlsx".
+// Each row carries its ERP ProductID (id) for exact future syncing.
 const CATALOG = [
  {
   "division": "School Stationery",
@@ -10,148 +10,126 @@ const CATALOG = [
     "title": "Note Books",
     "families": [
      {
-      "name": "ACE Crown (UV Cover) N/B",
+      "name": "Ace Crown (Uv Cover) N/B",
       "code": "C",
-      "size": "24×18 cm",
+      "size": "24\u00d718 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "80P",
         "mrp": 30,
-        "dp": "15.14",
+        "dp": "14.79",
         "pkt": 20,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 214
        },
        {
-        "label": "120P",
+        "label": "120p",
         "mrp": 40,
-        "dp": "20.43",
+        "dp": "19.84",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 178
        },
        {
         "label": "172P",
         "mrp": 55,
-        "dp": "27.25",
+        "dp": "26.34",
         "pkt": 10,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 2524
        },
        {
         "label": "236P",
         "mrp": 75,
-        "dp": "36.03",
+        "dp": "34.72",
         "pkt": 8,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 211
        },
        {
         "label": "316P",
         "mrp": 95,
-        "dp": "46.76",
+        "dp": "44.94",
         "pkt": 6,
-        "crt": 72
-       }
-      ]
-     },
-     {
-      "name": "ACE Crown (Brown Cover) N/B",
-      "code": "CB",
-      "size": "24×18 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "80P",
-        "mrp": 30,
-        "dp": "14.76",
-        "pkt": 20,
-        "crt": 240
-       },
-       {
-        "label": "120P",
-        "mrp": 40,
-        "dp": "20.05",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "172P",
-        "mrp": 55,
-        "dp": "26.87",
-        "pkt": 10,
-        "crt": 120
-       },
-       {
-        "label": "236P",
-        "mrp": 75,
-        "dp": "35.66",
-        "pkt": 8,
-        "crt": 96
-       },
-       {
-        "label": "316P",
-        "mrp": 95,
-        "dp": "46.38",
-        "pkt": 6,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 213
        }
       ]
      },
      {
       "name": "Mark Crown N/B",
       "code": "CM",
-      "size": "24×18 cm",
+      "size": "24\u00d718 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "72P",
         "mrp": 30,
-        "dp": "13.39",
+        "dp": "12.84",
         "pkt": 20,
-        "crt": 480
+        "crt": "",
+        "bld": 480,
+        "id": 3372
        },
        {
         "label": "112P",
         "mrp": 40,
-        "dp": "18.55",
+        "dp": "17.68",
         "pkt": 10,
-        "crt": 400
+        "crt": "",
+        "bld": 400,
+        "id": 3301
        },
        {
         "label": "152P",
         "mrp": 50,
-        "dp": "23.55",
+        "dp": "22.35",
         "pkt": 12,
-        "crt": 288
+        "crt": "",
+        "bld": 288,
+        "id": 3286
        },
        {
         "label": "168P",
         "mrp": 50,
-        "dp": "25.55",
+        "dp": "24.20",
         "pkt": 12,
-        "crt": 288
+        "crt": "",
+        "bld": 288,
+        "id": 3322
        },
        {
         "label": "216P",
         "mrp": 65,
-        "dp": "31.75",
+        "dp": "30.03",
         "pkt": 8,
-        "crt": 192
+        "crt": "",
+        "bld": 192,
+        "id": 3334
        },
        {
         "label": "276P",
         "mrp": 80,
-        "dp": "39.63",
+        "dp": "37.36",
         "pkt": 6,
-        "crt": 144
+        "crt": "",
+        "bld": 144,
+        "id": 3345
        }
       ]
      },
      {
       "name": "Mark A5 N/B",
       "code": "A5",
-      "size": "23×17 cm",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
@@ -160,305 +138,880 @@ const CATALOG = [
         "mrp": 20,
         "dp": "8.09",
         "pkt": "",
-        "crt": ""
+        "crt": "",
+        "bld": "",
+        "id": 11633
        },
        {
         "label": "60P",
         "mrp": 20,
-        "dp": "10.24",
+        "dp": "10.00",
         "pkt": 20,
-        "crt": 480
+        "crt": "",
+        "bld": 480,
+        "id": 2556
        },
        {
         "label": "72P",
         "mrp": 25,
-        "dp": "11.57",
+        "dp": "11.08",
         "pkt": 20,
-        "crt": 480
+        "crt": "",
+        "bld": 480,
+        "id": 2564
        },
        {
         "label": "84P",
         "mrp": 25,
-        "dp": "12.88",
+        "dp": "12.30",
         "pkt": 20,
-        "crt": 480
+        "crt": "",
+        "bld": 480,
+        "id": 8297
        },
        {
         "label": "116P",
         "mrp": 35,
-        "dp": "16.73",
+        "dp": "15.92",
         "pkt": 10,
-        "crt": 400
+        "crt": "",
+        "bld": 400,
+        "id": 2522
        },
        {
         "label": "120P",
         "mrp": 35,
-        "dp": "17.10",
+        "dp": "16.27",
         "pkt": 10,
-        "crt": 400
+        "crt": "",
+        "bld": 400,
+        "id": 1945
        },
        {
         "label": "132P",
         "mrp": 40,
-        "dp": "18.39",
+        "dp": "17.48",
         "pkt": 10,
-        "crt": 400
+        "crt": "",
+        "bld": 400,
+        "id": 2580
        },
        {
         "label": "140P",
         "mrp": 42,
-        "dp": "19.18",
+        "dp": "18.19",
         "pkt": 15,
-        "crt": 360
+        "crt": "",
+        "bld": 360,
+        "id": 2589
        },
        {
         "label": "144P",
         "mrp": 44,
-        "dp": "19.73",
+        "dp": "18.74",
         "pkt": 10,
-        "crt": 320
+        "crt": "",
+        "bld": 320,
+        "id": 2432
        },
        {
         "label": "152P",
         "mrp": 45,
-        "dp": "20.63",
+        "dp": "19.58",
         "pkt": 12,
-        "crt": 288
+        "crt": "",
+        "bld": 288,
+        "id": 2468
        },
        {
         "label": "160P",
         "mrp": 45,
-        "dp": "21.50",
+        "dp": "20.39",
         "pkt": 12,
-        "crt": 288
+        "crt": "",
+        "bld": 288,
+        "id": 2441
        },
        {
         "label": "176P",
         "mrp": 55,
-        "dp": "23.33",
+        "dp": "22.11",
         "pkt": 10,
-        "crt": 240
+        "crt": "",
+        "bld": 240,
+        "id": 2450
        },
        {
         "label": "216P",
         "mrp": 60,
-        "dp": "27.87",
+        "dp": "26.34",
         "pkt": 8,
-        "crt": 192
+        "crt": "",
+        "bld": 192,
+        "id": 2459
+       }
+      ]
+     },
+     {
+      "name": "Ace Crown (Brown Cover) N/B",
+      "code": "C",
+      "size": "24\u00d718 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "80P",
+        "mrp": 30,
+        "dp": "14.31",
+        "pkt": 20,
+        "crt": 240,
+        "bld": "",
+        "id": 4051
+       },
+       {
+        "label": "120P",
+        "mrp": 40,
+        "dp": "19.36",
+        "pkt": 10,
+        "crt": 200,
+        "bld": "",
+        "id": 4271
+       },
+       {
+        "label": "172P",
+        "mrp": 55,
+        "dp": "25.85",
+        "pkt": 10,
+        "crt": 120,
+        "bld": "",
+        "id": 8445
+       },
+       {
+        "label": "236P",
+        "mrp": 75,
+        "dp": "34.28",
+        "pkt": 8,
+        "crt": 96,
+        "bld": "",
+        "id": 4315
+       },
+       {
+        "label": "316P",
+        "mrp": 95,
+        "dp": "44.46",
+        "pkt": 6,
+        "crt": 72,
+        "bld": "",
+        "id": 4324
        }
       ]
      },
      {
       "name": "Jumbo Unbound N/B (Pasted)",
       "code": "BP",
-      "size": "18.5×15 cm",
+      "size": "18.5\u00d715 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "28P (No.2)",
         "mrp": 7,
-        "dp": "3.99",
+        "dp": "3.84",
         "pkt": 30,
-        "crt": 720
+        "crt": 720,
+        "bld": "",
+        "id": 2931
        },
        {
         "label": "52P (No.3)",
         "mrp": 11,
-        "dp": "6.31",
+        "dp": "5.98",
         "pkt": 25,
-        "crt": 600
+        "crt": 600,
+        "bld": "",
+        "id": 11618
        },
        {
         "label": "92P (No.4)",
         "mrp": 28,
-        "dp": "9.97",
+        "dp": "9.38",
         "pkt": 20,
-        "crt": 360
+        "crt": 360,
+        "bld": "",
+        "id": 11623
        },
        {
         "label": "124P (No.6)",
         "mrp": 32,
-        "dp": "14.39",
+        "dp": "13.57",
         "pkt": 12,
-        "crt": 288
+        "crt": 288,
+        "bld": "",
+        "id": 11628
+       }
+      ]
+     },
+     {
+      "name": "Ace Jumbo Bound N/B (Puttha)",
+      "code": "BP",
+      "size": "18.5\u00d715 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "124P",
+        "mrp": 35,
+        "dp": "16.84",
+        "pkt": 6,
+        "crt": 180,
+        "bld": "",
+        "id": 344
+       },
+       {
+        "label": "188P",
+        "mrp": 50,
+        "dp": "22.15",
+        "pkt": 5,
+        "crt": 150,
+        "bld": "",
+        "id": 365
        }
       ]
      }
     ],
-    "notes": [
-     "5-line combined Crown & 4-line one-side: ₹1 extra from regular rates · Combined: ₹0.30 extra",
-     "Variety: 1 Line, 2 Line, 3 Line, 4 Line, Plain"
-    ]
+    "notes": null
    },
    {
     "catNo": "S-2",
     "title": "College Copies",
     "families": [
      {
-      "name": "ACE Junior",
+      "name": "Ace Junior",
       "code": "JC",
-      "size": "26×16.70 cm",
+      "size": "26\u00d716.7 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "76",
         "mrp": 30,
-        "dp": "13.89",
+        "dp": "13.29",
         "pkt": 20,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 416
        },
        {
         "label": "176",
         "mrp": 55,
-        "dp": "26.60",
+        "dp": "25.19",
         "pkt": 10,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 426
        },
        {
         "label": "236",
         "mrp": 80,
-        "dp": "36.03",
+        "dp": "34.08",
         "pkt": 8,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 432
        }
       ]
      },
      {
-      "name": "ACE A/4 College Plus",
+      "name": "Ace A/4 College Plus",
       "code": "A4",
-      "size": "29.7×21 cm",
+      "size": "29.5\u00d720.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "72P",
         "mrp": 40,
-        "dp": "20.38",
+        "dp": "20.12",
         "pkt": 20,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 11810
        },
        {
         "label": "112P",
         "mrp": 55,
-        "dp": "28.27",
+        "dp": "27.66",
         "pkt": 12,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 11812
        },
        {
         "label": "140P",
         "mrp": 65,
-        "dp": "33.49",
+        "dp": "32.63",
         "pkt": 10,
-        "crt": 100
+        "crt": 100,
+        "bld": "",
+        "id": 11814
        },
        {
         "label": "172P",
         "mrp": 75,
-        "dp": "39.56",
+        "dp": "38.40",
         "pkt": 9,
-        "crt": 90
+        "crt": 90,
+        "bld": "",
+        "id": 11816
        },
        {
         "label": "192P",
         "mrp": 90,
-        "dp": "43.29",
+        "dp": "41.94",
         "pkt": 8,
-        "crt": 80
+        "crt": 80,
+        "bld": "",
+        "id": 11818
        },
        {
         "label": "236P",
         "mrp": 100,
-        "dp": "51.97",
+        "dp": "50.30",
         "pkt": 8,
-        "crt": 64
+        "crt": 64,
+        "bld": "",
+        "id": 11820
        },
        {
         "label": "276P",
         "mrp": 115,
-        "dp": "59.61",
+        "dp": "57.50",
         "pkt": 7,
-        "crt": 56
+        "crt": 56,
+        "bld": "",
+        "id": 11822
        },
        {
         "label": "300P",
         "mrp": 145,
-        "dp": "66.99",
+        "dp": "64.67",
         "pkt": 6,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 11824
        },
        {
         "label": "348P",
         "mrp": 175,
-        "dp": "78.18",
+        "dp": "75.42",
         "pkt": 5,
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 11826
        },
        {
         "label": "406P",
         "mrp": 190,
-        "dp": "93.33",
+        "dp": "90.06",
         "pkt": 3,
-        "crt": 36
+        "crt": 36,
+        "bld": "",
+        "id": 11828
        }
       ]
      },
      {
-      "name": "ACE Account Copy",
+      "name": "Ace Account Copy",
       "code": "AC",
-      "size": "26.5×21.5 cm",
+      "size": "26.5\u00d721.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "84",
         "mrp": 40,
-        "dp": "19.95",
-        "pkt": 10,
-        "crt": 120
+        "dp": "19.28",
+        "pkt": 120,
+        "crt": 10,
+        "bld": "",
+        "id": 3169
        },
        {
         "label": "124",
         "mrp": 55,
-        "dp": "26.84",
+        "dp": "25.85",
         "pkt": 10,
-        "crt": 100
+        "crt": 100,
+        "bld": "",
+        "id": 3170
        },
        {
         "label": "196",
         "mrp": 80,
-        "dp": "39.36",
-        "pkt": 6,
-        "crt": 84
+        "dp": "37.76",
+        "pkt": 84,
+        "crt": 6,
+        "bld": "",
+        "id": 3171
        },
        {
         "label": "228",
         "mrp": 90,
-        "dp": "45.39",
+        "dp": "43.56",
         "pkt": 6,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 51
        },
        {
         "label": "284",
         "mrp": 110,
-        "dp": "55.57",
+        "dp": "53.24",
         "pkt": 4,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 52
        },
        {
         "label": "364",
         "mrp": 145,
-        "dp": "72.63",
+        "dp": "69.60",
         "pkt": 3,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 53
        },
        {
         "label": "436",
         "mrp": 190,
-        "dp": "94.43",
+        "dp": "90.63",
         "pkt": 3,
-        "crt": 36
+        "crt": 36,
+        "bld": "",
+        "id": 54
+       }
+      ]
+     },
+     {
+      "name": "Galaxy Junior College",
+      "code": "GC",
+      "size": "26\u00d716.7 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "108",
+        "mrp": 22,
+        "dp": "11.55",
+        "pkt": 50,
+        "crt": "",
+        "bld": 400,
+        "id": 6114
+       },
+       {
+        "label": "132",
+        "mrp": 25,
+        "dp": "13.32",
+        "pkt": "",
+        "crt": "",
+        "bld": 400,
+        "id": 9982
+       },
+       {
+        "label": "164",
+        "mrp": 30,
+        "dp": "15.66",
+        "pkt": 36,
+        "crt": "",
+        "bld": 288,
+        "id": 6115
+       },
+       {
+        "label": "176",
+        "mrp": 34,
+        "dp": "16.59",
+        "pkt": 30,
+        "crt": "",
+        "bld": 240,
+        "id": 6130
+       }
+      ]
+     },
+     {
+      "name": "Eco A4 College",
+      "code": "EA4",
+      "size": "29.5\u00d720.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "92",
+        "mrp": 30,
+        "dp": "14.04",
+        "pkt": 60,
+        "crt": "",
+        "bld": 360,
+        "id": 4089
+       },
+       {
+        "label": "112",
+        "mrp": 35,
+        "dp": "16.14",
+        "pkt": 40,
+        "crt": "",
+        "bld": 240,
+        "id": 4090
+       },
+       {
+        "label": "160",
+        "mrp": 45,
+        "dp": "21.15",
+        "pkt": 50,
+        "crt": "",
+        "bld": 200,
+        "id": 4091
+       },
+       {
+        "label": "224",
+        "mrp": 60,
+        "dp": "28.02",
+        "pkt": 30,
+        "crt": "",
+        "bld": 180,
+        "id": 4092
+       },
+       {
+        "label": "284",
+        "mrp": 70,
+        "dp": "34.30",
+        "pkt": 28,
+        "crt": "",
+        "bld": 112,
+        "id": 4093
+       },
+       {
+        "label": "320",
+        "mrp": 80,
+        "dp": "38.16",
+        "pkt": 16,
+        "crt": "",
+        "bld": 96,
+        "id": 4094
+       },
+       {
+        "label": "384",
+        "mrp": 90,
+        "dp": "45.09",
+        "pkt": 12,
+        "crt": "",
+        "bld": 72,
+        "id": 4095
+       }
+      ]
+     },
+     {
+      "name": "Junior Mark College",
+      "code": "MC",
+      "size": "26\u00d716.7 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "48P",
+        "mrp": 20,
+        "dp": "9.24",
+        "pkt": 600,
+        "crt": "",
+        "bld": 20,
+        "id": 3114
+       },
+       {
+        "label": "60P",
+        "mrp": 25,
+        "dp": "10.62",
+        "pkt": 20,
+        "crt": "",
+        "bld": 480,
+        "id": 2598
+       },
+       {
+        "label": "72P",
+        "mrp": 25,
+        "dp": "12.00",
+        "pkt": 20,
+        "crt": "",
+        "bld": 480,
+        "id": 2599
+       },
+       {
+        "label": "80P",
+        "mrp": 30,
+        "dp": "12.93",
+        "pkt": 20,
+        "crt": "",
+        "bld": 480,
+        "id": 2600
+       },
+       {
+        "label": "116P",
+        "mrp": 40,
+        "dp": "17.28",
+        "pkt": 10,
+        "crt": "",
+        "bld": 400,
+        "id": 2601
+       },
+       {
+        "label": "120P",
+        "mrp": 40,
+        "dp": "17.76",
+        "pkt": 10,
+        "crt": "",
+        "bld": 400,
+        "id": 2602
+       },
+       {
+        "label": "132P",
+        "mrp": 45,
+        "dp": "19.12",
+        "pkt": 10,
+        "crt": "",
+        "bld": 320,
+        "id": 3564
+       },
+       {
+        "label": "140P",
+        "mrp": 45,
+        "dp": "20.07",
+        "pkt": 10,
+        "crt": "",
+        "bld": 300,
+        "id": 3567
+       },
+       {
+        "label": "144P",
+        "mrp": 48,
+        "dp": "20.50",
+        "pkt": 10,
+        "crt": "",
+        "bld": 300,
+        "id": 3585
+       },
+       {
+        "label": "152P",
+        "mrp": 48,
+        "dp": "21.41",
+        "pkt": 12,
+        "crt": "",
+        "bld": 288,
+        "id": 3571
+       },
+       {
+        "label": "160P",
+        "mrp": 50,
+        "dp": "22.35",
+        "pkt": 10,
+        "crt": "",
+        "bld": 240,
+        "id": 3112
+       },
+       {
+        "label": "176P",
+        "mrp": 55,
+        "dp": "24.20",
+        "pkt": 10,
+        "crt": "",
+        "bld": 240,
+        "id": 2608
+       },
+       {
+        "label": "216P",
+        "mrp": 65,
+        "dp": "28.80",
+        "pkt": 10,
+        "crt": "",
+        "bld": 240,
+        "id": 2610
+       },
+       {
+        "label": "236P",
+        "mrp": 70,
+        "dp": "31.36",
+        "pkt": 8,
+        "crt": "",
+        "bld": 192,
+        "id": 3573
+       },
+       {
+        "label": "264P",
+        "mrp": 80,
+        "dp": "34.64",
+        "pkt": 192,
+        "crt": "",
+        "bld": 8,
+        "id": 3575
+       },
+       {
+        "label": "276P",
+        "mrp": 85,
+        "dp": "35.96",
+        "pkt": 8,
+        "crt": "",
+        "bld": 144,
+        "id": 3578
+       },
+       {
+        "label": "296P",
+        "mrp": 90,
+        "dp": "38.52",
+        "pkt": 6,
+        "crt": "",
+        "bld": 144,
+        "id": 3586
+       }
+      ]
+     },
+     {
+      "name": "A/4 Mark College",
+      "code": "A4M",
+      "size": "29\u00d720.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "72P",
+        "mrp": 40,
+        "dp": "17.56",
+        "pkt": 20,
+        "crt": "",
+        "bld": 400,
+        "id": 3267
+       },
+       {
+        "label": "140P",
+        "mrp": 60,
+        "dp": "28.74",
+        "pkt": 10,
+        "crt": "",
+        "bld": 200,
+        "id": 2615
+       },
+       {
+        "label": "144P",
+        "mrp": 60,
+        "dp": "29.40",
+        "pkt": 10,
+        "crt": "",
+        "bld": 200,
+        "id": 2616
+       },
+       {
+        "label": "152P",
+        "mrp": 65,
+        "dp": "30.68",
+        "pkt": 10,
+        "crt": "",
+        "bld": 200,
+        "id": 2617
+       },
+       {
+        "label": "160P",
+        "mrp": 65,
+        "dp": "31.98",
+        "pkt": 10,
+        "crt": "",
+        "bld": 200,
+        "id": 2618
+       },
+       {
+        "label": "176P",
+        "mrp": 75,
+        "dp": "34.80",
+        "pkt": 9,
+        "crt": "",
+        "bld": 180,
+        "id": 2619
+       },
+       {
+        "label": "216P",
+        "mrp": 80,
+        "dp": "41.04",
+        "pkt": 9,
+        "crt": "",
+        "bld": 180,
+        "id": 2620
+       },
+       {
+        "label": "236P",
+        "mrp": 90,
+        "dp": "44.55",
+        "pkt": 8,
+        "crt": "",
+        "bld": 128,
+        "id": 2621
+       },
+       {
+        "label": "264P",
+        "mrp": 100,
+        "dp": "49.10",
+        "pkt": 8,
+        "crt": "",
+        "bld": 128,
+        "id": 2622
+       },
+       {
+        "label": "276P",
+        "mrp": 110,
+        "dp": "51.04",
+        "pkt": 7,
+        "crt": "",
+        "bld": 112,
+        "id": 2623
+       },
+       {
+        "label": "296P",
+        "mrp": 120,
+        "dp": "54.24",
+        "pkt": 7,
+        "crt": "",
+        "bld": 112,
+        "id": 2624
+       },
+       {
+        "label": "316P",
+        "mrp": 140,
+        "dp": "57.82",
+        "pkt": 6,
+        "crt": "",
+        "bld": 96,
+        "id": 2625
+       },
+       {
+        "label": "364P",
+        "mrp": 150,
+        "dp": "68.85",
+        "pkt": 6,
+        "crt": "",
+        "bld": 96,
+        "id": 2626
+       },
+       {
+        "label": "376P",
+        "mrp": 160,
+        "dp": "70.88",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 2627
+       },
+       {
+        "label": "404P (PB)",
+        "mrp": 180,
+        "dp": "81.18",
+        "pkt": 3,
+        "crt": "",
+        "bld": 72,
+        "id": 2628
        }
       ]
      }
@@ -470,297 +1023,416 @@ const CATALOG = [
     "title": "Rough Note Books",
     "families": [
      {
-      "name": "White Rough Demi Size",
+      "name": "Rough Note Book",
       "code": "W",
-      "size": "25.70×21 cm",
+      "size": "25.7\u00d721 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "116",
         "mrp": 35,
-        "dp": "15.65",
+        "dp": "15.64",
         "pkt": 50,
-        "crt": 300
+        "crt": "",
+        "bld": 300,
+        "id": 1454
        },
        {
         "label": "160",
         "mrp": 45,
         "dp": "20.07",
         "pkt": 50,
-        "crt": 200
+        "crt": "",
+        "bld": 200,
+        "id": 3605
        },
        {
         "label": "172",
         "mrp": 50,
-        "dp": "21.32",
+        "dp": "21.30",
         "pkt": 50,
-        "crt": 200
+        "crt": "",
+        "bld": 200,
+        "id": 1455
        },
        {
         "label": "212",
         "mrp": 55,
-        "dp": "25.29",
+        "dp": "25.30",
         "pkt": 24,
-        "crt": 144
+        "crt": "",
+        "bld": 144,
+        "id": 1456
        },
        {
         "label": "260",
         "mrp": 65,
-        "dp": "30.37",
+        "dp": "30.36",
         "pkt": 24,
-        "crt": 96
+        "crt": "",
+        "bld": 96,
+        "id": 3608
        },
        {
         "label": "276",
         "mrp": 70,
-        "dp": "32.01",
+        "dp": "31.99",
         "pkt": 24,
-        "crt": 96
+        "crt": "",
+        "bld": 96,
+        "id": 1457
        },
        {
         "label": "360",
         "mrp": 85,
-        "dp": "40.83",
+        "dp": "40.80",
         "pkt": 12,
-        "crt": 72
+        "crt": "",
+        "bld": 72,
+        "id": 3609
        },
        {
         "label": "372",
         "mrp": 90,
-        "dp": "42.02",
+        "dp": "42.03",
         "pkt": 12,
-        "crt": 72
+        "crt": "",
+        "bld": 72,
+        "id": 1458
        },
        {
         "label": "452",
         "mrp": 110,
-        "dp": "50.41",
+        "dp": "50.38",
         "pkt": 12,
-        "crt": 72
+        "crt": "",
+        "bld": 72,
+        "id": 1459
        },
        {
         "label": "516",
         "mrp": 120,
-        "dp": "56.72",
+        "dp": "56.76",
         "pkt": 12,
-        "crt": 72
-       }
-      ]
-     },
-     {
-      "name": "Prime Rough Note Book",
-      "code": "PR",
-      "size": "28.70×21.8 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "92",
-        "mrp": 35,
-        "dp": "15.37",
-        "pkt": 25,
-        "crt": 300
+        "crt": "",
+        "bld": 72,
+        "id": 3520
        },
-       {
-        "label": "128",
-        "mrp": 45,
-        "dp": "19.46",
-        "pkt": 20,
-        "crt": 240
-       },
-       {
-        "label": "160",
-        "mrp": 50,
-        "dp": "23.54",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "196",
-        "mrp": 60,
-        "dp": "27.28",
-        "pkt": 12,
-        "crt": 144
-       },
-       {
-        "label": "212",
-        "mrp": 65,
-        "dp": "29.08",
-        "pkt": 8,
-        "crt": 144
-       },
-       {
-        "label": "260",
-        "mrp": 80,
-        "dp": "34.63",
-        "pkt": 8,
-        "crt": 96
-       },
-       {
-        "label": "284",
-        "mrp": 85,
-        "dp": "37.43",
-        "pkt": 8,
-        "crt": 96
-       },
-       {
-        "label": "324",
-        "mrp": 100,
-        "dp": "42.64",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "372",
-        "mrp": 110,
-        "dp": "48.04",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "404",
-        "mrp": 125,
-        "dp": "56.08",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "452",
-        "mrp": 140,
-        "dp": "63.19",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "500",
-        "mrp": 155,
-        "dp": "70.15",
-        "pkt": 4,
-        "crt": 64
-       },
-       {
-        "label": "600",
-        "mrp": 175,
-        "dp": "81.39",
-        "pkt": 4,
-        "crt": 48
-       }
-      ]
-     },
-     {
-      "name": "Yellow Rough College",
-      "code": "YR",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "116",
-        "mrp": 60,
-        "dp": "28.71",
-        "pkt": 20,
-        "crt": 240
-       },
-       {
-        "label": "132",
-        "mrp": 70,
-        "dp": "32.21",
-        "pkt": 10,
-        "crt": 180
-       },
-       {
-        "label": "164",
-        "mrp": 80,
-        "dp": "38.89",
-        "pkt": 8,
-        "crt": 144
-       },
-       {
-        "label": "180",
-        "mrp": 90,
-        "dp": "42.15",
-        "pkt": 8,
-        "crt": 144
-       },
-       {
-        "label": "232",
-        "mrp": 110,
-        "dp": "52.94",
-        "pkt": 8,
-        "crt": 96
-       },
-       {
-        "label": "284",
-        "mrp": 130,
-        "dp": "63.86",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "312",
-        "mrp": 145,
-        "dp": "69.90",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "372",
-        "mrp": 180,
-        "dp": "86.97",
-        "pkt": 4,
-        "crt": 72
-       },
-       {
-        "label": "416",
-        "mrp": 205,
-        "dp": "96.48",
-        "pkt": 4,
-        "crt": 72
-       }
-      ]
-     },
-     {
-      "name": "Galaxy Rough Demi Size",
-      "code": "GD",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
        {
         "label": "140",
         "mrp": 40,
-        "dp": "17.43",
+        "dp": "17.44",
         "pkt": 50,
-        "crt": 200
+        "crt": "",
+        "bld": 200,
+        "id": 6142
        },
        {
         "label": "220",
         "mrp": 55,
         "dp": "25.00",
         "pkt": 30,
-        "crt": 180
+        "crt": "",
+        "bld": 180,
+        "id": 6138
        },
        {
         "label": "320",
         "mrp": 80,
-        "dp": "35.15",
+        "dp": "35.12",
         "pkt": 18,
-        "crt": 108
+        "crt": "",
+        "bld": 108,
+        "id": 6143
        },
        {
         "label": "420",
         "mrp": 95,
-        "dp": "45.13",
+        "dp": "45.12",
         "pkt": 16,
-        "crt": 96
+        "crt": "",
+        "bld": 96,
+        "id": 6144
        },
        {
         "label": "516",
         "mrp": 115,
         "dp": "54.33",
         "pkt": 12,
-        "crt": 72
+        "crt": "",
+        "bld": 72,
+        "id": 6145
+       }
+      ]
+     },
+     {
+      "name": "Prime Rough Note Book",
+      "code": "PR",
+      "size": "28.7\u00d721.8 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "92",
+        "mrp": 35,
+        "dp": "15.36",
+        "pkt": 25,
+        "crt": "",
+        "bld": 300,
+        "id": 3741
+       },
+       {
+        "label": "128",
+        "mrp": 45,
+        "dp": "19.44",
+        "pkt": 20,
+        "crt": "",
+        "bld": 240,
+        "id": 3743
+       },
+       {
+        "label": "160",
+        "mrp": 50,
+        "dp": "23.55",
+        "pkt": 10,
+        "crt": "",
+        "bld": 200,
+        "id": 3745
+       },
+       {
+        "label": "196",
+        "mrp": 60,
+        "dp": "27.30",
+        "pkt": 12,
+        "crt": "",
+        "bld": 144,
+        "id": 3747
+       },
+       {
+        "label": "212",
+        "mrp": 65,
+        "dp": "29.06",
+        "pkt": 8,
+        "crt": "",
+        "bld": 144,
+        "id": 3750
+       },
+       {
+        "label": "260",
+        "mrp": 80,
+        "dp": "34.64",
+        "pkt": 8,
+        "crt": "",
+        "bld": 96,
+        "id": 3752
+       },
+       {
+        "label": "284",
+        "mrp": 85,
+        "dp": "37.40",
+        "pkt": 8,
+        "crt": "",
+        "bld": 96,
+        "id": 3753
+       },
+       {
+        "label": "324",
+        "mrp": 100,
+        "dp": "42.60",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3756
+       },
+       {
+        "label": "372",
+        "mrp": 110,
+        "dp": "48.07",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3757
+       },
+       {
+        "label": "404",
+        "mrp": 125,
+        "dp": "56.12",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3760
+       },
+       {
+        "label": "452",
+        "mrp": 140,
+        "dp": "63.14",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3761
+       },
+       {
+        "label": "500",
+        "mrp": 155,
+        "dp": "70.22",
+        "pkt": 4,
+        "crt": "",
+        "bld": 64,
+        "id": 10803
+       },
+       {
+        "label": "600",
+        "mrp": 175,
+        "dp": "81.38",
+        "pkt": 4,
+        "crt": "",
+        "bld": 48,
+        "id": 10764
+       }
+      ]
+     },
+     {
+      "name": "Yellow Rough Collage",
+      "code": "YR",
+      "size": "28.7\u00d721.8 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "116",
+        "mrp": 60,
+        "dp": "28.74",
+        "pkt": 20,
+        "crt": "",
+        "bld": 240,
+        "id": 3712
+       },
+       {
+        "label": "132",
+        "mrp": 70,
+        "dp": "32.20",
+        "pkt": 10,
+        "crt": "",
+        "bld": 180,
+        "id": 3715
+       },
+       {
+        "label": "164",
+        "mrp": 80,
+        "dp": "38.88",
+        "pkt": 8,
+        "crt": "",
+        "bld": 144,
+        "id": 3716
+       },
+       {
+        "label": "180",
+        "mrp": 90,
+        "dp": "42.12",
+        "pkt": 8,
+        "crt": "",
+        "bld": 144,
+        "id": 3719
+       },
+       {
+        "label": "232",
+        "mrp": 110,
+        "dp": "52.91",
+        "pkt": 8,
+        "crt": "",
+        "bld": 96,
+        "id": 3720
+       },
+       {
+        "label": "284",
+        "mrp": 130,
+        "dp": "63.83",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3722
+       },
+       {
+        "label": "312",
+        "mrp": 145,
+        "dp": "69.89",
+        "pkt": 6,
+        "crt": "",
+        "bld": 72,
+        "id": 3725
+       },
+       {
+        "label": "372",
+        "mrp": 180,
+        "dp": "86.94",
+        "pkt": 4,
+        "crt": "",
+        "bld": 72,
+        "id": 3727
+       },
+       {
+        "label": "416",
+        "mrp": 205,
+        "dp": "96.56",
+        "pkt": 4,
+        "crt": "",
+        "bld": 72,
+        "id": 3729
+       },
+       {
+        "label": "48P (No.2)",
+        "mrp": 15,
+        "dp": "7.54",
+        "pkt": "",
+        "crt": 600,
+        "bld": "",
+        "id": 11690
+       },
+       {
+        "label": "112P (No.4)",
+        "mrp": 30,
+        "dp": "14.28",
+        "pkt": 40,
+        "crt": 320,
+        "bld": "",
+        "id": 10602
+       },
+       {
+        "label": "120P (No.5)",
+        "mrp": 30,
+        "dp": "14.76",
+        "pkt": 50,
+        "crt": 400,
+        "bld": "",
+        "id": 3594
+       },
+       {
+        "label": "132P (No.6)",
+        "mrp": 30,
+        "dp": "16.14",
+        "pkt": 50,
+        "crt": 400,
+        "bld": "",
+        "id": 11723
+       },
+       {
+        "label": "148P (No.7)",
+        "mrp": 30,
+        "dp": "17.61",
+        "pkt": "",
+        "crt": "",
+        "bld": "",
+        "id": 11694
+       },
+       {
+        "label": "160P (No.8)",
+        "mrp": 30,
+        "dp": "18.72",
+        "pkt": 50,
+        "crt": 400,
+        "bld": "",
+        "id": 11720
        }
       ]
      }
@@ -769,174 +1441,221 @@ const CATALOG = [
    },
    {
     "catNo": "S-4",
-    "title": "Eco College Range",
+    "title": "Practical",
     "families": [
      {
-      "name": "Galaxy Junior College",
-      "code": "GC",
-      "size": "—",
+      "name": "Delux Pasted Practical N/B",
+      "code": "DPP",
+      "size": "24\u00d719.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "108",
-        "mrp": 22,
-        "dp": "11.58",
-        "pkt": 50,
-        "crt": 400
+        "label": "60P",
+        "mrp": 29,
+        "dp": "13.11",
+        "pkt": 20,
+        "crt": 480,
+        "bld": "",
+        "id": 557
        },
        {
-        "label": "132",
-        "mrp": 25,
-        "dp": "13.38",
-        "pkt": "",
-        "crt": 400
-       },
-       {
-        "label": "164",
-        "mrp": 30,
-        "dp": "15.72",
-        "pkt": 36,
-        "crt": 288
-       },
-       {
-        "label": "176",
-        "mrp": 34,
-        "dp": "16.63",
-        "pkt": 30,
-        "crt": 240
-       }
-      ]
-     },
-     {
-      "name": "Eco A4 College",
-      "code": "EA4",
-      "size": "28.70×20.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "92",
-        "mrp": 30,
-        "dp": "14.04",
-        "pkt": 60,
-        "crt": 360
-       },
-       {
-        "label": "112",
-        "mrp": 35,
-        "dp": "16.17",
-        "pkt": 40,
-        "crt": 240
-       },
-       {
-        "label": "160",
-        "mrp": 45,
-        "dp": "21.18",
-        "pkt": 50,
-        "crt": 200
-       },
-       {
-        "label": "224",
-        "mrp": 60,
-        "dp": "28.09",
-        "pkt": 30,
-        "crt": 180
-       },
-       {
-        "label": "284",
-        "mrp": 70,
-        "dp": "34.45",
-        "pkt": 28,
-        "crt": 112
-       },
-       {
-        "label": "320",
-        "mrp": 80,
-        "dp": "38.37",
-        "pkt": 16,
-        "crt": 96
-       },
-       {
-        "label": "384",
-        "mrp": 90,
-        "dp": "45.41",
+        "label": "96P",
+        "mrp": 38,
+        "dp": "18.13",
         "pkt": 12,
-        "crt": 72
+        "crt": 384,
+        "bld": "",
+        "id": 555
+       },
+       {
+        "label": "160P",
+        "mrp": 58,
+        "dp": "26.85",
+        "pkt": 10,
+        "crt": 240,
+        "bld": "",
+        "id": 556
+       },
+       {
+        "label": "176P",
+        "mrp": 60,
+        "dp": "29.22",
+        "pkt": 10,
+        "crt": 240,
+        "bld": "",
+        "id": 554
+       },
+       {
+        "label": "240",
+        "mrp": 80,
+        "dp": "38.00",
+        "pkt": 8,
+        "crt": 192,
+        "bld": "",
+        "id": 2629
        }
       ]
      },
      {
-      "name": "Eco Jumbo College (Big)",
-      "code": "EBC",
-      "size": "—",
+      "name": "Pasted Supreme  Practical",
+      "code": "PSC/PSP/PS",
+      "size": "27\u00d722 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "48P (No.2)",
-        "mrp": 15,
-        "dp": "7.29",
-        "pkt": 50,
-        "crt": 600
+        "label": "60",
+        "mrp": 45,
+        "dp": "20.74",
+        "pkt": 12,
+        "crt": 192,
+        "bld": "",
+        "id": 1615
        },
        {
-        "label": "112P (No.4)",
-        "mrp": 30,
-        "dp": "14.02",
-        "pkt": 50,
-        "crt": 400
+        "label": "104P",
+        "mrp": 70,
+        "dp": "29.75",
+        "pkt": 6,
+        "crt": 108,
+        "bld": "",
+        "id": 1519
        },
        {
-        "label": "120P (No.5)",
-        "mrp": 30,
-        "dp": "12.69",
-        "pkt": 50,
-        "crt": 400
+        "label": "144P",
+        "mrp": 85,
+        "dp": "37.74",
+        "pkt": 4,
+        "crt": 80,
+        "bld": "",
+        "id": 1520
        },
        {
-        "label": "132P (No.6)",
-        "mrp": 30,
-        "dp": "15.87",
-        "pkt": 50,
-        "crt": 360
-       },
-       {
-        "label": "148P (No.7)",
-        "mrp": 30,
-        "dp": "17.35",
-        "pkt": 50,
-        "crt": 320
-       },
-       {
-        "label": "160P (No.8)",
-        "mrp": 30,
-        "dp": "18.46",
-        "pkt": 50,
-        "crt": 320
+        "label": "180P",
+        "mrp": 105,
+        "dp": "44.73",
+        "pkt": 4,
+        "crt": 64,
+        "bld": "",
+        "id": 1521
        }
       ]
      },
      {
-      "name": "Small College (Net)",
-      "code": "SC",
-      "size": "21.7×14 cm",
+      "name": "Mark Supreme Practical",
+      "code": "MS",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
-       {
-        "label": "72",
-        "mrp": 10,
-        "dp": "5.01",
-        "pkt": 60,
-        "crt": 600
-       },
        {
         "label": "84",
-        "mrp": 15,
-        "dp": "5.57",
-        "pkt": 60,
-        "crt": 600
+        "mrp": 60,
+        "dp": "26.10",
+        "pkt": 6,
+        "crt": 264,
+        "bld": "",
+        "id": 3006
+       },
+       {
+        "label": "128",
+        "mrp": 75,
+        "dp": "33.67",
+        "pkt": 6,
+        "crt": 216,
+        "bld": "",
+        "id": 3007
+       },
+       {
+        "label": "152",
+        "mrp": 80,
+        "dp": "37.92",
+        "pkt": 6,
+        "crt": 168,
+        "bld": "",
+        "id": 3008
+       },
+       {
+        "label": "172",
+        "mrp": 95,
+        "dp": "41.32",
+        "pkt": 6,
+        "crt": 168,
+        "bld": "",
+        "id": 3009
+       },
+       {
+        "label": "240",
+        "mrp": 115,
+        "dp": "54.40",
+        "pkt": 4,
+        "crt": 96,
+        "bld": "",
+        "id": 3538
+       }
+      ]
+     },
+     {
+      "name": "Excel Practical",
+      "code": "EP",
+      "size": "27\u00d720.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "88P",
+        "mrp": 45,
+        "dp": "20.70",
+        "pkt": 15,
+        "crt": 300,
+        "bld": "",
+        "id": 5277
+       },
+       {
+        "label": "112P",
+        "mrp": 50,
+        "dp": "24.65",
+        "pkt": 240,
+        "crt": 12,
+        "bld": "",
+        "id": 5278
+       },
+       {
+        "label": "136P",
+        "mrp": 65,
+        "dp": "28.60",
+        "pkt": 12,
+        "crt": 240,
+        "bld": "",
+        "id": 5280
+       },
+       {
+        "label": "168P",
+        "mrp": 75,
+        "dp": "33.93",
+        "pkt": 200,
+        "crt": 10,
+        "bld": "",
+        "id": 5281
+       },
+       {
+        "label": "220P",
+        "mrp": 90,
+        "dp": "42.48",
+        "pkt": 10,
+        "crt": 180,
+        "bld": "",
+        "id": 5282
+       },
+       {
+        "label": "272P",
+        "mrp": 110,
+        "dp": "51.92",
+        "pkt": 144,
+        "crt": 8,
+        "bld": "",
+        "id": 5283
        }
       ]
      }
@@ -945,756 +1664,230 @@ const CATALOG = [
    },
    {
     "catNo": "S-5",
-    "title": "Mark College Range",
-    "families": [
-     {
-      "name": "Junior Mark College",
-      "code": "MC",
-      "size": "26×16.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "48P",
-        "mrp": 20,
-        "dp": "9.60",
-        "pkt": 20,
-        "crt": 600
-       },
-       {
-        "label": "60P",
-        "mrp": 25,
-        "dp": "11.08",
-        "pkt": 20,
-        "crt": 480
-       },
-       {
-        "label": "72P",
-        "mrp": 25,
-        "dp": "12.55",
-        "pkt": 20,
-        "crt": 480
-       },
-       {
-        "label": "80P",
-        "mrp": 30,
-        "dp": "13.54",
-        "pkt": 20,
-        "crt": 480
-       },
-       {
-        "label": "116P",
-        "mrp": 40,
-        "dp": "18.20",
-        "pkt": 10,
-        "crt": 400
-       },
-       {
-        "label": "120P",
-        "mrp": 40,
-        "dp": "18.69",
-        "pkt": 10,
-        "crt": 400
-       },
-       {
-        "label": "132P",
-        "mrp": 45,
-        "dp": "20.17",
-        "pkt": 10,
-        "crt": 320
-       },
-       {
-        "label": "140P",
-        "mrp": 45,
-        "dp": "21.15",
-        "pkt": 10,
-        "crt": 300
-       },
-       {
-        "label": "144P",
-        "mrp": 48,
-        "dp": "21.64",
-        "pkt": 10,
-        "crt": 300
-       },
-       {
-        "label": "152P",
-        "mrp": 48,
-        "dp": "22.63",
-        "pkt": 12,
-        "crt": 288
-       },
-       {
-        "label": "160P",
-        "mrp": 50,
-        "dp": "23.61",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "176P",
-        "mrp": 55,
-        "dp": "25.58",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "216P",
-        "mrp": 65,
-        "dp": "30.51",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "236P",
-        "mrp": 70,
-        "dp": "33.27",
-        "pkt": 8,
-        "crt": 192
-       },
-       {
-        "label": "264P",
-        "mrp": 80,
-        "dp": "36.72",
-        "pkt": 8,
-        "crt": 192
-       },
-       {
-        "label": "276P",
-        "mrp": 85,
-        "dp": "38.19",
-        "pkt": 8,
-        "crt": 144
-       },
-       {
-        "label": "296P",
-        "mrp": 90,
-        "dp": "40.84",
-        "pkt": 6,
-        "crt": 144
-       }
-      ]
-     },
-     {
-      "name": "A/4 Mark College",
-      "code": "A4M",
-      "size": "29×20.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "72P",
-        "mrp": 40,
-        "dp": "18.17",
-        "pkt": 20,
-        "crt": 400
-       },
-       {
-        "label": "140P",
-        "mrp": 60,
-        "dp": "30.15",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "144P",
-        "mrp": 60,
-        "dp": "30.84",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "152P",
-        "mrp": 65,
-        "dp": "32.22",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "160P",
-        "mrp": 65,
-        "dp": "33.60",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "176P",
-        "mrp": 75,
-        "dp": "36.60",
-        "pkt": 9,
-        "crt": 180
-       },
-       {
-        "label": "216P",
-        "mrp": 80,
-        "dp": "43.31",
-        "pkt": 9,
-        "crt": 180
-       },
-       {
-        "label": "236P",
-        "mrp": 90,
-        "dp": "47.02",
-        "pkt": 8,
-        "crt": 128
-       },
-       {
-        "label": "264P",
-        "mrp": 100,
-        "dp": "51.84",
-        "pkt": 8,
-        "crt": 128
-       },
-       {
-        "label": "276P",
-        "mrp": 110,
-        "dp": "54.00",
-        "pkt": 7,
-        "crt": 112
-       },
-       {
-        "label": "296P",
-        "mrp": 120,
-        "dp": "57.45",
-        "pkt": 7,
-        "crt": 112
-       },
-       {
-        "label": "316P",
-        "mrp": 140,
-        "dp": "61.15",
-        "pkt": 6,
-        "crt": 96
-       },
-       {
-        "label": "364P",
-        "mrp": 150,
-        "dp": "72.88",
-        "pkt": 6,
-        "crt": 96
-       },
-       {
-        "label": "376P",
-        "mrp": 160,
-        "dp": "75.03",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "404P (PB)",
-        "mrp": 180,
-        "dp": "85.79",
-        "pkt": 3,
-        "crt": 72
-       }
-      ]
-     }
-    ],
-    "notes": null
-   },
-   {
-    "catNo": "S-6",
-    "title": "Practical Note Books",
-    "families": [
-     {
-      "name": "Delux Pasted Practical N/B",
-      "code": "DPP",
-      "size": "24×19.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "60P",
-        "mrp": 29,
-        "dp": "13.46",
-        "pkt": 20,
-        "crt": 480
-       },
-       {
-        "label": "96P",
-        "mrp": 38,
-        "dp": "18.72",
-        "pkt": 12,
-        "crt": 384
-       },
-       {
-        "label": "160P",
-        "mrp": 58,
-        "dp": "27.88",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "176P",
-        "mrp": 60,
-        "dp": "30.35",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "240P",
-        "mrp": 80,
-        "dp": "39.52",
-        "pkt": 8,
-        "crt": 192
-       }
-      ]
-     },
-     {
-      "name": "Pasted Supreme Practical",
-      "code": "PSC/PSP/PS",
-      "size": "27×22 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "60P",
-        "mrp": 45,
-        "dp": "21.27",
-        "pkt": 12,
-        "crt": 192
-       },
-       {
-        "label": "104P",
-        "mrp": 70,
-        "dp": "30.72",
-        "pkt": 6,
-        "crt": 108
-       },
-       {
-        "label": "144P",
-        "mrp": 85,
-        "dp": "39.09",
-        "pkt": 4,
-        "crt": 80
-       },
-       {
-        "label": "180P",
-        "mrp": 105,
-        "dp": "46.37",
-        "pkt": 4,
-        "crt": 64
-       }
-      ]
-     },
-     {
-      "name": "Mark Supreme Practical",
-      "code": "MS/MSP/MSC",
-      "size": "27×22 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "84P",
-        "mrp": 60,
-        "dp": "26.81",
-        "pkt": 6,
-        "crt": 264
-       },
-       {
-        "label": "128P",
-        "mrp": 75,
-        "dp": "34.77",
-        "pkt": 6,
-        "crt": 216
-       },
-       {
-        "label": "152P",
-        "mrp": 80,
-        "dp": "39.16",
-        "pkt": 6,
-        "crt": 168
-       },
-       {
-        "label": "172P",
-        "mrp": 95,
-        "dp": "42.76",
-        "pkt": 6,
-        "crt": 168
-       },
-       {
-        "label": "240P",
-        "mrp": 115,
-        "dp": "56.41",
-        "pkt": 4,
-        "crt": 96
-       }
-      ]
-     },
-     {
-      "name": "Excel Practical",
-      "code": "EP/EPP/ECP",
-      "size": "27×20.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "88P",
-        "mrp": 45,
-        "dp": "21.40",
-        "pkt": 15,
-        "crt": 300
-       },
-       {
-        "label": "112P",
-        "mrp": 50,
-        "dp": "25.56",
-        "pkt": 10,
-        "crt": 240
-       },
-       {
-        "label": "136P",
-        "mrp": 65,
-        "dp": "29.69",
-        "pkt": 12,
-        "crt": 240
-       },
-       {
-        "label": "168P",
-        "mrp": 75,
-        "dp": "35.28",
-        "pkt": 10,
-        "crt": 200
-       },
-       {
-        "label": "220P",
-        "mrp": 90,
-        "dp": "44.24",
-        "pkt": 10,
-        "crt": 180
-       },
-       {
-        "label": "272P",
-        "mrp": 110,
-        "dp": "54.09",
-        "pkt": 8,
-        "crt": 144
-       }
-      ]
-     }
-    ],
-    "notes": null
-   },
-   {
-    "catNo": "S-7",
-    "title": "Project & Assignments — I",
+    "title": "Graph / Drawing & Sketch Book",
     "families": [
      {
       "name": "Jumbo Graph Copy",
       "code": "BG",
-      "size": "18.6×15.5 cm",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "16P",
         "mrp": 10,
-        "dp": "4.64",
+        "dp": "4.59",
         "pkt": 25,
-        "crt": 1500
+        "crt": 1500,
+        "bld": "",
+        "id": 309
        },
        {
         "label": "24P",
         "mrp": 12,
-        "dp": "5.45",
+        "dp": "5.36",
         "pkt": 25,
-        "crt": 1500
+        "crt": 1500,
+        "bld": "",
+        "id": 310
        },
        {
         "label": "32P",
         "mrp": 15,
-        "dp": "6.35",
+        "dp": "6.24",
         "pkt": 25,
-        "crt": 1200
+        "crt": 1200,
+        "bld": "",
+        "id": 311
        },
        {
-        "label": "56P",
+        "label": "56p",
         "mrp": 20,
-        "dp": "8.65",
+        "dp": "8.44",
         "pkt": 25,
-        "crt": 800
+        "crt": 800,
+        "bld": "",
+        "id": 1756
        }
       ]
      },
      {
-      "name": "A4 Graph Copy",
+      "name": "A4  Graph Copy",
       "code": "A4G",
-      "size": "27×22.5 cm",
+      "size": "22.5\u00d722.3 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "32P",
         "mrp": 30,
-        "dp": "10.71",
+        "dp": "10.47",
         "pkt": 25,
-        "crt": 350
+        "crt": 350,
+        "bld": "",
+        "id": 19
        },
        {
         "label": "48P",
         "mrp": 40,
-        "dp": "13.98",
+        "dp": "13.60",
         "pkt": 12,
-        "crt": 216
+        "crt": 216,
+        "bld": "",
+        "id": 20
        },
        {
         "label": "64P",
         "mrp": 50,
-        "dp": "17.02",
+        "dp": "16.50",
         "pkt": 12,
-        "crt": 216
+        "crt": 216,
+        "bld": "",
+        "id": 21
        }
       ]
      },
      {
       "name": "Platinum Drawing Copy",
       "code": "PD",
-      "size": "34×27 cm (Cartridge)",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "24P",
         "mrp": 50,
-        "dp": "20.83",
+        "dp": "21.40",
         "pkt": 12,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 11355
        },
        {
         "label": "36P",
         "mrp": 65,
-        "dp": "26.17",
+        "dp": "27.10",
         "pkt": 12,
-        "crt": 168
+        "crt": 168,
+        "bld": "",
+        "id": 11356
        },
        {
         "label": "56P",
         "mrp": 90,
-        "dp": "36.87",
+        "dp": "38.52",
         "pkt": 12,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 11357
        }
       ]
      },
      {
-      "name": "Drawing Copy",
+      "name": "Drawing Copy  (Cartridge Paper)",
       "code": "DCC",
-      "size": "22.30×26.70 cm",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "16P",
         "mrp": 25,
-        "dp": "10.69",
+        "dp": "10.75",
         "pkt": 25,
-        "crt": 400
+        "crt": 400,
+        "bld": "",
+        "id": 11338
        },
        {
         "label": "28P",
         "mrp": 35,
-        "dp": "14.24",
+        "dp": "14.35",
         "pkt": 24,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 11339
        },
        {
         "label": "40P",
         "mrp": 45,
-        "dp": "17.89",
+        "dp": "18.09",
         "pkt": 12,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 11340
        },
        {
         "label": "56P",
         "mrp": 60,
-        "dp": "22.58",
+        "dp": "22.86",
         "pkt": 12,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 11341
        },
        {
         "label": "80P",
         "mrp": 70,
-        "dp": "29.60",
+        "dp": "30.03",
         "pkt": 12,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 11342
        },
        {
         "label": "96P",
         "mrp": 80,
-        "dp": "34.29",
+        "dp": "34.80",
         "pkt": 12,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 11343
        }
       ]
      },
      {
-      "name": "A4 Colour Paper Sheet",
-      "code": "A4CP",
-      "size": "A4",
+      "name": "Dfc Drawing Copy",
+      "code": "DD",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "100 Sheet",
-        "mrp": 200,
-        "dp": "75.00",
-        "pkt": 60,
-        "crt": 100
-       },
-       {
-        "label": "50 Sheet",
-        "mrp": 200,
-        "dp": "40.00",
-        "pkt": 120,
-        "crt": 50
-       },
-       {
-        "label": "20 Sheet",
-        "mrp": 50,
-        "dp": "18.00",
-        "pkt": 60,
-        "crt": 100
-       }
-      ]
-     },
-     {
-      "name": "Drawing File & Paper",
-      "code": "DF/DPM/DPR/DPW",
-      "size": "37×28.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "File",
-        "mrp": 100,
-        "dp": "33.08",
-        "pkt": 6,
-        "crt": 120
-       },
-       {
-        "label": "Paper Mix",
-        "mrp": 533,
-        "dp": "177.10",
-        "pkt": 22,
-        "crt": 24
-       },
-       {
-        "label": "Ruled",
-        "mrp": 395,
-        "dp": "155.78",
-        "pkt": 12,
-        "crt": 30
-       },
-       {
-        "label": "White",
-        "mrp": 299,
-        "dp": "121.63",
-        "pkt": 12,
-        "crt": 30
-       }
-      ]
-     },
-     {
-      "name": "Craft Paper Sheet Big",
-      "code": "CP25B/40B/50B/80B",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "20 Sheet",
-        "mrp": 45,
-        "dp": "23.91",
-        "pkt": 25,
-        "crt": 600
-       },
-       {
-        "label": "40 Sheet",
-        "mrp": 65,
-        "dp": "34.91",
-        "pkt": 25,
-        "crt": 200
-       },
-       {
-        "label": "50 Sheet",
-        "mrp": 80,
-        "dp": "42.43",
-        "pkt": 25,
-        "crt": 150
-       },
-       {
-        "label": "80 Sheet",
-        "mrp": 115,
-        "dp": "64.93",
-        "pkt": 25,
-        "crt": 100
-       }
-      ]
-     },
-     {
-      "name": "Project Paper (Set)",
-      "code": "PP",
-      "size": "28×22 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "14 Sheet",
-        "mrp": 17,
-        "dp": "6.03",
+        "label": "16P",
+        "mrp": 15,
+        "dp": "7.26",
         "pkt": "",
-        "crt": 600
+        "crt": "",
+        "bld": "",
+        "id": 9428
        },
        {
-        "label": "25 Sheet",
-        "mrp": 36,
-        "dp": "17.99",
-        "pkt": 12,
-        "crt": 240
-       },
-       {
-        "label": "50 Sheet",
-        "mrp": 62,
-        "dp": "30.88",
-        "pkt": 12,
-        "crt": 120
+        "label": "40P",
+        "mrp": 30,
+        "dp": "12.18",
+        "pkt": "",
+        "crt": "",
+        "bld": "",
+        "id": 9018
        }
       ]
      },
      {
-      "name": "Mark Drawing File & Paper",
-      "code": "DFM/MDPM",
-      "size": "37×28.5 cm",
+      "name": "Thesis Paper",
+      "code": "GS",
+      "size": "27\u00d721 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "File",
-        "mrp": 70,
-        "dp": "31.25",
-        "pkt": 120,
-        "crt": 120
-       },
-       {
-        "label": "Mix",
-        "mrp": 330,
-        "dp": "137.45",
-        "pkt": 24,
-        "crt": 24
-       },
-       {
-        "label": "Ruled 100 Sheet",
-        "mrp": 133,
-        "dp": "66.42",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "White 100 Sheet",
-        "mrp": 209,
-        "dp": "104.31",
-        "pkt": "",
-        "crt": ""
+        "label": "100 Sheets",
+        "mrp": 90,
+        "dp": "45.00",
+        "pkt": 70,
+        "crt": 1,
+        "bld": "",
+        "id": 2058
        }
       ]
      }
@@ -1703,180 +1896,242 @@ const CATALOG = [
    },
    {
     "catNo": "S-8",
-    "title": "Project & Assignments — II",
+    "title": "Thisis Papers",
     "families": [
      {
-      "name": "Scrap Book",
-      "code": "SU/SI",
-      "size": "28.3×22 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Unruled",
-        "mrp": 60,
-        "dp": "27.18",
-        "pkt": 12,
-        "crt": 192
-       },
-       {
-        "label": "Interleaf",
-        "mrp": 60,
-        "dp": "27.18",
-        "pkt": 12,
-        "crt": 192
-       }
-      ]
-     },
-     {
-      "name": "DFC Drawing Copy",
-      "code": "DD",
-      "size": "Customise available",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "16P",
-        "mrp": 15,
-        "dp": "7.22",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "40P",
-        "mrp": 30,
-        "dp": "12.05",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Supreme Botany / Zoology",
-      "code": "SB/SZ/SF",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Botany Paper",
-        "mrp": 465,
-        "dp": "140.75",
-        "pkt": 12,
-        "crt": 48
-       },
-       {
-        "label": "Zoology Paper",
-        "mrp": 465,
-        "dp": "140.75",
-        "pkt": "",
-        "crt": 48
-       },
-       {
-        "label": "Practical File",
-        "mrp": 720,
-        "dp": "295.07",
-        "pkt": "",
-        "crt": 20
-       }
-      ]
-     },
-     {
-      "name": "Graph Paper Sheet",
-      "code": "GS",
-      "size": "27×21 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "100 Sheets",
-        "mrp": 90,
-        "dp": "45.00",
-        "pkt": 1,
-        "crt": 70
-       }
-      ]
-     },
-     {
-      "name": "ACE Supreme Practical Paper",
+      "name": "Thesis Paper",
       "code": "PP",
-      "size": "29×22.50 cm",
+      "size": "28\u00d722 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "480 Sheet",
-        "mrp": 475,
-        "dp": "237.06",
+        "label": "14 SHEET",
+        "mrp": 17,
+        "dp": "6.03",
+        "pkt": "",
+        "crt": 600,
+        "bld": "",
+        "id": 11079
+       },
+       {
+        "label": "25 SHEET",
+        "mrp": 36,
+        "dp": "18.22",
+        "pkt": 12,
+        "crt": 240,
+        "bld": "",
+        "id": 11072
+       },
+       {
+        "label": "50 SHEET",
+        "mrp": 62,
+        "dp": "31.37",
+        "pkt": 12,
+        "crt": 120,
+        "bld": "",
+        "id": 11075
+       },
+       {
+        "label": "480 SHET",
+        "mrp": 453,
+        "dp": "226.50",
         "pkt": 18,
-        "crt": 480
+        "crt": "",
+        "bld": 480,
+        "id": 11044
        },
        {
-        "label": "100 Sheet",
-        "mrp": 105,
-        "dp": "52.49",
+        "label": "100 SHEET",
+        "mrp": 101,
+        "dp": "50.30",
         "pkt": 100,
-        "crt": 100
-       }
-      ]
-     },
-     {
-      "name": "Supreme Paper Mark",
-      "code": "SBM/SZM",
-      "size": "27.30×21.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Botany",
-        "mrp": 360,
-        "dp": "119.01",
-        "pkt": 12,
-        "crt": 48
+        "crt": "",
+        "bld": 100,
+        "id": 11043
        },
        {
-        "label": "Zoology",
-        "mrp": 360,
-        "dp": "119.01",
-        "pkt": 12,
-        "crt": 48
-       }
-      ]
-     },
-     {
-      "name": "Thesis Paper (Net Rates)",
-      "code": "TM/TM2/TC/TM90/TM290",
-      "size": "29×21 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "70 Sheet",
+        "label": "70 SHEET",
         "mrp": 40,
         "dp": "19.85",
         "pkt": 25,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 11394
        },
        {
-        "label": "90 Sheet",
+        "label": "90 SHEET",
         "mrp": 50,
         "dp": "24.91",
         "pkt": 25,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 11393
        },
        {
-        "label": "90 Sheet (Colour)",
+        "label": "90 SHEET (COLOUR)",
         "mrp": 53,
         "dp": "26.01",
         "pkt": 75,
-        "crt": 90
+        "crt": 90,
+        "bld": "",
+        "id": 11066
+       },
+       {
+        "label": "70 SHEET",
+        "mrp": 55,
+        "dp": "27.46",
+        "pkt": "",
+        "crt": 200,
+        "bld": "",
+        "id": 11037
+       },
+       {
+        "label": "90 SHEET",
+        "mrp": 72,
+        "dp": "35.78",
+        "pkt": "",
+        "crt": 200,
+        "bld": "",
+        "id": 11030
+       }
+      ]
+     }
+    ],
+    "notes": null
+   },
+   {
+    "catNo": "S-10",
+    "title": "Colour Papers",
+    "families": [
+     {
+      "name": "Thesis Paper",
+      "code": "A4CP",
+      "size": null,
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "100 SHEET",
+        "mrp": 200,
+        "dp": "74.80",
+        "pkt": 60,
+        "crt": 100,
+        "bld": "",
+        "id": 11057
+       },
+       {
+        "label": "50 SHEET",
+        "mrp": 200,
+        "dp": "40.14",
+        "pkt": 120,
+        "crt": 50,
+        "bld": "",
+        "id": 11056
+       },
+       {
+        "label": "20 SHEET",
+        "mrp": 50,
+        "dp": "17.86",
+        "pkt": 60,
+        "crt": 100,
+        "bld": "",
+        "id": 11055
+       },
+       {
+        "label": "20",
+        "mrp": 45,
+        "dp": "23.90",
+        "pkt": 25,
+        "crt": 600,
+        "bld": "",
+        "id": 11058
+       },
+       {
+        "label": "40",
+        "mrp": 65,
+        "dp": "34.90",
+        "pkt": 25,
+        "crt": 200,
+        "bld": "",
+        "id": 11000
+       },
+       {
+        "label": "50",
+        "mrp": 80,
+        "dp": "42.40",
+        "pkt": 25,
+        "crt": 150,
+        "bld": "",
+        "id": 11001
+       },
+       {
+        "label": "80",
+        "mrp": 115,
+        "dp": "64.97",
+        "pkt": 25,
+        "crt": 100,
+        "bld": "",
+        "id": 11002
+       },
+       {
+        "label": "20",
+        "mrp": 10,
+        "dp": "7.42",
+        "pkt": 25,
+        "crt": 900,
+        "bld": "",
+        "id": 11003
+       },
+       {
+        "label": "25",
+        "mrp": 15,
+        "dp": "8.67",
+        "pkt": 25,
+        "crt": 900,
+        "bld": "",
+        "id": 11004
+       }
+      ]
+     }
+    ],
+    "notes": null
+   },
+   {
+    "catNo": "S-0",
+    "title": "Other",
+    "families": [
+     {
+      "name": "Small Collage (Net Rate)",
+      "code": "SC",
+      "size": "35\u00d726.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "72",
+        "mrp": 10,
+        "dp": "5.01",
+        "pkt": 60,
+        "crt": 600,
+        "bld": "",
+        "id": 7056
+       },
+       {
+        "label": "84",
+        "mrp": 15,
+        "dp": "5.57",
+        "pkt": 60,
+        "crt": 600,
+        "bld": "",
+        "id": 6348
        }
       ]
      },
      {
-      "name": "Answer Sheet (Net)",
+      "name": "Thesis Paper",
       "code": "ASP/D",
-      "size": "26×21.8 cm",
+      "size": "34.6\u00d711 cm",
       "tag": null,
       "col": null,
       "rows": [
@@ -1885,58 +2140,41 @@ const CATALOG = [
         "mrp": 1097,
         "dp": "415.98",
         "pkt": "",
-        "crt": 8
+        "crt": "",
+        "bld": 8,
+        "id": 11524
        },
        {
         "label": "8P",
         "mrp": 1122,
         "dp": "424.71",
         "pkt": "",
-        "crt": 8
+        "crt": "",
+        "bld": 8,
+        "id": 11528
        },
        {
         "label": "12P",
         "mrp": 1614,
         "dp": "626.53",
         "pkt": "",
-        "crt": 6
+        "crt": "",
+        "bld": 6,
+        "id": 11530
        },
        {
         "label": "16P",
         "mrp": 2117,
         "dp": "850.40",
         "pkt": "",
-        "crt": 6
-       }
-      ]
-     },
-     {
-      "name": "Craft Paper Sheet Small",
-      "code": "CP20S/25S",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "20 Sheet",
-        "mrp": 10,
-        "dp": "7.42",
-        "pkt": 25,
-        "crt": 900
-       },
-       {
-        "label": "25 Sheet",
-        "mrp": 15,
-        "dp": "8.67",
-        "pkt": 25,
-        "crt": 900
+        "crt": "",
+        "bld": 6,
+        "id": 11532
        }
       ]
      }
     ],
-    "notes": [
-     "Answer Sheet: 4P packed 1000 sheets/pkt; 8P, 12P, 16P packed 500 sheets/pkt — rate per pkt"
-    ]
+    "notes": null
    }
   ]
  },
@@ -1946,412 +2184,221 @@ const CATALOG = [
   "pages": [
    {
     "catNo": "O-1",
-    "title": "Files",
+    "title": "Envelopes",
     "families": [
      {
-      "name": "Cobra Files",
-      "code": "C",
-      "size": "35×25 cm",
+      "name": "Envelopes  (Per Box-500pcs)",
+      "code": "57W",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "C32",
-        "mrp": 291,
-        "dp": "125.95",
+        "label": "6.5X3.75",
+        "mrp": 465,
+        "dp": "233.43",
         "pkt": "",
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 2179
        },
        {
-        "label": "C36",
-        "mrp": 309,
-        "dp": "131.71",
+        "label": "9X4",
+        "mrp": 555,
+        "dp": "278.06",
         "pkt": "",
-        "crt": 40
+        "crt": 30,
+        "bld": "",
+        "id": 2180
        },
        {
-        "label": "C45",
-        "mrp": 356,
-        "dp": "153.50",
+        "label": "10X4.5",
+        "mrp": 640,
+        "dp": "318.72",
         "pkt": "",
-        "crt": 40
+        "crt": 20,
+        "bld": "",
+        "id": 2177
        },
        {
-        "label": "C55",
-        "mrp": 402,
-        "dp": "167.91",
+        "label": "11X5",
+        "mrp": 735,
+        "dp": "366.03",
         "pkt": "",
-        "crt": 40
+        "crt": 20,
+        "bld": "",
+        "id": 2178
        },
        {
-        "label": "C63",
-        "mrp": 445,
-        "dp": "182.31",
+        "label": "9X4",
+        "mrp": 690,
+        "dp": "340.86",
         "pkt": "",
-        "crt": 40
+        "crt": 30,
+        "bld": "",
+        "id": 2194
        },
        {
-        "label": "C90",
-        "mrp": 644,
-        "dp": "297.73",
-        "pkt": 28,
-        "crt": 40
+        "label": "10X4.5",
+        "mrp": 790,
+        "dp": "388.68",
+        "pkt": "",
+        "crt": 20,
+        "bld": "",
+        "id": 2192
+       },
+       {
+        "label": "11X5",
+        "mrp": 935,
+        "dp": "460.02",
+        "pkt": "",
+        "crt": 20,
+        "bld": "",
+        "id": 2193
        }
       ]
      },
      {
-      "name": "Lamination Cobra",
-      "code": "CL",
-      "size": "35×25 cm",
+      "name": "Lace File",
+      "code": "70W",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "CL45",
-        "mrp": 385,
-        "dp": "179.60",
+        "label": "6.5X3.75",
+        "mrp": 530,
+        "dp": "260.23",
         "pkt": "",
-        "crt": 40
+        "crt": "",
+        "bld": 40,
+        "id": 2183
        },
        {
-        "label": "CL55",
-        "mrp": 439,
-        "dp": "187.92",
+        "label": "7X4",
+        "mrp": 575,
+        "dp": "281.18",
         "pkt": "",
-        "crt": 40
+        "crt": "",
+        "bld": 36,
+        "id": 2185
        },
        {
-        "label": "CL81",
-        "mrp": 630,
-        "dp": "308.88",
+        "label": "7.25X5.25",
+        "mrp": 715,
+        "dp": "348.20",
         "pkt": "",
-        "crt": 28
+        "crt": "",
+        "bld": 27,
+        "id": 2184
+       },
+       {
+        "label": "8.5X5.5",
+        "mrp": 890,
+        "dp": "428.98",
+        "pkt": "",
+        "crt": "",
+        "bld": 30,
+        "id": 2186
+       },
+       {
+        "label": "9X4",
+        "mrp": 645,
+        "dp": "314.12",
+        "pkt": "",
+        "crt": "",
+        "bld": 30,
+        "id": 2187
+       },
+       {
+        "label": "10X4.5",
+        "mrp": 795,
+        "dp": "384.78",
+        "pkt": "",
+        "crt": "",
+        "bld": 20,
+        "id": 2181
+       },
+       {
+        "label": "11X5",
+        "mrp": 870,
+        "dp": "419.34",
+        "pkt": "",
+        "crt": "",
+        "bld": 20,
+        "id": 2182
+       },
+       {
+        "label": "9X4",
+        "mrp": 895,
+        "dp": "542.37",
+        "pkt": "",
+        "crt": "",
+        "bld": 30,
+        "id": 2197
+       },
+       {
+        "label": "10X4.5",
+        "mrp": 1045,
+        "dp": "613.42",
+        "pkt": "",
+        "crt": "",
+        "bld": 20,
+        "id": 2195
+       },
+       {
+        "label": "11X5",
+        "mrp": 1145,
+        "dp": "660.66",
+        "pkt": "",
+        "crt": "",
+        "bld": 20,
+        "id": 2196
        }
       ]
      },
      {
-      "name": "Special Cobra & Ring",
-      "code": "SC/SD",
-      "size": "35×26.5 cm",
+      "name": "Mb-32",
+      "code": "80W",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "Cobra 84",
-        "mrp": 84,
-        "dp": "39.82",
-        "pkt": 4,
-        "crt": 104
-       },
-       {
-        "label": "Cobra 126",
-        "mrp": 87,
-        "dp": "42.00",
-        "pkt": 4,
-        "crt": 160
-       },
-       {
-        "label": "Cobra 168",
-        "mrp": 95,
-        "dp": "45.23",
-        "pkt": 4,
-        "crt": 104
-       },
-       {
-        "label": "D-Ring 84",
-        "mrp": 102,
-        "dp": "47.94",
-        "pkt": 4,
-        "crt": 104
-       },
-       {
-        "label": "Cobra 268",
-        "mrp": 91,
-        "dp": "33.35",
-        "pkt": 4,
-        "crt": ""
-       },
-       {
-        "label": "D-Ring 268",
-        "mrp": 110,
-        "dp": "38.68",
-        "pkt": 4,
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "4 Flap Files",
-      "code": "4F",
-      "size": "36×26.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "4F36",
-        "mrp": 54,
-        "dp": "22.74",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "4F45",
-        "mrp": 61,
-        "dp": "25.22",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "4F55",
-        "mrp": 63,
-        "dp": "26.41",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "4F63",
-        "mrp": 69,
-        "dp": "28.06",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "4FL36",
-        "mrp": 58,
-        "dp": "24.65",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "4FL45",
-        "mrp": 64,
-        "dp": "27.12",
-        "pkt": 6,
-        "crt": 192
-       },
-       {
-        "label": "Special Cloth",
-        "mrp": 75,
-        "dp": "33.50",
-        "pkt": 6,
-        "crt": 192
-       }
-      ]
-     },
-     {
-      "name": "Customized Items (Net)",
-      "code": "CS/CSF/IR/BMP/BML",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Clip Sada",
-        "mrp": 38,
-        "dp": "18.88",
+        "label": "6.5X3.75",
+        "mrp": 580,
+        "dp": "290.00",
         "pkt": "",
-        "crt": 440
+        "crt": 40,
+        "bld": "",
+        "id": 2190
        },
        {
-        "label": "Clip Steel",
-        "mrp": 42,
-        "dp": "21.00",
+        "label": "9X4",
+        "mrp": 715,
+        "dp": "353.92",
         "pkt": "",
-        "crt": 200
+        "crt": 30,
+        "bld": "",
+        "id": 2191
        },
        {
-        "label": "Ring Rivit",
-        "mrp": 166,
-        "dp": "83.00",
+        "label": "10X4.5",
+        "mrp": 890,
+        "dp": "437.88",
         "pkt": "",
-        "crt": ""
+        "crt": 20,
+        "bld": "",
+        "id": 2188
        },
        {
-        "label": "M.Board Sada File Eco",
-        "mrp": 52,
-        "dp": "26.03",
+        "label": "11X5",
+        "mrp": 1005,
+        "dp": "494.46",
         "pkt": "",
-        "crt": 110
-       },
-       {
-        "label": "M.Board Lami. File ACE",
-        "mrp": 70,
-        "dp": "33.99",
-        "pkt": "",
-        "crt": 100
-       }
-      ]
-     },
-     {
-      "name": "Box Files",
-      "code": "BH/B/BS/BR/R",
-      "size": "34.5×27 · Half 25.5",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Half Size Paper",
-        "mrp": 125,
-        "dp": "61.39",
-        "pkt": 4,
-        "crt": 88
-       },
-       {
-        "label": "Full Size Paper",
-        "mrp": 128,
-        "dp": "61.88",
-        "pkt": 4,
-        "crt": 72
-       },
-       {
-        "label": "Half Size Steel Clip",
-        "mrp": 140,
-        "dp": "69.01",
-        "pkt": 4,
-        "crt": 88
-       },
-       {
-        "label": "Full Size Steel Clip",
-        "mrp": 140,
-        "dp": "69.47",
-        "pkt": 4,
-        "crt": 72
-       },
-       {
-        "label": "Royal / Eco",
-        "mrp": 110,
-        "dp": "50.89",
-        "pkt": 4,
-        "crt": 72
-       },
-       {
-        "label": "Rado Steel Clip",
-        "mrp": 170,
-        "dp": "83.49",
-        "pkt": 4,
-        "crt": 64
-       }
-      ]
-     },
-     {
-      "name": "Record Files (Net Rate)",
-      "code": "R/RC",
-      "size": "35×26 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "R26",
-        "mrp": 13,
-        "dp": "5.77",
-        "pkt": 25,
-        "crt": 1000
-       },
-       {
-        "label": "R32",
-        "mrp": 14,
-        "dp": "6.41",
-        "pkt": 25,
-        "crt": 1000
-       },
-       {
-        "label": "RC32",
-        "mrp": 16,
-        "dp": "7.86",
-        "pkt": 12,
-        "crt": 720
-       },
-       {
-        "label": "R36",
-        "mrp": 16,
-        "dp": "6.85",
-        "pkt": 25,
-        "crt": 1000
-       },
-       {
-        "label": "RC36",
-        "mrp": 18,
-        "dp": "8.31",
-        "pkt": 12,
-        "crt": 720
-       },
-       {
-        "label": "R45",
-        "mrp": 19,
-        "dp": "8.56",
-        "pkt": 25,
-        "crt": 700
-       }
-      ]
-     },
-     {
-      "name": "Fly Paper Sheet (Net)",
-      "code": "FL",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "FL14",
-        "mrp": 5,
-        "dp": "2.26",
-        "pkt": 100,
-        "crt": 2400
-       }
-      ]
-     },
-     {
-      "name": "File Pad Special",
-      "code": "SFP",
-      "size": "37×24 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Special",
-        "mrp": 453,
-        "dp": "226.50",
-        "pkt": 10,
-        "crt": 20
-       }
-      ]
-     },
-     {
-      "name": "ACE Lace File",
-      "code": "LC72",
-      "size": "35×25 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Lace File",
-        "mrp": 457,
-        "dp": "228.50",
-        "pkt": "",
-        "crt": 40
-       }
-      ]
-     },
-     {
-      "name": "File Pad Mill Board (Net)",
-      "code": "MB",
-      "size": "37×24 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "MB-28",
-        "mrp": 240,
-        "dp": "120.10",
-        "pkt": "",
-        "crt": 25
-       },
-       {
-        "label": "MB-32",
-        "mrp": 291,
-        "dp": "145.40",
-        "pkt": "",
-        "crt": 25
+        "crt": 20,
+        "bld": "",
+        "id": 2189
        }
       ]
      }
@@ -2360,197 +2407,194 @@ const CATALOG = [
    },
    {
     "catNo": "O-2",
-    "title": "Envelopes",
+    "title": "Record / Cobra / 4 Flap / Pad / Lace File",
     "families": [
      {
-      "name": "White 57 GSM",
-      "code": "57W",
-      "size": "per box 500 pcs",
+      "name": "Thesis Paper",
+      "code": "4F",
+      "size": "36\u00d726.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "6.5×3.75",
-        "mrp": 465,
-        "dp": "247.39",
-        "pkt": "",
-        "crt": 40
+        "label": "4F36",
+        "mrp": 54,
+        "dp": "23.11",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 3
        },
        {
-        "label": "9×4",
-        "mrp": 555,
-        "dp": "296.66",
-        "pkt": "",
-        "crt": 30
+        "label": "4F45",
+        "mrp": 61,
+        "dp": "25.71",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 4
        },
        {
-        "label": "10×4.5",
-        "mrp": 640,
-        "dp": "341.55",
-        "pkt": "",
-        "crt": 20
+        "label": "4F55",
+        "mrp": 63,
+        "dp": "26.97",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 5
        },
        {
-        "label": "11×5",
-        "mrp": 735,
-        "dp": "393.73",
-        "pkt": "",
-        "crt": 20
+        "label": "4F63",
+        "mrp": 69,
+        "dp": "28.70",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 6
+       },
+       {
+        "label": "4FL45",
+        "mrp": 64,
+        "dp": "27.62",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 303
+       },
+       {
+        "label": "4FL36",
+        "mrp": 58,
+        "dp": "25.02",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 304
        }
       ]
      },
      {
-      "name": "White 70 GSM",
-      "code": "70W",
-      "size": "per box 500 pcs",
+      "name": "Quire",
+      "code": "CL",
+      "size": "35\u00d725 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "6.5×3.75",
-        "mrp": 530,
-        "dp": "281.30",
+        "label": "1 Q",
+        "mrp": 229,
+        "dp": "114.39",
         "pkt": "",
-        "crt": 40
+        "crt": "",
+        "bld": 3,
+        "id": 171
        },
        {
-        "label": "7×4",
-        "mrp": 575,
-        "dp": "305.11",
-        "pkt": "",
-        "crt": 36
+        "label": "2Q",
+        "mrp": 292,
+        "dp": "145.58",
+        "pkt": 40,
+        "crt": "",
+        "bld": 2,
+        "id": 172
        },
        {
-        "label": "7.25×5.25",
-        "mrp": 715,
-        "dp": "380.53",
-        "pkt": "",
-        "crt": 27
+        "label": "3 Q",
+        "mrp": 415,
+        "dp": "207.44",
+        "pkt": 40,
+        "crt": "",
+        "bld": 1,
+        "id": 173
        },
        {
-        "label": "8.5×5.5",
-        "mrp": 890,
-        "dp": "472.71",
-        "pkt": "",
-        "crt": 30
+        "label": "4 Q",
+        "mrp": 477,
+        "dp": "238.36",
+        "pkt": 32,
+        "crt": "",
+        "bld": 1,
+        "id": 174
        },
        {
-        "label": "9×4",
-        "mrp": 645,
-        "dp": "341.88",
-        "pkt": "",
-        "crt": 30
+        "label": "5 Q",
+        "mrp": 567,
+        "dp": "283.19",
+        "pkt": 28,
+        "crt": "",
+        "bld": 1,
+        "id": 175
        },
        {
-        "label": "10×4.5",
-        "mrp": 795,
-        "dp": "422.25",
-        "pkt": "",
-        "crt": 20
-       },
-       {
-        "label": "11×5",
-        "mrp": 870,
-        "dp": "461.57",
-        "pkt": "",
-        "crt": 20
-       }
-      ]
-     },
-     {
-      "name": "White 80 GSM",
-      "code": "80W",
-      "size": "per box 500 pcs",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "6.5×3.75",
-        "mrp": 580,
-        "dp": "310.41",
-        "pkt": "",
-        "crt": 40
-       },
-       {
-        "label": "9×4",
-        "mrp": 715,
-        "dp": "380.69",
-        "pkt": "",
-        "crt": 30
-       },
-       {
-        "label": "10×4.5",
-        "mrp": 890,
-        "dp": "474.13",
-        "pkt": "",
-        "crt": 20
-       },
-       {
-        "label": "11×5",
-        "mrp": 1005,
-        "dp": "536.19",
-        "pkt": "",
-        "crt": 20
-       }
-      ]
-     },
-     {
-      "name": "Red Craft Envelope",
-      "code": "R",
-      "size": "per box 500 pcs",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "9×4",
-        "mrp": 690,
+        "label": "6 Q",
+        "mrp": 682,
         "dp": "340.74",
-        "pkt": "",
-        "crt": 30
+        "pkt": 24,
+        "crt": "",
+        "bld": 1,
+        "id": 176
        },
        {
-        "label": "10×4.5",
-        "mrp": 790,
-        "dp": "388.54",
-        "pkt": "",
-        "crt": 20
+        "label": "7 Q",
+        "mrp": 787,
+        "dp": "393.27",
+        "pkt": 16,
+        "crt": "",
+        "bld": 1,
+        "id": 169
        },
        {
-        "label": "11×5",
-        "mrp": 935,
-        "dp": "459.86",
-        "pkt": "",
-        "crt": 20
+        "label": "8 Q",
+        "mrp": 902,
+        "dp": "450.91",
+        "pkt": 12,
+        "crt": "",
+        "bld": 1,
+        "id": 170
        }
       ]
      },
      {
-      "name": "Window Envelope",
-      "code": "WE",
-      "size": "per box 500 pcs",
+      "name": "Pasting File",
+      "code": "PF",
+      "size": "35\u00d725 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "9×4",
-        "mrp": 895,
-        "dp": "570.51",
-        "pkt": "",
-        "crt": 30
+        "label": "92P",
+        "mrp": 110,
+        "dp": "52.25",
+        "pkt": 6,
+        "crt": 72,
+        "bld": "",
+        "id": 613
        },
        {
-        "label": "10×4.5",
-        "mrp": 1045,
-        "dp": "650.87",
-        "pkt": "",
-        "crt": 20
+        "label": "180P",
+        "mrp": 130,
+        "dp": "61.88",
+        "pkt": 6,
+        "crt": 60,
+        "bld": "",
+        "id": 610
        },
        {
-        "label": "11×5",
-        "mrp": 1145,
-        "dp": "704.29",
-        "pkt": "",
-        "crt": 20
+        "label": "276P",
+        "mrp": 165,
+        "dp": "80.03",
+        "pkt": 4,
+        "crt": 48,
+        "bld": "",
+        "id": 611
+       },
+       {
+        "label": "372P",
+        "mrp": 185,
+        "dp": "91.76",
+        "pkt": 4,
+        "crt": 40,
+        "bld": "",
+        "id": 612
        }
       ]
      }
@@ -2559,699 +2603,248 @@ const CATALOG = [
    },
    {
     "catNo": "O-3",
-    "title": "Book Keeping Products",
+    "title": "Box File",
     "families": [
      {
-      "name": "Canvas Copy",
-      "code": "CC",
-      "size": "22×18 cm",
+      "name": "Ace Jumbo Register",
+      "code": "BR",
+      "size": "34.5\u00d727 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "72",
-        "mrp": 136,
-        "dp": "67.78",
-        "pkt": 10,
-        "crt": 120
-       },
-       {
-        "label": "96",
-        "mrp": 157,
-        "dp": "78.40",
-        "pkt": 6,
-        "crt": 96
-       },
-       {
-        "label": "144",
-        "mrp": 191,
-        "dp": "95.26",
-        "pkt": 4,
-        "crt": 80
-       },
-       {
-        "label": "192",
-        "mrp": 216,
-        "dp": "107.93",
-        "pkt": 2,
-        "crt": 52
-       },
-       {
-        "label": "288",
-        "mrp": 310,
-        "dp": "154.59",
-        "pkt": 1,
-        "crt": 36
-       },
-       {
-        "label": "384",
-        "mrp": 382,
-        "dp": "190.56",
-        "pkt": 1,
-        "crt": 32
-       },
-       {
-        "label": "480",
-        "mrp": 461,
-        "dp": "230.37",
-        "pkt": 1,
-        "crt": 24
-       },
-       {
-        "label": "576",
-        "mrp": 540,
-        "dp": "269.54",
-        "pkt": 1,
-        "crt": 20
-       },
-       {
-        "label": "672",
-        "mrp": 629,
-        "dp": "314.43",
-        "pkt": 1,
-        "crt": 20
-       },
-       {
-        "label": "768",
-        "mrp": 704,
-        "dp": "351.75",
-        "pkt": 1,
-        "crt": 16
-       }
-      ]
-     },
-     {
-      "name": "Copy Ledger",
-      "code": "CL",
-      "size": "22.3×17.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1Q",
-        "mrp": 229,
-        "dp": "114.39",
-        "pkt": 3,
-        "crt": 72
-       },
-       {
-        "label": "2Q",
-        "mrp": 292,
-        "dp": "145.58",
-        "pkt": 2,
-        "crt": 40
-       },
-       {
-        "label": "3Q",
-        "mrp": 415,
-        "dp": "207.44",
-        "pkt": 1,
-        "crt": 40
-       },
-       {
-        "label": "4Q",
-        "mrp": 477,
-        "dp": "238.36",
-        "pkt": 1,
-        "crt": 32
-       },
-       {
-        "label": "5Q",
-        "mrp": 567,
-        "dp": "283.19",
-        "pkt": 1,
-        "crt": 28
-       },
-       {
-        "label": "6Q",
-        "mrp": 682,
-        "dp": "340.74",
-        "pkt": 1,
-        "crt": 24
-       },
-       {
-        "label": "7Q",
-        "mrp": 787,
-        "dp": "393.27",
-        "pkt": 1,
-        "crt": 16
-       },
-       {
-        "label": "8Q",
-        "mrp": 902,
-        "dp": "450.91",
-        "pkt": 1,
-        "crt": 12
-       }
-      ]
-     },
-     {
-      "name": "Canvas Register",
-      "code": "CR",
-      "size": "34.5×21.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "72",
-        "mrp": 228,
-        "dp": "113.65",
-        "pkt": 6,
-        "crt": 48
-       },
-       {
-        "label": "96",
-        "mrp": 267,
-        "dp": "133.18",
-        "pkt": 6,
-        "crt": 48
-       },
-       {
-        "label": "144",
-        "mrp": 323,
-        "dp": "161.48",
-        "pkt": 4,
-        "crt": 40
-       },
-       {
-        "label": "192",
-        "mrp": 377,
-        "dp": "188.02",
-        "pkt": 2,
-        "crt": 32
-       },
-       {
-        "label": "288",
-        "mrp": 549,
-        "dp": "274.36",
-        "pkt": 1,
-        "crt": 24
-       },
-       {
-        "label": "384",
-        "mrp": 668,
-        "dp": "333.62",
-        "pkt": 1,
-        "crt": 18
-       },
-       {
-        "label": "480",
-        "mrp": 815,
-        "dp": "407.34",
-        "pkt": 1,
-        "crt": 12
-       },
-       {
-        "label": "576",
-        "mrp": 958,
-        "dp": "478.55",
-        "pkt": 1,
-        "crt": 12
-       },
-       {
-        "label": "672",
-        "mrp": 1098,
-        "dp": "548.56",
-        "pkt": 1,
-        "crt": 12
-       },
-       {
-        "label": "768",
-        "mrp": 1228,
-        "dp": "613.66",
-        "pkt": 1,
-        "crt": 10
-       },
-       {
-        "label": "864",
-        "mrp": 1412,
-        "dp": "705.76",
-        "pkt": 1,
-        "crt": 8
-       },
-       {
-        "label": "960",
-        "mrp": 1602,
-        "dp": "800.98",
-        "pkt": 1,
-        "crt": 8
-       },
-       {
-        "label": "1056",
-        "mrp": 1764,
-        "dp": "881.65",
-        "pkt": 1,
-        "crt": 6
-       }
-      ]
-     },
-     {
-      "name": "Cash Register",
-      "code": "CR",
-      "size": "34.20×21.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1Q",
-        "mrp": 285,
-        "dp": "142.49",
-        "pkt": 3,
-        "crt": 42
-       },
-       {
-        "label": "2Q",
-        "mrp": 442,
-        "dp": "220.84",
-        "pkt": 2,
-        "crt": 32
-       },
-       {
-        "label": "3Q",
-        "mrp": 693,
-        "dp": "346.06",
-        "pkt": 1,
-        "crt": 20
-       },
-       {
-        "label": "4Q",
-        "mrp": 858,
-        "dp": "428.54",
-        "pkt": 1,
-        "crt": 18
-       },
-       {
-        "label": "5Q",
-        "mrp": 1024,
-        "dp": "511.79",
-        "pkt": 1,
-        "crt": 13
-       },
-       {
-        "label": "6Q",
-        "mrp": 1188,
-        "dp": "593.51",
-        "pkt": 1,
-        "crt": 11
-       },
-       {
-        "label": "7Q",
-        "mrp": 1395,
-        "dp": "697.44",
-        "pkt": 1,
-        "crt": 11
-       },
-       {
-        "label": "8Q",
-        "mrp": 1547,
-        "dp": "773.13",
-        "pkt": 1,
-        "crt": 6
-       }
-      ]
-     },
-     {
-      "name": "Stock / Ledger Register",
-      "code": "SR/LR",
-      "size": "34.20×21.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1Q",
-        "mrp": 303,
-        "dp": "151.46",
-        "pkt": 3,
-        "crt": 42
-       },
-       {
-        "label": "2Q",
-        "mrp": 446,
-        "dp": "222.62",
-        "pkt": 2,
-        "crt": 32
-       },
-       {
-        "label": "3Q",
-        "mrp": 677,
-        "dp": "338.15",
-        "pkt": 1,
-        "crt": 20
-       },
-       {
-        "label": "4Q",
-        "mrp": 799,
-        "dp": "399.47",
-        "pkt": 1,
-        "crt": 18
-       },
-       {
-        "label": "5Q",
-        "mrp": 968,
-        "dp": "483.62",
-        "pkt": 1,
-        "crt": 13
-       },
-       {
-        "label": "6Q",
-        "mrp": 1091,
-        "dp": "545.38",
-        "pkt": 1,
-        "crt": 11
-       },
-       {
-        "label": "7Q",
-        "mrp": 1259,
-        "dp": "629.24",
-        "pkt": 1,
-        "crt": 11
-       },
-       {
-        "label": "8Q",
-        "mrp": 1429,
-        "dp": "714.13",
-        "pkt": 1,
-        "crt": 6
-       }
-      ]
-     },
-     {
-      "name": "Copy Cash",
-      "code": "CC",
-      "size": "22.3×17.50 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1Q",
-        "mrp": 195,
-        "dp": "97.31",
-        "pkt": 3,
-        "crt": ""
-       },
-       {
-        "label": "2Q",
-        "mrp": 254,
-        "dp": "126.70",
-        "pkt": 2,
-        "crt": 40
-       },
-       {
-        "label": "3Q",
-        "mrp": 369,
-        "dp": "184.10",
-        "pkt": 1,
-        "crt": 40
-       },
-       {
-        "label": "4Q",
-        "mrp": 443,
-        "dp": "221.19",
-        "pkt": 1,
-        "crt": 32
-       },
-       {
-        "label": "5Q",
-        "mrp": 552,
-        "dp": "275.57",
-        "pkt": 1,
-        "crt": 28
-       },
-       {
-        "label": "6Q",
-        "mrp": 666,
-        "dp": "332.61",
-        "pkt": 1,
-        "crt": 24
-       },
-       {
-        "label": "7Q",
-        "mrp": 781,
-        "dp": "390.05",
-        "pkt": 1,
-        "crt": ""
-       },
-       {
-        "label": "8Q",
-        "mrp": 890,
-        "dp": "444.84",
-        "pkt": 1,
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Canvas Ponia",
-      "code": "CP",
-      "size": "34.5×16.30 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "96",
-        "mrp": 108,
-        "dp": "69.57",
-        "pkt": 6,
-        "crt": 60
-       },
-       {
-        "label": "144",
-        "mrp": 130,
-        "dp": "86.65",
-        "pkt": 4,
-        "crt": 56
-       },
-       {
-        "label": "192",
-        "mrp": 158,
-        "dp": "105.75",
-        "pkt": 3,
-        "crt": 48
-       },
-       {
-        "label": "288",
-        "mrp": 209,
-        "dp": "143.25",
-        "pkt": 3,
-        "crt": 36
-       },
-       {
-        "label": "384",
-        "mrp": 263,
-        "dp": "181.59",
-        "pkt": 2,
-        "crt": 28
-       }
-      ]
-     },
-     {
-      "name": "Fancy Ponia",
-      "code": "FP",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "96",
-        "mrp": 100,
-        "dp": "35.33",
-        "pkt": 6,
-        "crt": 132
-       },
-       {
-        "label": "144",
-        "mrp": 120,
-        "dp": "46.51",
-        "pkt": 4,
-        "crt": 104
-       },
-       {
-        "label": "192",
-        "mrp": 140,
-        "dp": "53.63",
-        "pkt": 4,
-        "crt": 88
-       },
-       {
-        "label": "288",
-        "mrp": 190,
-        "dp": "73.75",
-        "pkt": 3,
-        "crt": 66
-       },
-       {
-        "label": "384",
-        "mrp": 240,
-        "dp": "93.26",
-        "pkt": 2,
-        "crt": 56
-       },
-       {
-        "label": "480",
-        "mrp": 320,
-        "dp": "118.58",
-        "pkt": 2,
-        "crt": 44
-       }
-      ]
-     },
-     {
-      "name": "Laxmi Register",
-      "code": "LPR",
-      "size": "34.70×21.70 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "96",
+        "label": "68P",
         "mrp": 75,
-        "dp": "37.00",
-        "pkt": 6,
-        "crt": ""
+        "dp": "39.00",
+        "pkt": 10,
+        "crt": 120,
+        "bld": "",
+        "id": 2073
        },
        {
-        "label": "192",
-        "mrp": 110,
-        "dp": "53.00",
-        "pkt": 6,
-        "crt": ""
+        "label": "84P",
+        "mrp": 90,
+        "dp": "42.57",
+        "pkt": 10,
+        "crt": 100,
+        "bld": "",
+        "id": 7138
        },
        {
-        "label": "288",
-        "mrp": 145,
-        "dp": "70.00",
+        "label": "92P",
+        "mrp": 90,
+        "dp": "44.37",
+        "pkt": 10,
+        "crt": 100,
+        "bld": "",
+        "id": 2074
+       },
+       {
+        "label": "140P",
+        "mrp": 115,
+        "dp": "53.48",
+        "pkt": 6,
+        "crt": 84,
+        "bld": "",
+        "id": 2075
+       },
+       {
+        "label": "160P",
+        "mrp": 125,
+        "dp": "57.88",
+        "pkt": 6,
+        "crt": 84,
+        "bld": "",
+        "id": 2076
+       },
+       {
+        "label": "180P",
+        "mrp": 140,
+        "dp": "62.16",
+        "pkt": 6,
+        "crt": 72,
+        "bld": "",
+        "id": 2077
+       },
+       {
+        "label": "260p",
+        "mrp": 185,
+        "dp": "77.33",
+        "pkt": 56,
+        "crt": 4,
+        "bld": "",
+        "id": 7139
+       },
+       {
+        "label": "276P",
+        "mrp": 195,
+        "dp": "81.90",
         "pkt": 4,
-        "crt": ""
+        "crt": 56,
+        "bld": "",
+        "id": 2078
        },
        {
-        "label": "384",
-        "mrp": 180,
-        "dp": "87.00",
+        "label": "360p",
+        "mrp": 240,
+        "dp": "99.36",
+        "pkt": 48,
+        "crt": 4,
+        "bld": "",
+        "id": 7140
+       },
+       {
+        "label": "372P",
+        "mrp": 250,
+        "dp": "102.00",
+        "pkt": 4,
+        "crt": 48,
+        "bld": "",
+        "id": 2079
+       },
+       {
+        "label": "476P",
+        "mrp": 350,
+        "dp": "141.40",
         "pkt": 3,
-        "crt": ""
+        "crt": 36,
+        "bld": "",
+        "id": 2081
        },
        {
-        "label": "480",
-        "mrp": 245,
-        "dp": "123.00",
-        "pkt": 2,
-        "crt": ""
+        "label": "572P",
+        "mrp": 415,
+        "dp": "171.40",
+        "pkt": 3,
+        "crt": 30,
+        "bld": "",
+        "id": 2080
+       },
+       {
+        "label": "672P",
+        "mrp": 450,
+        "dp": "213.30",
+        "pkt": 3,
+        "crt": 30,
+        "bld": "",
+        "id": 4998
        }
       ]
      },
      {
-      "name": "Laxmi Copy",
-      "code": "LPC",
-      "size": "21.5×17.5 cm",
+      "name": "Jumbo Long Book Ace",
+      "code": "12BR",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "96",
-        "mrp": 71,
-        "dp": "46.41",
-        "pkt": 6,
-        "crt": ""
+        "label": "68p",
+        "mrp": 75,
+        "dp": "37.50",
+        "pkt": 10,
+        "crt": 120,
+        "bld": "",
+        "id": 11434
        },
        {
-        "label": "144",
-        "mrp": 85,
-        "dp": "55.31",
-        "pkt": 6,
-        "crt": ""
+        "label": "84P",
+        "mrp": 90,
+        "dp": "40.95",
+        "pkt": 10,
+        "crt": 100,
+        "bld": "",
+        "id": 11435
        },
        {
-        "label": "192",
-        "mrp": 103,
-        "dp": "65.19",
-        "pkt": 6,
-        "crt": ""
+        "label": "92p",
+        "mrp": 90,
+        "dp": "42.57",
+        "pkt": 10,
+        "crt": 100,
+        "bld": "",
+        "id": 11436
        },
        {
-        "label": "288",
-        "mrp": 141,
-        "dp": "85.19",
+        "label": "140p",
+        "mrp": 115,
+        "dp": "50.94",
+        "pkt": 6,
+        "crt": 84,
+        "bld": "",
+        "id": 11437
+       },
+       {
+        "label": "160P",
+        "mrp": 125,
+        "dp": "55.00",
+        "pkt": 6,
+        "crt": 84,
+        "bld": "",
+        "id": 11438
+       },
+       {
+        "label": "180P",
+        "mrp": 140,
+        "dp": "59.08",
+        "pkt": 6,
+        "crt": 72,
+        "bld": "",
+        "id": 11439
+       },
+       {
+        "label": "260P",
+        "mrp": 185,
+        "dp": "73.44",
         "pkt": 4,
-        "crt": ""
+        "crt": 56,
+        "bld": "",
+        "id": 11440
        },
        {
-        "label": "384",
-        "mrp": 181,
-        "dp": "107.49",
+        "label": "276P",
+        "mrp": 195,
+        "dp": "78.39",
+        "pkt": 4,
+        "crt": 56,
+        "bld": "",
+        "id": 11441
+       },
+       {
+        "label": "360P",
+        "mrp": 240,
+        "dp": "96.24",
+        "pkt": 4,
+        "crt": 48,
+        "bld": "",
+        "id": 11443
+       },
+       {
+        "label": "372P",
+        "mrp": 250,
+        "dp": "98.50",
+        "pkt": 4,
+        "crt": 48,
+        "bld": "",
+        "id": 11444
+       },
+       {
+        "label": "476p",
+        "mrp": 350,
+        "dp": "134.40",
         "pkt": 3,
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Day Book",
-      "code": "DB",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "72",
-        "mrp": 196,
-        "dp": "97.51",
-        "pkt": 6,
-        "crt": ""
+        "crt": 36,
+        "bld": "",
+        "id": 11445
        },
        {
-        "label": "96",
-        "mrp": 220,
-        "dp": "109.61",
-        "pkt": 6,
-        "crt": ""
-       },
-       {
-        "label": "144",
-        "mrp": 254,
-        "dp": "126.78",
-        "pkt": 4,
-        "crt": ""
-       },
-       {
-        "label": "192",
-        "mrp": 290,
-        "dp": "144.62",
-        "pkt": 2,
-        "crt": ""
-       },
-       {
-        "label": "288",
-        "mrp": 422,
-        "dp": "210.93",
-        "pkt": 1,
-        "crt": ""
-       },
-       {
-        "label": "384",
-        "mrp": 505,
-        "dp": "252.05",
-        "pkt": 1,
-        "crt": ""
-       },
-       {
-        "label": "480",
-        "mrp": 658,
-        "dp": "328.58",
-        "pkt": 1,
-        "crt": ""
-       },
-       {
-        "label": "576",
-        "mrp": 809,
-        "dp": "404.01",
-        "pkt": 1,
-        "crt": ""
-       },
-       {
-        "label": "672",
-        "mrp": 915,
-        "dp": "457.36",
-        "pkt": 1,
-        "crt": ""
+        "label": "572p",
+        "mrp": 415,
+        "dp": "163.10",
+        "pkt": 3,
+        "crt": 30,
+        "bld": "",
+        "id": 11446
        }
       ]
      }
@@ -3260,324 +2853,455 @@ const CATALOG = [
    },
    {
     "catNo": "O-4",
-    "title": "Duplicate Books & Note Pads",
+    "title": "Duplicate Books & Note Pad",
     "families": [
+     {
+      "name": "Day Book",
+      "code": "DB",
+      "size": null,
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "96",
+        "mrp": 75,
+        "dp": "36.81",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1616
+       },
+       {
+        "label": "192",
+        "mrp": 110,
+        "dp": "53.18",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1617
+       },
+       {
+        "label": "288",
+        "mrp": 145,
+        "dp": "69.90",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 1618
+       },
+       {
+        "label": "384",
+        "mrp": 180,
+        "dp": "87.48",
+        "pkt": "",
+        "crt": 3,
+        "bld": "",
+        "id": 1619
+       },
+       {
+        "label": "480",
+        "mrp": 245,
+        "dp": "122.50",
+        "pkt": "",
+        "crt": 2,
+        "bld": "",
+        "id": 1620
+       }
+      ]
+     },
+     {
+      "name": "Canvas Ponia",
+      "code": "CP",
+      "size": "21.5\u00d712.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "72",
+        "mrp": 196,
+        "dp": "97.51",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1626
+       },
+       {
+        "label": "96",
+        "mrp": 220,
+        "dp": "109.61",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1627
+       },
+       {
+        "label": "144",
+        "mrp": 254,
+        "dp": "126.78",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 1628
+       },
+       {
+        "label": "192",
+        "mrp": 290,
+        "dp": "144.62",
+        "pkt": "",
+        "crt": 2,
+        "bld": "",
+        "id": 1629
+       },
+       {
+        "label": "288",
+        "mrp": 422,
+        "dp": "210.93",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 1630
+       },
+       {
+        "label": "384",
+        "mrp": 505,
+        "dp": "252.05",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 1631
+       },
+       {
+        "label": "480",
+        "mrp": 658,
+        "dp": "328.58",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 1632
+       },
+       {
+        "label": "576",
+        "mrp": 809,
+        "dp": "404.01",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 1633
+       },
+       {
+        "label": "672",
+        "mrp": 915,
+        "dp": "457.36",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 1634
+       }
+      ]
+     },
      {
       "name": "Duplicate Book Sada",
       "code": "SDB",
-      "size": "—",
+      "size": "13\u00d710.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×16 (No.0)",
+        "label": "1*16 (NO. 0)",
         "mrp": 540,
-        "dp": "219.62",
+        "dp": "223.56",
         "pkt": 12,
-        "crt": 28
+        "crt": 28,
+        "bld": "",
+        "id": 3954
        },
        {
-        "label": "1×12 (No.00)",
+        "label": "1*12 (NO. 00)",
         "mrp": 700,
-        "dp": "276.21",
+        "dp": "280.70",
         "pkt": 21,
-        "crt": 10
+        "crt": 10,
+        "bld": "",
+        "id": 3953
        }
       ]
      },
      {
-      "name": "Duplicate / Triplicate Deluxe",
+      "name": "Duplicate / Tripliacte Deluxe",
       "code": "DB",
-      "size": "—",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×16 (No.0)",
+        "label": "1*16 (NO.0)",
         "mrp": 619,
-        "dp": "332.69",
+        "dp": "308.88",
         "pkt": 24,
-        "crt": 12
+        "crt": 12,
+        "bld": "",
+        "id": 3956
        },
        {
-        "label": "1×12 (No.00)",
+        "label": "1*12 (NO.00)",
         "mrp": 779,
-        "dp": "429.68",
+        "dp": "398.07",
         "pkt": 21,
-        "crt": 10
+        "crt": 10,
+        "bld": "",
+        "id": 4135
        },
        {
-        "label": "1×8 (No.1)",
+        "label": "1*8 (NO.1)",
         "mrp": 1164,
-        "dp": "625.61",
+        "dp": "577.34",
         "pkt": 12,
-        "crt": 6
+        "crt": 6,
+        "bld": "",
+        "id": 3957
        },
        {
-        "label": "1×5 (No.2)",
+        "label": "1*5 (NO.2)",
         "mrp": 128,
-        "dp": "85.93",
+        "dp": "79.87",
         "pkt": 96,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 3958
        },
        {
-        "label": "1×4 (No.4)",
+        "label": "1*4 (NO.4)",
         "mrp": 197,
-        "dp": "122.75",
+        "dp": "113.87",
         "pkt": 72,
-        "crt": 36
+        "crt": 36,
+        "bld": "",
+        "id": 3959
        }
       ]
      },
      {
-      "name": "Duplicate / Triplicate Long Book",
+      "name": "Duplicate/Tripliacte Long Book",
       "code": "12DB",
-      "size": "—",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×16 (No.0)",
+        "label": "1*16 (NO.0)",
         "mrp": 619,
-        "dp": "315.16",
-        "pkt": "",
-        "crt": 24
+        "dp": "292.79",
+        "pkt": 12,
+        "crt": 24,
+        "bld": "",
+        "id": 11547
        },
        {
-        "label": "1×12 (No.00)",
+        "label": "1*12 (NO.00)",
         "mrp": 779,
-        "dp": "407.80",
-        "pkt": "",
-        "crt": 21
+        "dp": "377.82",
+        "pkt": 10,
+        "crt": 21,
+        "bld": "",
+        "id": 11548
        },
        {
-        "label": "1×8 (No.1)",
+        "label": "1*8 (NO.1)",
         "mrp": 1164,
-        "dp": "593.42",
-        "pkt": "",
-        "crt": 12
-       },
-       {
-        "label": "1×5 (No.2)",
-        "mrp": 128,
-        "dp": "80.89",
-        "pkt": "",
-        "crt": 96
-       },
-       {
-        "label": "1×4 (No.4)",
-        "mrp": 197,
-        "dp": "116.51",
-        "pkt": "",
-        "crt": 72
-       }
-      ]
-     },
-     {
-      "name": "Duplicate Book Mark",
-      "code": "DBM",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1×16 (No.0)",
-        "mrp": 620,
-        "dp": "328.39",
-        "pkt": "",
-        "crt": 24
-       },
-       {
-        "label": "1×12 (No.00)",
-        "mrp": 780,
-        "dp": "426.76",
-        "pkt": "",
-        "crt": 21
-       },
-       {
-        "label": "1×8 (No.1)",
-        "mrp": 1165,
-        "dp": "617.58",
-        "pkt": "",
-        "crt": 12
-       }
-      ]
-     },
-     {
-      "name": "Long Book Mark",
-      "code": "12DBM",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "1×16 (No.0)",
-        "mrp": 620,
-        "dp": "311.69",
-        "pkt": "",
-        "crt": 24
-       },
-       {
-        "label": "1×12 (No.00)",
-        "mrp": 780,
-        "dp": "405.06",
-        "pkt": "",
-        "crt": 21
-       },
-       {
-        "label": "1×8 (No.1)",
-        "mrp": 1165,
-        "dp": "586.18",
-        "pkt": "",
-        "crt": 12
-       }
-      ]
-     },
-     {
-      "name": "Conference Pad & Note Pad (1×8)",
-      "code": "CP/NP",
-      "size": "21.70×13.50 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "8 Sh (Conf.)",
-        "mrp": 10,
-        "dp": "3.91",
-        "pkt": 1200,
-        "crt": 780
-       },
-       {
-        "label": "10 Sh (Conf.)",
-        "mrp": 12,
-        "dp": "4.32",
-        "pkt": 780,
-        "crt": 1200
-       },
-       {
-        "label": "24 Sh (Note P.)",
-        "mrp": 20,
-        "dp": "8.26",
-        "pkt": 12,
-        "crt": 864
-       },
-       {
-        "label": "35 Sh (Note P.)",
-        "mrp": 30,
-        "dp": "10.36",
-        "pkt": 12,
-        "crt": 720
-       },
-       {
-        "label": "70 Sh (Note P.)",
-        "mrp": 56,
-        "dp": "17.81",
+        "dp": "548.24",
         "pkt": 6,
-        "crt": 360
+        "crt": 12,
+        "bld": "",
+        "id": 11549
+       },
+       {
+        "label": "1*5 (NO.2)",
+        "mrp": 128,
+        "dp": "75.14",
+        "pkt": 48,
+        "crt": 96,
+        "bld": "",
+        "id": 11550
+       },
+       {
+        "label": "1*4 (NO.4)",
+        "mrp": 197,
+        "dp": "108.15",
+        "pkt": 36,
+        "crt": 72,
+        "bld": "",
+        "id": 11551
+       }
+      ]
+     },
+     {
+      "name": "Sheet",
+      "code": "CP",
+      "size": "21.5\u00d712.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "8 (CONF.)",
+        "mrp": 10,
+        "dp": "3.66",
+        "pkt": 1200,
+        "crt": 780,
+        "bld": "",
+        "id": 1469
+       },
+       {
+        "label": "10 (CONF.)",
+        "mrp": 12,
+        "dp": "4.02",
+        "pkt": 780,
+        "crt": 1200,
+        "bld": "",
+        "id": 153
+       },
+       {
+        "label": "24 (NOTE P.)",
+        "mrp": 20,
+        "dp": "7.52",
+        "pkt": 12,
+        "crt": 864,
+        "bld": "",
+        "id": 523
+       },
+       {
+        "label": "35 (NOTE P.)",
+        "mrp": 30,
+        "dp": "9.27",
+        "pkt": 12,
+        "crt": 720,
+        "bld": "",
+        "id": 529
+       },
+       {
+        "label": "70 (NOTE P.)",
+        "mrp": 56,
+        "dp": "15.68",
+        "pkt": 6,
+        "crt": 360,
+        "bld": "",
+        "id": 536
        }
       ]
      },
      {
       "name": "Note Pad",
       "code": "NP",
-      "size": "—",
+      "size": "21.5\u00d712.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×12 (35 Sh)",
+        "label": "1*12 (35 SHEET)",
         "mrp": 25,
-        "dp": "7.35",
+        "dp": "6.62",
         "pkt": 12,
-        "crt": 648
+        "crt": 648,
+        "bld": "",
+        "id": 525
        },
        {
-        "label": "1×12 (70 Sh)",
+        "label": "1*12 (70 SHEET)",
         "mrp": 35,
-        "dp": "12.40",
+        "dp": "10.96",
         "pkt": 6,
-        "crt": 270
+        "crt": 270,
+        "bld": "",
+        "id": 531
        },
        {
-        "label": "1×5 (35 Sh)",
+        "label": "1*5 (35 SHEET",
         "mrp": 45,
-        "dp": "20.35",
+        "dp": "18.40",
         "pkt": 216,
-        "crt": 432
+        "crt": 432,
+        "bld": "",
+        "id": 527
        },
        {
-        "label": "1×5 (70 Sh)",
+        "label": "1*5 (70 SHEET",
         "mrp": 75,
-        "dp": "32.59",
+        "dp": "28.80",
         "pkt": 108,
-        "crt": 216
+        "crt": 216,
+        "bld": "",
+        "id": 535
        }
       ]
      },
      {
-      "name": "Cash Credit Memo",
-      "code": "CM",
-      "size": "—",
+      "name": "Duplicate Book Mark",
+      "code": "DBM",
+      "size": "13\u00d712.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×12 (50 Sh)",
-        "mrp": 45,
-        "dp": "24.73",
-        "pkt": 6,
-        "crt": 240
+        "label": "1*16 (NO.0)",
+        "mrp": 620,
+        "dp": "290.78",
+        "pkt": "",
+        "crt": 24,
+        "bld": "",
+        "id": 5621
        },
        {
-        "label": "1×12 (100 Sh)",
-        "mrp": 80,
-        "dp": "40.89",
-        "pkt": 4,
-        "crt": 128
+        "label": "1*12 (NO.00)",
+        "mrp": 780,
+        "dp": "376.74",
+        "pkt": "",
+        "crt": 21,
+        "bld": "",
+        "id": 5622
        },
        {
-        "label": "1×8 (50 Sh)",
-        "mrp": 65,
-        "dp": "34.88",
-        "pkt": 6,
-        "crt": 300
-       },
-       {
-        "label": "1×8 (100 Sh)",
-        "mrp": 110,
-        "dp": "58.98",
-        "pkt": 4,
-        "crt": 72
+        "label": "1*8 (NO.1)",
+        "mrp": 1165,
+        "dp": "542.89",
+        "pkt": "",
+        "crt": 12,
+        "bld": "",
+        "id": 5623
        }
       ]
      },
      {
-      "name": "Short Hand, Voucher & Receipt",
-      "code": "SH/VB/RB",
-      "size": "—",
+      "name": "Long Book Mark",
+      "code": "12DBM",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "Short Hand (SH)",
-        "mrp": 45,
-        "dp": "17.35",
-        "pkt": 12,
-        "crt": 576
+        "label": "1*16 (NO.0)",
+        "mrp": 620,
+        "dp": "275.90",
+        "pkt": "",
+        "crt": 24,
+        "bld": "",
+        "id": 11469
        },
        {
-        "label": "Voucher Book (VB)",
-        "mrp": 30,
-        "dp": "13.70",
-        "pkt": 12,
-        "crt": 576
+        "label": "1*12 (NO.00)",
+        "mrp": 780,
+        "dp": "357.24",
+        "pkt": "",
+        "crt": 21,
+        "bld": "",
+        "id": 11468
        },
        {
-        "label": "Receipt Book (RB)",
-        "mrp": 60,
-        "dp": "26.74",
-        "pkt": 6,
-        "crt": 360
+        "label": "1*8 (NO.1)",
+        "mrp": 1165,
+        "dp": "514.93",
+        "pkt": "",
+        "crt": 12,
+        "bld": "",
+        "id": 11467
        }
       ]
      }
@@ -3589,622 +3313,533 @@ const CATALOG = [
     "title": "Registers",
     "families": [
      {
-      "name": "ACE Jumbo Register",
-      "code": "BR",
-      "size": "32×19.3 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "68P",
-        "mrp": 75,
-        "dp": "37.95",
-        "pkt": 10,
-        "crt": 120
-       },
-       {
-        "label": "84P",
-        "mrp": 90,
-        "dp": "41.90",
-        "pkt": 10,
-        "crt": 100
-       },
-       {
-        "label": "92P",
-        "mrp": 90,
-        "dp": "43.88",
-        "pkt": 10,
-        "crt": 100
-       },
-       {
-        "label": "140P",
-        "mrp": 115,
-        "dp": "54.04",
-        "pkt": 6,
-        "crt": 84
-       },
-       {
-        "label": "160P",
-        "mrp": 125,
-        "dp": "58.91",
-        "pkt": 6,
-        "crt": 84
-       },
-       {
-        "label": "180P",
-        "mrp": 140,
-        "dp": "63.64",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "260P",
-        "mrp": 185,
-        "dp": "80.53",
-        "pkt": 4,
-        "crt": 56
-       },
-       {
-        "label": "276P",
-        "mrp": 195,
-        "dp": "84.59",
-        "pkt": 4,
-        "crt": 56
-       },
-       {
-        "label": "360P",
-        "mrp": 240,
-        "dp": "103.89",
-        "pkt": 4,
-        "crt": 48
-       },
-       {
-        "label": "372P",
-        "mrp": 250,
-        "dp": "106.84",
-        "pkt": 4,
-        "crt": 48
-       },
-       {
-        "label": "476P",
-        "mrp": 350,
-        "dp": "148.01",
-        "pkt": 3,
-        "crt": 36
-       },
-       {
-        "label": "572P",
-        "mrp": 415,
-        "dp": "180.78",
-        "pkt": 3,
-        "crt": 30
-       },
-       {
-        "label": "672P",
-        "mrp": 450,
-        "dp": "226.08",
-        "pkt": 3,
-        "crt": 30
-       }
-      ]
-     },
-     {
       "name": "Eco Jumbo Register",
       "code": "EBR",
-      "size": "31.8×19.3 cm",
+      "size": "31.8\u00d719.3 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "68P",
+        "label": "68p",
         "mrp": 70,
-        "dp": "33.11",
+        "dp": "32.34",
         "pkt": 10,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 2088
        },
        {
         "label": "84P",
         "mrp": 75,
-        "dp": "36.43",
+        "dp": "35.10",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 2016
        },
        {
-        "label": "92P",
+        "label": "92p",
         "mrp": 80,
-        "dp": "38.47",
+        "dp": "36.80",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 2089
        },
        {
-        "label": "140P",
+        "label": "140p",
         "mrp": 105,
-        "dp": "49.32",
+        "dp": "45.88",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 2090
        },
        {
         "label": "160P",
         "mrp": 115,
-        "dp": "53.84",
+        "dp": "49.68",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 2091
        },
        {
         "label": "180P",
         "mrp": 125,
-        "dp": "58.06",
+        "dp": "53.12",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 2092
        },
        {
-        "label": "260P",
+        "label": "260p",
         "mrp": 160,
-        "dp": "76.83",
+        "dp": "68.80",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 2393
        },
        {
         "label": "276P",
         "mrp": 170,
-        "dp": "80.27",
+        "dp": "72.42",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 2093
        },
        {
-        "label": "360P",
+        "label": "360p",
         "mrp": 210,
-        "dp": "98.33",
+        "dp": "87.36",
         "pkt": 4,
-        "crt": 80
+        "crt": 80,
+        "bld": "",
+        "id": 3471
        },
        {
         "label": "368P",
         "mrp": 215,
-        "dp": "101.82",
+        "dp": "91.38",
         "pkt": 4,
-        "crt": 80
+        "crt": 80,
+        "bld": "",
+        "id": 2094
        },
        {
         "label": "472P",
         "mrp": 265,
-        "dp": "123.67",
+        "dp": "113.00",
         "pkt": 3,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 2095
        },
        {
         "label": "568P",
         "mrp": 310,
-        "dp": "143.55",
+        "dp": "129.95",
         "pkt": 3,
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 2096
        }
       ]
      },
      {
       "name": "King Register",
       "code": "KR",
-      "size": "34.5×21.5 cm",
+      "size": "34.5\u00d721.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "92P",
         "mrp": 115,
-        "dp": "53.11",
+        "dp": "52.44",
         "pkt": 6,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 2097
        },
        {
-        "label": "140P",
+        "label": "140p",
         "mrp": 145,
-        "dp": "68.09",
+        "dp": "66.12",
         "pkt": 6,
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 2098
        },
        {
         "label": "180P",
         "mrp": 175,
-        "dp": "79.88",
+        "dp": "76.82",
         "pkt": 6,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 2099
        },
        {
         "label": "276P",
         "mrp": 245,
-        "dp": "112.14",
+        "dp": "106.58",
         "pkt": 4,
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 2100
        },
        {
         "label": "372P",
         "mrp": 310,
-        "dp": "144.14",
+        "dp": "135.78",
         "pkt": 3,
-        "crt": 30
+        "crt": 30,
+        "bld": "",
+        "id": 2101
        },
        {
         "label": "472P",
         "mrp": 385,
-        "dp": "177.74",
+        "dp": "165.16",
         "pkt": 2,
-        "crt": 24
+        "crt": 24,
+        "bld": "",
+        "id": 2102
        },
        {
         "label": "572P",
         "mrp": 465,
-        "dp": "214.17",
+        "dp": "199.02",
         "pkt": 2,
-        "crt": 20
+        "crt": 20,
+        "bld": "",
+        "id": 2103
        }
       ]
      },
      {
-      "name": "Jumbo Long Book ACE",
-      "code": "12BR",
-      "size": "32×19.3 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "68P",
-        "mrp": 75,
-        "dp": "36.50",
-        "pkt": 10,
-        "crt": 120
-       },
-       {
-        "label": "84P",
-        "mrp": 90,
-        "dp": "40.25",
-        "pkt": 10,
-        "crt": 100
-       },
-       {
-        "label": "92P",
-        "mrp": 90,
-        "dp": "42.13",
-        "pkt": 10,
-        "crt": 100
-       },
-       {
-        "label": "140P",
-        "mrp": 115,
-        "dp": "51.48",
-        "pkt": 6,
-        "crt": 84
-       },
-       {
-        "label": "160P",
-        "mrp": 125,
-        "dp": "55.97",
-        "pkt": 6,
-        "crt": 84
-       },
-       {
-        "label": "180P",
-        "mrp": 140,
-        "dp": "60.47",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "260P",
-        "mrp": 185,
-        "dp": "77.18",
-        "pkt": 4,
-        "crt": 56
-       },
-       {
-        "label": "276P",
-        "mrp": 195,
-        "dp": "80.97",
-        "pkt": 4,
-        "crt": 56
-       },
-       {
-        "label": "360P",
-        "mrp": 240,
-        "dp": "100.48",
-        "pkt": 4,
-        "crt": 48
-       },
-       {
-        "label": "372P",
-        "mrp": 250,
-        "dp": "103.06",
-        "pkt": 4,
-        "crt": 48
-       },
-       {
-        "label": "476P",
-        "mrp": 350,
-        "dp": "140.81",
-        "pkt": 3,
-        "crt": 36
-       },
-       {
-        "label": "572P",
-        "mrp": 415,
-        "dp": "171.92",
-        "pkt": 3,
-        "crt": 30
-       }
-      ]
-     },
-     {
-      "name": "Jumbo Long Book ECO",
+      "name": "Jumbo Long Book Eco",
       "code": "12EBR",
-      "size": "31.8×19.3 cm",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "68P",
+        "label": "68p",
         "mrp": 70,
-        "dp": "32.62",
+        "dp": "31.85",
         "pkt": 10,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 11447
        },
        {
         "label": "84P",
         "mrp": 70,
-        "dp": "35.88",
+        "dp": "34.58",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 11448
        },
        {
         "label": "92P",
         "mrp": 80,
-        "dp": "37.52",
+        "dp": "35.92",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 11449
        },
        {
         "label": "140P",
         "mrp": 105,
-        "dp": "47.69",
+        "dp": "44.31",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 11450
        },
        {
         "label": "160P",
         "mrp": 115,
-        "dp": "52.05",
+        "dp": "47.96",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 11451
        },
        {
         "label": "180P",
         "mrp": 125,
-        "dp": "56.13",
+        "dp": "51.38",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 11452
        },
        {
         "label": "260P",
         "mrp": 160,
-        "dp": "72.93",
+        "dp": "65.28",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 11453
        },
        {
         "label": "276P",
         "mrp": 170,
-        "dp": "76.96",
+        "dp": "69.53",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 11459
        },
        {
         "label": "360P",
         "mrp": 210,
-        "dp": "94.09",
+        "dp": "83.58",
         "pkt": 4,
-        "crt": 80
+        "crt": 80,
+        "bld": "",
+        "id": 11454
        },
        {
         "label": "368P",
         "mrp": 215,
-        "dp": "95.73",
+        "dp": "84.92",
         "pkt": 4,
-        "crt": 80
+        "crt": 80,
+        "bld": "",
+        "id": 11455
        },
        {
         "label": "472P",
         "mrp": 265,
-        "dp": "120.64",
+        "dp": "110.32",
         "pkt": 3,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 11456
        },
        {
         "label": "568P",
         "mrp": 310,
-        "dp": "140.22",
+        "dp": "123.07",
         "pkt": 3,
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 11457
        }
       ]
      },
      {
-      "name": "King Long Book ACE",
+      "name": "King Long Book Ace",
       "code": "12KR",
-      "size": "34.5×21.5 cm",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "92P",
         "mrp": 115,
-        "dp": "52.00",
+        "dp": "51.29",
         "pkt": 6,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 11460
        },
        {
-        "label": "140P",
+        "label": "140p",
         "mrp": 145,
-        "dp": "65.86",
+        "dp": "63.94",
         "pkt": 6,
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 11461
        },
        {
         "label": "180P",
         "mrp": 175,
-        "dp": "77.54",
+        "dp": "74.55",
         "pkt": 6,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 11462
        },
        {
         "label": "276P",
         "mrp": 245,
-        "dp": "105.73",
+        "dp": "100.20",
         "pkt": 4,
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 11463
        },
        {
         "label": "372P",
         "mrp": 310,
-        "dp": "135.80",
+        "dp": "127.72",
         "pkt": 3,
-        "crt": 30
+        "crt": 30,
+        "bld": "",
+        "id": 11464
        },
        {
         "label": "472P",
         "mrp": 385,
-        "dp": "169.33",
+        "dp": "157.08",
         "pkt": 2,
-        "crt": 24
+        "crt": 24,
+        "bld": "",
+        "id": 11465
        },
        {
         "label": "572P",
         "mrp": 465,
-        "dp": "202.63",
+        "dp": "187.86",
         "pkt": 2,
-        "crt": 20
+        "crt": 20,
+        "bld": "",
+        "id": 11466
        }
       ]
      },
      {
-      "name": "Junior Register",
+      "name": "Junior  Register",
       "code": "JR",
-      "size": "27.5×17.5 cm",
+      "size": "27.5\u00d717 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "92P",
         "mrp": 70,
-        "dp": "32.07",
+        "dp": "32.20",
         "pkt": 10,
-        "crt": 180
+        "crt": 180,
+        "bld": "",
+        "id": 2207
        },
        {
         "label": "180P",
         "mrp": 105,
-        "dp": "48.57",
+        "dp": "46.62",
         "pkt": 6,
-        "crt": 144
+        "crt": 144,
+        "bld": "",
+        "id": 2208
        },
        {
         "label": "276P",
         "mrp": 145,
-        "dp": "66.01",
+        "dp": "61.62",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 2212
        },
        {
         "label": "372P",
         "mrp": 180,
-        "dp": "82.79",
+        "dp": "75.96",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 2213
        },
        {
         "label": "476P",
         "mrp": 235,
-        "dp": "108.75",
+        "dp": "99.64",
         "pkt": 3,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 2214
+       },
+       {
+        "label": "572P",
+        "mrp": 280,
+        "dp": "117.32",
+        "pkt": 3,
+        "crt": 48,
+        "bld": "",
+        "id": 2215
        }
       ]
      },
      {
-      "name": "Pasting File",
-      "code": "PF",
-      "size": "36×25 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "92P",
-        "mrp": 110,
-        "dp": "52.26",
-        "pkt": 6,
-        "crt": 72
-       },
-       {
-        "label": "180P",
-        "mrp": 130,
-        "dp": "61.91",
-        "pkt": 6,
-        "crt": 60
-       },
-       {
-        "label": "276P",
-        "mrp": 165,
-        "dp": "80.10",
-        "pkt": 4,
-        "crt": 48
-       },
-       {
-        "label": "372P",
-        "mrp": 185,
-        "dp": "91.68",
-        "pkt": 4,
-        "crt": 40
-       }
-      ]
-     },
-     {
-      "name": "DFC Register",
+      "name": "Dfc Register",
       "code": "DFC",
-      "size": "39.5×32 cm",
+      "size": "39.5\u00d732 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "92P",
         "mrp": 195,
-        "dp": "90.78",
+        "dp": "94.58",
         "pkt": 6,
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 246
        },
        {
         "label": "180P",
         "mrp": 300,
-        "dp": "138.50",
+        "dp": "138.00",
         "pkt": 6,
-        "crt": 48
+        "crt": 48,
+        "bld": "",
+        "id": 243
        },
        {
         "label": "276P",
         "mrp": 420,
-        "dp": "194.56",
+        "dp": "192.36",
         "pkt": 4,
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 244
        },
        {
         "label": "372P",
         "mrp": 540,
-        "dp": "250.93",
+        "dp": "240.30",
         "pkt": 3,
-        "crt": 30
+        "crt": 30,
+        "bld": "",
+        "id": 245
        },
        {
         "label": "480P",
         "mrp": 600,
-        "dp": "320.84",
+        "dp": "307.80",
         "pkt": 2,
-        "crt": 24
+        "crt": 24,
+        "bld": "",
+        "id": 9444
+       },
+       {
+        "label": "576P",
+        "mrp": 700,
+        "dp": "362.60",
+        "pkt": "",
+        "crt": "",
+        "bld": "",
+        "id": 10494
+       }
+      ]
+     },
+     {
+      "name": "Ace Jumbo Student Register  30.5*19.5",
+      "code": "VR",
+      "size": null,
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "84P",
+        "mrp": 100,
+        "dp": "45.00",
+        "pkt": 10,
+        "crt": 160,
+        "bld": "",
+        "id": 11514
+       },
+       {
+        "label": "160P",
+        "mrp": 160,
+        "dp": "65.76",
+        "pkt": 6,
+        "crt": 120,
+        "bld": "",
+        "id": 11515
        }
       ]
      }
@@ -4213,2251 +3848,1250 @@ const CATALOG = [
    },
    {
     "catNo": "O-6",
-    "title": "Dasta, Printed Registers & Wiro",
+    "title": "Printed Registers",
     "families": [
      {
-      "name": "Dasta Wisdom",
-      "code": "KD/KW/BD/BW/JD/JW",
-      "size": "—",
+      "name": "Quire",
+      "code": "CR",
+      "size": "30.5\u00d719.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "King Ruled",
-        "mrp": 545,
-        "dp": "259.24",
-        "pkt": "",
-        "crt": 16
+        "label": "72",
+        "mrp": 228,
+        "dp": "113.65",
+        "pkt": 48,
+        "crt": 6,
+        "bld": "",
+        "id": 118
        },
        {
-        "label": "King White",
-        "mrp": 545,
-        "dp": "259.24",
-        "pkt": "",
-        "crt": 16
+        "label": "96",
+        "mrp": 267,
+        "dp": "133.18",
+        "pkt": 48,
+        "crt": 6,
+        "bld": "",
+        "id": 119
        },
        {
-        "label": "Jumbo Ruled",
-        "mrp": 835,
-        "dp": "425.49",
-        "pkt": "",
-        "crt": 12
+        "label": "144",
+        "mrp": 323,
+        "dp": "161.48",
+        "pkt": 40,
+        "crt": 4,
+        "bld": "",
+        "id": 120
        },
        {
-        "label": "Jumbo White",
-        "mrp": 835,
-        "dp": "425.49",
-        "pkt": "",
-        "crt": 12
+        "label": "192",
+        "mrp": 377,
+        "dp": "188.02",
+        "pkt": 32,
+        "crt": 2,
+        "bld": "",
+        "id": 121
        },
        {
-        "label": "Junior Ruled",
-        "mrp": 640,
-        "dp": "309.00",
-        "pkt": "",
-        "crt": 20
+        "label": "288",
+        "mrp": 549,
+        "dp": "274.36",
+        "pkt": 24,
+        "crt": 1,
+        "bld": "",
+        "id": 122
        },
        {
-        "label": "Junior White",
-        "mrp": 640,
-        "dp": "309.00",
-        "pkt": "",
-        "crt": 20
-       }
-      ]
-     },
-     {
-      "name": "Dasta Fine Print (Mark)",
-      "code": "BDM/BWM",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Jumbo Ruled",
-        "mrp": 810,
-        "dp": "387.73",
-        "pkt": "",
-        "crt": 24
+        "label": "384",
+        "mrp": 668,
+        "dp": "333.62",
+        "pkt": 18,
+        "crt": 1,
+        "bld": "",
+        "id": 123
        },
        {
-        "label": "Jumbo White",
-        "mrp": 810,
-        "dp": "387.73",
+        "label": "480",
+        "mrp": 815,
+        "dp": "407.34",
+        "pkt": 12,
+        "crt": 1,
+        "bld": "",
+        "id": 124
+       },
+       {
+        "label": "576",
+        "mrp": 958,
+        "dp": "478.55",
+        "pkt": 12,
+        "crt": 1,
+        "bld": "",
+        "id": 125
+       },
+       {
+        "label": "672",
+        "mrp": 1098,
+        "dp": "548.56",
+        "pkt": 1,
+        "crt": 12,
+        "bld": "",
+        "id": 126
+       },
+       {
+        "label": "768",
+        "mrp": 1228,
+        "dp": "613.66",
+        "pkt": 10,
+        "crt": 1,
+        "bld": "",
+        "id": 117
+       },
+       {
+        "label": "864",
+        "mrp": 1412,
+        "dp": "705.76",
+        "pkt": 8,
+        "crt": 1,
+        "bld": "",
+        "id": 2108
+       },
+       {
+        "label": "960",
+        "mrp": 1602,
+        "dp": "800.98",
         "pkt": "",
-        "crt": 24
+        "crt": 1,
+        "bld": "",
+        "id": 2109
+       },
+       {
+        "label": "1056",
+        "mrp": 1764,
+        "dp": "881.65",
+        "pkt": 48,
+        "crt": 1,
+        "bld": "",
+        "id": 2784
+       },
+       {
+        "label": "1 Q",
+        "mrp": 285,
+        "dp": "142.49",
+        "pkt": 42,
+        "crt": 3,
+        "bld": "",
+        "id": 131
+       },
+       {
+        "label": "1 Q",
+        "mrp": 303,
+        "dp": "151.46",
+        "pkt": 42,
+        "crt": "",
+        "bld": 3,
+        "id": 748
+       },
+       {
+        "label": "2Q",
+        "mrp": 442,
+        "dp": "220.84",
+        "pkt": 32,
+        "crt": 2,
+        "bld": "",
+        "id": 132
+       },
+       {
+        "label": "2Q",
+        "mrp": 446,
+        "dp": "222.62",
+        "pkt": 32,
+        "crt": "",
+        "bld": 2,
+        "id": 749
+       },
+       {
+        "label": "3 Q",
+        "mrp": 693,
+        "dp": "346.06",
+        "pkt": 20,
+        "crt": 1,
+        "bld": "",
+        "id": 133
+       },
+       {
+        "label": "3 Q",
+        "mrp": 677,
+        "dp": "338.15",
+        "pkt": 20,
+        "crt": "",
+        "bld": 1,
+        "id": 750
+       },
+       {
+        "label": "4 Q",
+        "mrp": 858,
+        "dp": "428.54",
+        "pkt": 18,
+        "crt": 1,
+        "bld": "",
+        "id": 134
+       },
+       {
+        "label": "4 Q",
+        "mrp": 799,
+        "dp": "399.47",
+        "pkt": 18,
+        "crt": "",
+        "bld": 1,
+        "id": 751
+       },
+       {
+        "label": "5 Q",
+        "mrp": 1024,
+        "dp": "511.79",
+        "pkt": 13,
+        "crt": 1,
+        "bld": "",
+        "id": 135
+       },
+       {
+        "label": "5 Q",
+        "mrp": 968,
+        "dp": "483.62",
+        "pkt": 13,
+        "crt": "",
+        "bld": 1,
+        "id": 752
+       },
+       {
+        "label": "6 Q",
+        "mrp": 1188,
+        "dp": "593.51",
+        "pkt": 11,
+        "crt": 1,
+        "bld": "",
+        "id": 136
+       },
+       {
+        "label": "6 Q",
+        "mrp": 1091,
+        "dp": "545.38",
+        "pkt": 11,
+        "crt": "",
+        "bld": 1,
+        "id": 753
+       },
+       {
+        "label": "7 Q",
+        "mrp": 1395,
+        "dp": "697.44",
+        "pkt": 11,
+        "crt": 1,
+        "bld": "",
+        "id": 137
+       },
+       {
+        "label": "7 Q",
+        "mrp": 1259,
+        "dp": "629.24",
+        "pkt": 11,
+        "crt": "",
+        "bld": 1,
+        "id": 754
+       },
+       {
+        "label": "8 Q",
+        "mrp": 1547,
+        "dp": "773.13",
+        "pkt": 6,
+        "crt": 1,
+        "bld": "",
+        "id": 139
+       },
+       {
+        "label": "8 Q",
+        "mrp": 1429,
+        "dp": "714.13",
+        "pkt": 6,
+        "crt": "",
+        "bld": 1,
+        "id": 755
        }
       ]
      },
      {
       "name": "Log Book",
       "code": "LB",
-      "size": "20×16 cm",
+      "size": "20\u00d716 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "92P",
         "mrp": 70,
-        "dp": "32.40",
+        "dp": "31.29",
         "pkt": 10,
-        "crt": 320
+        "crt": 320,
+        "bld": "",
+        "id": 512
        },
        {
         "label": "180P",
         "mrp": 105,
-        "dp": "50.07",
+        "dp": "47.88",
         "pkt": 6,
-        "crt": 240
+        "crt": 240,
+        "bld": "",
+        "id": 509
        },
        {
         "label": "276P",
         "mrp": 145,
-        "dp": "69.18",
+        "dp": "65.68",
         "pkt": 4,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 510
        },
        {
         "label": "372P",
         "mrp": 185,
-        "dp": "88.49",
+        "dp": "83.80",
         "pkt": 3,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 511
        }
       ]
      },
      {
-      "name": "ACE Jumbo Printed Register",
-      "code": "DAR/MR/SR/TR/WR/DR/LRR",
-      "size": "30.5×19.5 cm",
+      "name": "Ace Jumbo Printed Register  30.5*19.5",
+      "code": "DAR",
+      "size": "30.5\u00d719.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "84P",
         "mrp": 100,
-        "dp": "38.26",
+        "dp": "38.20",
         "pkt": 10,
-        "crt": 160
+        "crt": 160,
+        "bld": "",
+        "id": 11497
        },
        {
         "label": "160P",
         "mrp": 160,
-        "dp": "55.30",
+        "dp": "52.80",
         "pkt": 6,
-        "crt": 120
+        "crt": 120,
+        "bld": "",
+        "id": 11496
        },
        {
         "label": "276P",
         "mrp": 240,
-        "dp": "88.05",
+        "dp": "81.36",
         "pkt": 4,
-        "crt": 96
+        "crt": 96,
+        "bld": "",
+        "id": 249
        },
        {
         "label": "372P",
         "mrp": 310,
-        "dp": "110.83",
+        "dp": "101.06",
         "pkt": 4,
-        "crt": 72
+        "crt": 72,
+        "bld": "",
+        "id": 250
        }
       ]
      },
      {
-      "name": "ACE Jumbo Student Register",
-      "code": "VR",
-      "size": "30.5×19.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "84P",
-        "mrp": 100,
-        "dp": "45.01",
-        "pkt": 10,
-        "crt": 160
-       },
-       {
-        "label": "160P",
-        "mrp": 160,
-        "dp": "68.23",
-        "pkt": 6,
-        "crt": 120
-       }
-      ]
-     },
-     {
-      "name": "Mark King Printed Ledger / Stock",
-      "code": "MLR/MSR",
-      "size": "—",
+      "name": "Mark King Printed Ledger/Stock Register",
+      "code": "MLR",
+      "size": "34.5\u00d721 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "48P",
         "mrp": 100,
-        "dp": "55.85",
-        "pkt": 10,
-        "crt": ""
+        "dp": "53.90",
+        "pkt": "",
+        "crt": 10,
+        "bld": "",
+        "id": 3120
        },
        {
         "label": "72P",
         "mrp": 125,
-        "dp": "67.30",
-        "pkt": 6,
-        "crt": ""
+        "dp": "64.38",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 3121
        },
        {
         "label": "96P",
         "mrp": 160,
-        "dp": "84.06",
-        "pkt": 6,
-        "crt": ""
+        "dp": "79.84",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 3122
        },
        {
         "label": "120P",
         "mrp": 185,
-        "dp": "96.65",
-        "pkt": 6,
-        "crt": ""
+        "dp": "91.39",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 3123
        },
        {
         "label": "144P",
         "mrp": 215,
-        "dp": "109.21",
-        "pkt": 6,
-        "crt": ""
+        "dp": "102.98",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 3124
        },
        {
         "label": "192P",
         "mrp": 265,
-        "dp": "134.27",
-        "pkt": 6,
-        "crt": ""
+        "dp": "125.88",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 3125
        },
        {
         "label": "240P",
         "mrp": 320,
-        "dp": "161.33",
-        "pkt": 4,
-        "crt": ""
+        "dp": "151.04",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 3126
        },
        {
         "label": "288P",
         "mrp": 375,
-        "dp": "186.22",
-        "pkt": 4,
-        "crt": ""
+        "dp": "173.62",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 3127
        },
        {
         "label": "384P",
         "mrp": 480,
-        "dp": "237.68",
-        "pkt": 3,
-        "crt": ""
+        "dp": "221.28",
+        "pkt": "",
+        "crt": 3,
+        "bld": "",
+        "id": 3128
        }
       ]
      },
      {
       "name": "Mark King Printed Register",
-      "code": "MAR/MCR/MSAR",
-      "size": "—",
+      "code": "MARR",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "48P",
         "mrp": 100,
-        "dp": "47.41",
-        "pkt": 10,
-        "crt": ""
+        "dp": "45.50",
+        "pkt": "",
+        "crt": 10,
+        "bld": "",
+        "id": 2940
        },
        {
         "label": "72P",
         "mrp": 125,
-        "dp": "58.86",
-        "pkt": 6,
-        "crt": ""
+        "dp": "55.88",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2941
        },
        {
         "label": "96P",
         "mrp": 160,
-        "dp": "75.09",
-        "pkt": 6,
-        "crt": ""
+        "dp": "70.88",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2942
        },
        {
         "label": "120P",
         "mrp": 185,
-        "dp": "87.68",
-        "pkt": 6,
-        "crt": ""
+        "dp": "82.51",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2943
        },
        {
         "label": "144P",
         "mrp": 215,
-        "dp": "100.24",
-        "pkt": 6,
-        "crt": ""
+        "dp": "93.96",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2944
        },
        {
         "label": "192P",
         "mrp": 265,
-        "dp": "125.31",
-        "pkt": 6,
-        "crt": ""
+        "dp": "117.13",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2945
        },
        {
         "label": "240P",
         "mrp": 320,
-        "dp": "152.37",
-        "pkt": 4,
-        "crt": ""
+        "dp": "142.08",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 2946
        },
        {
         "label": "288P",
         "mrp": 375,
-        "dp": "177.25",
-        "pkt": 4,
-        "crt": ""
+        "dp": "164.62",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 2947
        },
        {
         "label": "384P",
         "mrp": 480,
-        "dp": "228.71",
-        "pkt": 3,
-        "crt": ""
+        "dp": "212.16",
+        "pkt": "",
+        "crt": 3,
+        "bld": "",
+        "id": 2982
+       }
+      ]
+     }
+    ],
+    "notes": null
+   },
+   {
+    "catNo": "O-8",
+    "title": "Book Keeping & Accounting",
+    "families": [
+     {
+      "name": "Canvas  Copy",
+      "code": "CC",
+      "size": "22\u00d718 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "72",
+        "mrp": 136,
+        "dp": "67.78",
+        "pkt": 120,
+        "crt": 10,
+        "bld": "",
+        "id": 98
+       },
+       {
+        "label": "96",
+        "mrp": 157,
+        "dp": "78.40",
+        "pkt": 96,
+        "crt": 6,
+        "bld": "",
+        "id": 99
+       },
+       {
+        "label": "144",
+        "mrp": 191,
+        "dp": "95.26",
+        "pkt": 80,
+        "crt": 4,
+        "bld": "",
+        "id": 100
+       },
+       {
+        "label": "192",
+        "mrp": 216,
+        "dp": "107.93",
+        "pkt": 52,
+        "crt": 2,
+        "bld": "",
+        "id": 101
+       },
+       {
+        "label": "288",
+        "mrp": 310,
+        "dp": "154.59",
+        "pkt": 36,
+        "crt": 1,
+        "bld": "",
+        "id": 102
+       },
+       {
+        "label": "384",
+        "mrp": 382,
+        "dp": "190.56",
+        "pkt": 32,
+        "crt": 1,
+        "bld": "",
+        "id": 103
+       },
+       {
+        "label": "480",
+        "mrp": 461,
+        "dp": "230.37",
+        "pkt": 24,
+        "crt": 1,
+        "bld": "",
+        "id": 104
+       },
+       {
+        "label": "576",
+        "mrp": 540,
+        "dp": "269.54",
+        "pkt": 20,
+        "crt": 1,
+        "bld": "",
+        "id": 105
+       },
+       {
+        "label": "672",
+        "mrp": 629,
+        "dp": "314.43",
+        "pkt": 20,
+        "crt": 1,
+        "bld": "",
+        "id": 106
+       },
+       {
+        "label": "768",
+        "mrp": 704,
+        "dp": "351.75",
+        "pkt": 16,
+        "crt": 1,
+        "bld": "",
+        "id": 107
        }
       ]
      },
      {
-      "name": "ACE Spiral A/4 N/B",
+      "name": "Quire",
+      "code": "CC",
+      "size": "22\u00d718 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "1 Q",
+        "mrp": 195,
+        "dp": "97.31",
+        "pkt": "",
+        "crt": 3,
+        "bld": "",
+        "id": 161
+       },
+       {
+        "label": "2Q",
+        "mrp": 254,
+        "dp": "126.70",
+        "pkt": 40,
+        "crt": 2,
+        "bld": "",
+        "id": 162
+       },
+       {
+        "label": "3 Q",
+        "mrp": 369,
+        "dp": "184.10",
+        "pkt": 40,
+        "crt": 1,
+        "bld": "",
+        "id": 163
+       },
+       {
+        "label": "4 Q",
+        "mrp": 443,
+        "dp": "221.19",
+        "pkt": 32,
+        "crt": 1,
+        "bld": "",
+        "id": 164
+       },
+       {
+        "label": "5 Q",
+        "mrp": 552,
+        "dp": "275.57",
+        "pkt": 28,
+        "crt": 1,
+        "bld": "",
+        "id": 165
+       },
+       {
+        "label": "6 Q",
+        "mrp": 666,
+        "dp": "332.61",
+        "pkt": 24,
+        "crt": 1,
+        "bld": "",
+        "id": 166
+       },
+       {
+        "label": "7 Q",
+        "mrp": 781,
+        "dp": "390.05",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 167
+       },
+       {
+        "label": "8 Q",
+        "mrp": 890,
+        "dp": "444.84",
+        "pkt": "",
+        "crt": 1,
+        "bld": "",
+        "id": 168
+       }
+      ]
+     },
+     {
+      "name": "Laxmi Register",
+      "code": "LPR",
+      "size": "34.6\u00d721.7 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "96",
+        "mrp": 108,
+        "dp": "76.14",
+        "pkt": 60,
+        "crt": 6,
+        "bld": "",
+        "id": 493
+       },
+       {
+        "label": "144",
+        "mrp": 130,
+        "dp": "93.22",
+        "pkt": 56,
+        "crt": 4,
+        "bld": "",
+        "id": 489
+       },
+       {
+        "label": "192",
+        "mrp": 158,
+        "dp": "112.31",
+        "pkt": 48,
+        "crt": 3,
+        "bld": "",
+        "id": 490
+       },
+       {
+        "label": "288",
+        "mrp": 209,
+        "dp": "147.94",
+        "pkt": 36,
+        "crt": 3,
+        "bld": "",
+        "id": 491
+       },
+       {
+        "label": "384",
+        "mrp": 263,
+        "dp": "190.04",
+        "pkt": 28,
+        "crt": 2,
+        "bld": "",
+        "id": 492
+       }
+      ]
+     },
+     {
+      "name": "Laxmi  Copy",
+      "code": "LPC",
+      "size": "34.6\u00d717.5 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "96",
+        "mrp": 100,
+        "dp": "41.28",
+        "pkt": 6,
+        "crt": 132,
+        "bld": "",
+        "id": 4850
+       },
+       {
+        "label": "144",
+        "mrp": 120,
+        "dp": "52.45",
+        "pkt": 4,
+        "crt": 104,
+        "bld": "",
+        "id": 4851
+       },
+       {
+        "label": "192",
+        "mrp": 140,
+        "dp": "59.57",
+        "pkt": 4,
+        "crt": 88,
+        "bld": "",
+        "id": 4852
+       },
+       {
+        "label": "288",
+        "mrp": 190,
+        "dp": "79.70",
+        "pkt": 3,
+        "crt": 66,
+        "bld": "",
+        "id": 4853
+       },
+       {
+        "label": "384",
+        "mrp": 240,
+        "dp": "101.94",
+        "pkt": 2,
+        "crt": 56,
+        "bld": "",
+        "id": 4854
+       },
+       {
+        "label": "480",
+        "mrp": 320,
+        "dp": "127.27",
+        "pkt": 2,
+        "crt": 44,
+        "bld": "",
+        "id": 4855
+       }
+      ]
+     },
+     {
+      "name": "Fancy Ponia",
+      "code": "FP",
+      "size": "34.5\u00d716.3 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "96",
+        "mrp": 71,
+        "dp": "46.41",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1621
+       },
+       {
+        "label": "144",
+        "mrp": 85,
+        "dp": "55.31",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 2158
+       },
+       {
+        "label": "192",
+        "mrp": 103,
+        "dp": "65.19",
+        "pkt": "",
+        "crt": 6,
+        "bld": "",
+        "id": 1622
+       },
+       {
+        "label": "288",
+        "mrp": 141,
+        "dp": "85.19",
+        "pkt": "",
+        "crt": 4,
+        "bld": "",
+        "id": 1623
+       },
+       {
+        "label": "384",
+        "mrp": 181,
+        "dp": "107.49",
+        "pkt": "",
+        "crt": 3,
+        "bld": "",
+        "id": 1624
+       },
+       {
+        "label": "480",
+        "mrp": 225,
+        "dp": "129.84",
+        "pkt": "",
+        "crt": 2,
+        "bld": "",
+        "id": 1625
+       }
+      ]
+     }
+    ],
+    "notes": null
+   },
+   {
+    "catNo": "O-9",
+    "title": "Wiro Products",
+    "families": [
+     {
+      "name": "Ace Spiral A/4 N/B",
       "code": "A4S",
-      "size": "29.5×20.5 cm",
+      "size": "29.5\u00d720.5 cm",
       "tag": null,
       "col": null,
       "rows": [
        {
         "label": "148",
         "mrp": 125,
-        "dp": "56.52",
+        "dp": "49.12",
         "pkt": "",
-        "crt": 70
+        "crt": 70,
+        "bld": "",
+        "id": 5727
        },
        {
         "label": "200",
         "mrp": 155,
-        "dp": "71.02",
+        "dp": "61.69",
         "pkt": "",
-        "crt": 60
+        "crt": 60,
+        "bld": "",
+        "id": 5728
        },
        {
         "label": "256",
         "mrp": 185,
-        "dp": "84.23",
+        "dp": "72.89",
         "pkt": "",
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 5729
        },
        {
         "label": "280",
         "mrp": 200,
-        "dp": "89.99",
+        "dp": "77.80",
         "pkt": "",
-        "crt": 40
+        "crt": 40,
+        "bld": "",
+        "id": 5730
        },
        {
         "label": "320",
         "mrp": 210,
-        "dp": "98.71",
+        "dp": "85.26",
         "pkt": "",
-        "crt": 36
+        "crt": 36,
+        "bld": "",
+        "id": 5731
        },
        {
         "label": "360",
         "mrp": 235,
-        "dp": "108.35",
+        "dp": "93.53",
         "pkt": "",
-        "crt": 32
+        "crt": 32,
+        "bld": "",
+        "id": 5732
        },
        {
         "label": "400",
         "mrp": 250,
-        "dp": "117.04",
+        "dp": "100.75",
         "pkt": "",
-        "crt": 30
-       }
-      ]
-     },
-     {
-      "name": "Pocket Wiro",
-      "code": "PW100",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "Pocket Wiro",
-        "mrp": 25,
-        "dp": "12.31",
-        "pkt": "",
-        "crt": 480
-       }
-      ]
-     },
-     {
-      "name": "Wiro 1 Subject (Net)",
-      "code": "A5/B5",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "A5",
-        "mrp": 120,
-        "dp": "55.82",
-        "pkt": 1,
-        "crt": 100
-       },
-       {
-        "label": "B5",
-        "mrp": 180,
-        "dp": "80.59",
-        "pkt": 1,
-        "crt": 50
-       }
-      ]
-     },
-     {
-      "name": "Wiro 5 Subject (Net)",
-      "code": "A5/B5",
-      "size": "—",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "A5",
-        "mrp": 190,
-        "dp": "100.53",
-        "pkt": 1,
-        "crt": 50
-       },
-       {
-        "label": "B5",
-        "mrp": 230,
-        "dp": "140.53",
-        "pkt": 1,
-        "crt": 25
+        "crt": 30,
+        "bld": "",
+        "id": 5733
        }
       ]
      },
      {
       "name": "Note Pad Spiral Printed",
-      "code": "SS/TS",
-      "size": "—",
+      "code": "SS",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×8 (25 Sh)",
+        "label": "1*8 ( 25 sheet)",
         "mrp": 35,
         "dp": "15.07",
         "pkt": 10,
-        "crt": 320
+        "crt": 320,
+        "bld": "",
+        "id": 6258
        },
        {
-        "label": "1×8 (35 Sh)",
+        "label": "1*8 ( 35 sheet)",
         "mrp": 45,
         "dp": "18.50",
         "pkt": 10,
-        "crt": 320
+        "crt": 320,
+        "bld": "",
+        "id": 6260
        },
        {
-        "label": "1×8 (50 Sh)",
+        "label": "1*8 ( 50 sheet)",
         "mrp": 55,
         "dp": "21.87",
         "pkt": 10,
-        "crt": 288
+        "crt": 288,
+        "bld": "",
+        "id": 6262
        },
        {
-        "label": "1×8 (70 Sh)",
+        "label": "1*8 ( 70 sheet)",
         "mrp": 70,
         "dp": "28.45",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 6264
        }
       ]
      },
      {
       "name": "Note Pad Spiral Plastic",
-      "code": "SSP/TSP",
-      "size": "—",
+      "code": "SSP",
+      "size": null,
       "tag": null,
       "col": null,
       "rows": [
        {
-        "label": "1×8 (25 Sh)",
+        "label": "1*8 ( 25 sheet)",
         "mrp": 45,
         "dp": "17.42",
         "pkt": 10,
-        "crt": 320
+        "crt": 320,
+        "bld": "",
+        "id": 7467
        },
        {
-        "label": "1×8 (35 Sh)",
+        "label": "1*8 ( 35 sheet)",
         "mrp": 55,
         "dp": "21.01",
         "pkt": 10,
-        "crt": 320
+        "crt": 320,
+        "bld": "",
+        "id": 6929
        },
        {
-        "label": "1×8 (50 Sh)",
+        "label": "1*8 ( 50 sheet)",
         "mrp": 60,
         "dp": "24.39",
         "pkt": 10,
-        "crt": 288
+        "crt": 288,
+        "bld": "",
+        "id": 7470
        },
        {
-        "label": "1×8 (70 Sh)",
+        "label": "1*8 ( 70 sheet)",
         "mrp": 75,
         "dp": "30.97",
         "pkt": 10,
-        "crt": 200
+        "crt": 200,
+        "bld": "",
+        "id": 6928
        }
       ]
      }
     ],
-    "notes": [
-     "Printed Register varieties: Daily Attendance, Weekly, Monthly, Stock, Cash, Ledger, Teacher, Dispatch, Letter Receipt"
-    ]
+    "notes": null
+   },
+   {
+    "catNo": "O-0",
+    "title": "Other",
+    "families": [
+     {
+      "name": "Duplicate/Tripliacte Long Book",
+      "code": "CM",
+      "size": "24\u00d718 cm",
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "1*12 (50 SHEET",
+        "mrp": 45,
+        "dp": "23.22",
+        "pkt": 240,
+        "crt": 6,
+        "bld": "",
+        "id": 128
+       },
+       {
+        "label": "1*12 (100 SHEET",
+        "mrp": 80,
+        "dp": "37.92",
+        "pkt": 128,
+        "crt": 4,
+        "bld": "",
+        "id": 127
+       },
+       {
+        "label": "1*8 (50 SHEET",
+        "mrp": 65,
+        "dp": "32.63",
+        "pkt": 300,
+        "crt": 6,
+        "bld": "",
+        "id": 130
+       },
+       {
+        "label": "1*8 (100 SHEET",
+        "mrp": 110,
+        "dp": "54.45",
+        "pkt": 72,
+        "crt": 4,
+        "bld": "",
+        "id": 129
+       }
+      ]
+     }
+    ],
+    "notes": null
    }
   ]
  },
  {
-  "division": "General & Diaries",
+  "division": "Corporate",
   "effective": "01.08.2026",
   "pages": [
    {
     "catNo": "G-1",
-    "title": "Hard Bound Diaries",
+    "title": "Diaries & Corporate",
     "families": [
      {
-      "name": "Myself Note Book — A4 / A5",
-      "code": "Myself",
+      "name": "Thesis Paper",
+      "code": "SS",
       "size": null,
       "tag": null,
-      "col": "CODE",
+      "col": null,
       "rows": [
        {
-        "label": "8800-6 (A4)",
-        "mrp": "",
-        "dp": "",
-        "pkt": 12,
-        "crt": 48
-       },
-       {
-        "label": "3783-1L (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": 16,
-        "crt": 96
-       },
-       {
-        "label": "6600-8 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": 12,
-        "crt": 72
-       },
-       {
-        "label": "6701-5 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "6702-5 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "9502-15 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "9502-4 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "5803-15/16/19 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "5703-20 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "15164-EN Binding (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "15214-EN Buckle (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Myself Note Book — A6 / A7 / C6",
-      "code": "Myself",
-      "size": null,
-      "tag": null,
-      "col": "CODE",
-      "rows": [
-       {
-        "label": "3782-1L (A6)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "3781-1L (A7)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "6500-8 (C6)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Spiral Hard Bound Diary",
-      "code": "Spiral",
-      "size": null,
-      "tag": null,
-      "col": "CODE",
-      "rows": [
-       {
-        "label": "1801-2 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1801-4 (A5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1802-2 (B5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1802-4 (B5)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Glitter & Pocket Diaries",
-      "code": "Glitter",
-      "size": null,
-      "tag": null,
-      "col": "CODE",
-      "rows": [
-       {
-        "label": "PD60100-18 Pocket Printed",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PD100K Pocket Glitter",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A5882 (A5 Glitter)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6883 (A6 Pocket)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A7884 (A7 Pocket)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PD73100-8 Pocket",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "B6882-1 Hand Book",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "B5881 (B5 Glitter)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     }
-    ],
-    "notes": [
-     "Rates pending — tinted cells await MRP & DP",
-     "CRT/Box packing printed only where stated in catalog"
-    ]
-   },
-   {
-    "catNo": "G-2",
-    "title": "Leather Diaries — A5 / A6 / A7",
-    "families": [
-     {
-      "name": "A5 Leather — Regular",
-      "code": "A5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Cloth — A525020",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Extra Flap — A525151",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Case Binding — A525199",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A52540",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A525173",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Kodrai — A55125",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Printed — A57925",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Printed — A510025",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Soft — A52520",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "With Front — A59025",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pen Holder — A51825",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pen Pocket — A59825",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Double Colour — A59725",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A525219",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A525229",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A52925",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Regular Mix Colour",
-      "code": "R/RP",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "A5 Regular — A5R",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A5 Premium — A5RP",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A5 Full Size — A5RF",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6 Regular — A6R",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A7 Regular — A7R",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "A5 Buckle / Lock / Magnet",
-      "code": "A5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Case Binding — A525120",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Dbl Colour Lock — A52555",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Dbl Colour Lock — A57825",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Full Flap — A52573",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pocket & Lock — A52515",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Buckle — A525188",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Lock — A528S25",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Lock — A52025",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Soft Lock — A525257",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — A510125",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — A525251",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — A525228",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "A5 Box & Premium",
-      "code": "A5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Box — A5A25900",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Box — A52527",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Special — A5188",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Box — A525172",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Box — A525881",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "With Lock — A519125",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pen Lock — A52536",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Visiting Card — DV105",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Mobile Cover N/B — A5MCN",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Flexible — A525965",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Stone Premium — A5SNP",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet+Pen — A5126-25",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     }
-    ],
-    "notes": [
-     "Rates pending — send MRP & DP for each code"
-    ]
-   },
-   {
-    "catNo": "G-3",
-    "title": "Leather Diaries — B5",
-    "families": [
-     {
-      "name": "B5 Leather — Regular",
-      "code": "B5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Classic — B52918",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Printed — B510018",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Printed — B57918",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "B518173",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Front Pocket — B59018",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "B5 Buckle / Lock / Magnet",
-      "code": "B5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Dbl Colour Lock — B57818",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Full Flap — B51873",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Buckle — B518188",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — B510118",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — B518236",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Magnet — B518228",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pocket & Lock — B51815",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Double Colour — B51855",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "B5 Box & Premium",
-      "code": "B5",
-      "size": null,
-      "tag": null,
-      "col": "VARIANT / CODE",
-      "rows": [
-       {
-        "label": "Box Lock — B519116",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "With Box — B518172",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Pen Pocket — B525-18",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     }
-    ],
-    "notes": [
-     "Rates pending — send MRP & DP for each code"
-    ]
-   },
-   {
-    "catNo": "G-4",
-    "title": "Compass — Pencil Boxes & Pouches",
-    "families": [
-     {
-      "name": "Magnet Pencil Boxes",
-      "code": "Magnet",
-      "size": null,
-      "tag": null,
-      "col": "MODEL",
-      "rows": [
-       {
-        "label": "301 — Sharpener + Torch",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "628",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "8631 — Calculator",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "6666 — Calc + Sharpener",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "856",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "3131 — Plain",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "3030",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "3232 — Torch + Sharpener",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "8688 — Password Lock",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "2268-4 — Shp + Calc + Torch",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "5566 — Shp + Calendar",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1818 — Extra Big",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "801 — Big",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "9 — Sharpener + Calc",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "51 — Multi Drawer",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Premium Pouches",
-      "code": "PP",
-      "size": null,
-      "tag": null,
-      "col": "MODEL",
-      "rows": [
-       {
-        "label": "PP001",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP002",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP003",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP004",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP005",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP006",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP007",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PP008",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "PU & Cloth Pouches",
-      "code": "PU",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "Small PU — SPU",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Big PU — BPU",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Small Cloth — SCLOTH",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Big Cloth — BCLOTH",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Mini Cloth — MCLOTH",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Mini Plastic — MP",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "PVC & Zipper Pouches",
-      "code": "PZP",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "PVC Zipper — PZP1",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "PVC Zipper — PZP2",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A5 Zipper — A51258",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6 Zipper — A6909",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6 Zipper Short — A61128",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6 Net Transparent — A61802",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A6 Full Net — A61805",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     }
-    ],
-    "notes": [
-     "Magnet boxes: No Guarantee · No Repair · No Refund",
-     "Rates pending — send MRP & DP per model"
-    ]
-   },
-   {
-    "catNo": "G-5",
-    "title": "Button Bags, Patti Files & Protectors",
-    "families": [
-     {
-      "name": "Button Bags — Thin",
-      "code": "F",
-      "size": null,
-      "tag": null,
-      "col": "MODEL",
-      "rows": [
-       {
-        "label": "F-202",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-205",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-207",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-209",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-209 A/3 My Clear Bag",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-210 My Clear Bag",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-212 SP",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-215",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-216",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-217",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-219",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-220",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-221",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-222",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-223",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-225",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-227",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-229",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-254",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-262",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-264",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-266",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-268",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-270",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-272 (BB272)",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-274",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-282",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-284",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "FS-10 My Clear Bag ACE",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Button Bags — Thick",
-      "code": "F",
-      "size": null,
-      "tag": null,
-      "col": "MODEL",
-      "rows": [
-       {
-        "label": "F-252 Plain",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-255",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-275 Window",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1031",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1035",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1051",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-4011",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-4021",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-4061",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Button Bags — Special / Top Open",
-      "code": "F",
-      "size": null,
-      "tag": null,
-      "col": "MODEL",
-      "rows": [
-       {
-        "label": "F-245",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-294",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-295",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1045",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1081 Double Open",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1041 Top Open",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-1021 Double Top",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "F-4091",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Patti Files",
-      "code": "PF",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "A4 12mm — PFA412",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A4 20mm — PFA420",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Sheet Protectors",
-      "code": "SP",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "A4 60 Micron — A4SP60",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A4 100 Micron — A4SP100",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A4 150 Micron — A4SP150",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "A4 200 Micron — A4SP200",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "FC 100 Micron — FCSP100",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "FC 150 Micron — FCSP150",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "FC 200 Micron — FCSP200",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     }
-    ],
-    "notes": [
-     "Rates pending — send MRP & DP per model"
-    ]
-   },
-   {
-    "catNo": "G-6",
-    "title": "Desk, Bags & General Items",
-    "families": [
-     {
-      "name": "Executive Bags (FS)",
-      "code": "Bags",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "Deluxe 10F — DB10F",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Deluxe 20F — DB20F",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Deluxe 30F — DB30F",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Deluxe 40F — DB40F",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Eco 10F–40F — EB",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Office 10F–40F — OB",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Premium — PRMb",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Star — STRb",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Unique — UNB",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Metro Ring File — MRF",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "Classic Ring File — CRF",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Sticky Note Pads (3×3 Multi)",
-      "code": "SNP",
-      "size": null,
-      "tag": null,
-      "col": "TYPE",
-      "rows": [
-       {
-        "label": "SNP1M",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "SNP3M",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "SNP4M",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "SNP5M",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Cello Tape",
-      "code": "YT",
-      "size": null,
-      "tag": null,
-      "col": "SIZE",
-      "rows": [
-       {
-        "label": "1.2\" × 15yd — YT1215",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1.2\" × 30yd — YT1230",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1.8\" × 15yd — YT1815",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1.8\" × 30yd — YT1830",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "1\" White Transparent — 1WT",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "2\" Cello Tape — 2BT",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Binder Clips",
-      "code": "BC",
-      "size": null,
-      "tag": null,
-      "col": "SIZE",
-      "rows": [
-       {
-        "label": "15mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "19mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "25mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "32mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "41mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       },
-       {
-        "label": "51mm",
-        "mrp": "",
-        "dp": "",
-        "pkt": "",
-        "crt": ""
-       }
-      ]
-     },
-     {
-      "name": "Gift Covering Paper",
-      "code": "A01–A11",
-      "size": null,
-      "tag": null,
-      "col": "DESIGN",
-      "rows": [
-       {
-        "label": "Designs A01–A11",
-        "mrp": "",
-        "dp": "",
+        "label": "150 Sheet Protectore A4",
+        "mrp": 4,
+        "dp": "2.20",
+        "pkt": 2000,
+        "crt": 50,
+        "bld": "",
+        "id": 9913
+       },
+       {
+        "label": "200 Sheet Protectore A4",
+        "mrp": 6,
+        "dp": "2.88",
         "pkt": 50,
-        "crt": "100 pkt"
+        "crt": 1800,
+        "bld": "",
+        "id": 9914
+       },
+       {
+        "label": "200 Sheet Protectore FS",
+        "mrp": 6,
+        "dp": "3.22",
+        "pkt": "",
+        "crt": 50,
+        "bld": "",
+        "id": 9916
+       },
+       {
+        "label": "300 Sheet Protectore FS",
+        "mrp": 10,
+        "dp": "4.76",
+        "pkt": "",
+        "crt": 25,
+        "bld": "",
+        "id": 9917
+       },
+       {
+        "label": "1.2 X 15 YARD TAPE",
+        "mrp": 71,
+        "dp": "35.30",
+        "pkt": 60,
+        "crt": 720,
+        "bld": "",
+        "id": 10472
+       },
+       {
+        "label": "1.2 X30 YARD TAPE",
+        "mrp": 115,
+        "dp": "57.30",
+        "pkt": 60,
+        "crt": 720,
+        "bld": "",
+        "id": 10474
+       },
+       {
+        "label": "1.8 X 15 YARD TAPE",
+        "mrp": 75,
+        "dp": "37.35",
+        "pkt": 60,
+        "crt": 480,
+        "bld": "",
+        "id": 10473
+       },
+       {
+        "label": "1.8 X 30 YARD TAPE",
+        "mrp": 115,
+        "dp": "57.30",
+        "pkt": 60,
+        "crt": 480,
+        "bld": "",
+        "id": 10475
+       }
+      ]
+     },
+     {
+      "name": "Sheet Protectore Ace Fc 200 Micron",
+      "code": "SS",
+      "size": null,
+      "tag": null,
+      "col": null,
+      "rows": [
+       {
+        "label": "300 Sheet Protectore A4",
+        "mrp": "",
+        "dp": "",
+        "pkt": "",
+        "crt": "",
+        "bld": "",
+        "id": 9915
        }
       ]
      }
     ],
-    "notes": [
-     "Gift paper: 1 packet = 50 sheets · 1 carton = 100 packets",
-     "Rates pending — send MRP & DP"
-    ]
+    "notes": null
    }
   ]
  }

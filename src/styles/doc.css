@@ -6,7 +6,14 @@
 .doc-stack {
   display: flex; flex-direction: column; align-items: center; gap: 22px;
   padding: 26px 0; background: #565b62;
+  width: 100%; overflow-x: hidden;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+/* phone: shrink each fixed-size A4 sheet to the viewport (--doc-scale set by
+   DocView); the negative margin swallows the layout height the scale freed up */
+.doc-page {
+  transform: scale(var(--doc-scale, 1)); transform-origin: top center;
+  margin-bottom: calc(-1123px * (1 - var(--doc-scale, 1)));
 }
 
 .doc-page {
@@ -18,15 +25,19 @@
 /* cover + order form stay a full A4 sheet */
 .doc-cover, .doc-page.doc-fixed { height: 1123px; }
 
-/* the price-list body: one A4-width sheet where categories flow and pack;
-   on print it paginates into real A4 pages, filling each one. */
-.doc-flow { min-height: 1123px; }
-.doc-flow .doc-footer { position: static; margin-top: auto; }
-.flow-body { padding: 0; }
-.cat-section { break-inside: auto; }
-.cat-section + .cat-section .cat-band { margin-top: 4px; }
-/* keep a category heading from being stranded at the bottom of a page */
-.cat-band { break-after: avoid; }
+/* generated price-list sheets: real fixed A4 pages, packed by DocView's
+   paginator — screen, print and the cover index all show the same pages. */
+.doc-sheet { height: 1123px; overflow: hidden; }
+.doc-sheet .doc-footer { position: static; margin-top: auto; }
+.sheet-body { flex: 1; min-height: 0; }
+.sheet-cols { display: flex; gap: 26px; padding: 18px 34px 14px; align-items: flex-start; }
+.sheet-col { width: 350px; flex: none; display: flex; flex-direction: column; gap: 18px; }
+.sheet-col .fam { margin-bottom: 0; }
+.cat-contd { font-size: 13px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.02em; }
+
+/* hidden measuring pass (true print width, never visible, never printed) */
+.doc-measure { position: fixed; left: -10000px; top: 0; width: 794px; height: auto; visibility: hidden; box-shadow: none; z-index: -1; display: block; }
+.doc-measure .doc-footer { position: static; }
 
 /* ---- running header (category pages) — slim & refined ---- */
 .doc-header {
@@ -149,25 +160,19 @@
    Print
    ============================================================ */
 @media print {
-  .app-bar, .fab-wrap { display: none !important; }
+  .app-bar, .fab-wrap, .doc-measure { display: none !important; }
   html, body { background: #fff; }
   .doc-stack { gap: 0; padding: 0; background: #fff; width: 100%; }
-  .doc-page { box-shadow: none; }
+  .doc-page { box-shadow: none; transform: none; margin-bottom: 0; }
 
-  /* Price-list body (tables): fill the printable area (A4 minus @page margin)
-     so nothing runs off the edges, and paginate across A4 sheets. */
-  .doc-flow { width: 100%; min-height: 0; }
-  .doc-flow .doc-header { break-after: avoid; }
-  .cat-section { break-inside: auto; }
-  .fam, .cat-notes, .cat-band, .of-note, .of-sign { break-inside: avoid; }
-
-  /* Cover + order form: each is one full-bleed A4 page (own margin-0 @page),
-     kept at its exact 794x1123 design size so it never splits across 2 pages. */
-  .doc-cover, .doc-page.doc-fixed {
+  /* Every page (cover, sheets, order form) is one full-bleed A4 page kept at
+     its exact 794x1123 design size — print matches the screen 1:1, so the
+     cover-index page numbers stay true. */
+  .doc-cover, .doc-page.doc-fixed, .doc-sheet {
     page: bleed; width: 794px; height: 1123px; overflow: hidden;
     break-inside: avoid; page-break-after: always;
   }
+  .doc-stack > .doc-page:last-of-type { page-break-after: auto; }
 }
-/* table pages: safe printer margin (no edge crop). cover/order form: full bleed */
-@page { size: A4; margin: 12mm 10mm; }
+@page { size: A4; margin: 0; }
 @page bleed { size: A4; margin: 0; }

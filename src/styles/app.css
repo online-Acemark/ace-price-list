@@ -29,12 +29,14 @@ html, body { background: #4a4f55; }
 
 .fab-btn {
   position: relative;
-  width: 50px; height: 50px; border-radius: 50%;
+  height: 48px; border-radius: 999px; padding: 0 18px 0 15px;
   background: var(--charcoal); color: #fff;
   border: none; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
   box-shadow: 0 4px 14px rgba(0,0,0,0.3);
 }
+.fab-btn svg { width: 18px; height: 18px; flex: none; }
+.fab-label { font-family: inherit; font-size: 13.5px; font-weight: 700; letter-spacing: 0.02em; }
 .fab-btn.open { background: var(--ace-cyan); }
 .fab-btn .fab-dot { border-color: var(--charcoal); }
 .fab-btn.open .fab-dot { border-color: var(--ace-cyan); }

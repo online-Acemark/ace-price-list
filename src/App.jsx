@@ -1,6 +1,6 @@
 import React from 'react'
 import CATALOG from './catalog.js'
-import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices, regroupByCatalogue } from './api.js'
+import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices } from './api.js'
 import DocView from './components/DocView.jsx'
 import MobileView from './components/MobileView.jsx'
 import './styles/doc.css'
@@ -39,33 +39,31 @@ export default function App() {
 
   const load = React.useCallback(async () => {
     setSync((s) => ({ ...s, state: 'loading' }))
+    // PL (School/Office/Corporate) items come from the price-list xlsx (CATALOG);
+    // every load overlays the ERP's latest MRP/DP/PKT/CRT/BLD on top of them.
+    // Rows the ERP can't match keep their saved price and get highlighted.
+    const plRows = CATALOG.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)
     try {
       const records = await fetchPriceList()
-
-      // School + Office = "PL" list (the 01.04.2026 price-list PDF). The curated
-      // CATALOG decides WHICH items show; the ERP supplies the live prices.
       const index = buildIndex(records)
-      const plSource = CATALOG.filter((d) => PL_DIVISIONS.includes(d.division))
-      const { catalog: priced, matched, attempted } = applyLivePrices(plSource, index)
-      // regroup under the product catalogue's own S-/O- section numbers
-      const pl = regroupByCatalogue(priced)
-
-      // Corporate + Others aren't in the PDF — keep them straight from the ERP.
-      const extra = buildCatalogFromApi(records, CATALOG)
-        .filter((d) => !PL_DIVISIONS.includes(d.division))
-
-      const built = [...pl, ...extra]
-      setCatalog(built)
-      const rows = built.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)
-      setSync({ state: 'live', divisions: built.length, rows, at: new Date(), unmatched: attempted - matched })
+      const { catalog: merged, matched, attempted } = applyLivePrices(CATALOG, index)
+      // "Others" isn't in the price list — pull it live from the ERP (mobile only).
+      const others = buildCatalogFromApi(records, CATALOG).filter((d) => d.division === 'Others')
+      setCatalog([...merged, ...others])
+      setSync({ state: 'live', divisions: merged.length + others.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
     } catch (e) {
-      // offline: saved PL catalogue only (no ERP-only divisions)
-      setCatalog(CATALOG.filter((d) => PL_DIVISIONS.includes(d.division)))
-      setSync({ state: 'offline', divisions: 0, rows: 0, at: null, error: String(e.message || e) })
+      setCatalog(CATALOG) // ERP unreachable — price list still shows (xlsx)
+      setSync({ state: 'offline', divisions: CATALOG.length, rows: plRows, at: null, error: String(e.message || e) })
     }
   }, [])
 
   React.useEffect(() => { load() }, [load])
+
+  // Auto-refresh: re-pull ERP prices every 30 minutes while the app stays open.
+  React.useEffect(() => {
+    const id = setInterval(load, 30 * 60 * 1000)
+    return () => clearInterval(id)
+  }, [load])
 
   const syncText = {
     loading: 'Loading from ERP…',
@@ -107,10 +105,11 @@ export default function App() {
         <button
           className={'fab-btn' + (menuOpen ? ' open' : '')}
           onClick={() => setMenuOpen((o) => !o)}
-          title="Views &amp; refresh"
+          title="Pricelist — download, print &amp; views"
           aria-expanded={menuOpen}
         >
-          {menuOpen ? <CloseIcon /> : <GearIcon />}
+          {menuOpen ? <CloseIcon /> : <DownloadIcon />}
+          <span className="fab-label">Pricelist</span>
           <span className={'fab-dot ' + sync.state} />
         </button>
       </div>

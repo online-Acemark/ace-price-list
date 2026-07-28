@@ -41,6 +41,16 @@ async function tryFetch(url) {
 
 const norm = (s) => String(s == null ? '' : s).toUpperCase().replace(/\s+/g, '')
 
+// "28-Jul-26" -> timestamp (0 if unparseable). Used to prefer the most
+// recently revised rate when a product's varieties disagree on DP.
+function effTime(s) {
+  const m = String(s || '').match(/^(\d{1,2})-([A-Za-z]{3})-(\d{2,4})$/)
+  if (!m) return 0
+  const yr = m[3].length === 2 ? '20' + m[3] : m[3]
+  const t = Date.parse(m[2] + ' ' + m[1] + ', ' + yr)
+  return Number.isNaN(t) ? 0 : t
+}
+
 // Size for a family code, from the product catalogue PDF. A family code can be
 // a "/" list (e.g. "SH/VB/RB") — use the first variant the catalogue knows.
 export function catalogueSize(code) {
@@ -67,6 +77,7 @@ export function buildIndex(records) {
     const price = {
       mrp: Number(r.NewMRP) || null, dp, odp: Number(r.OldDP) || 0,
       pack: r.Pack, crt: r.CRT, bld: r.Bld,
+      eff: effTime(r.NewEffective),
       name: String(r.ProductName || '').toUpperCase(),
       variety: variety && variety.toUpperCase() !== 'N/A' ? variety : '',
     }
@@ -100,6 +111,7 @@ function add(map, key, dp, price) {
   const dpKey = dp.toFixed(2)
   const cur = bucket.get(dpKey) || { ...price, count: 0, varieties: new Set() }
   cur.count++
+  if (price.eff > cur.eff) cur.eff = price.eff
   if (price.variety) cur.varieties.add(price.variety)
   bucket.set(dpKey, cur)
 }
@@ -107,11 +119,16 @@ function add(map, key, dp, price) {
 function pick(bucket) {
   if (!bucket || bucket.size === 0) return null
   if (bucket.size === 1) return bucket.values().next().value
-  // Several distinct DPs under one page — that is normal: most rullings share
-  // the regular rate and a few variants (Combind etc.) cost a little extra.
-  // Take the rate the majority of variants carry; a genuine tie stays unmatched.
-  const byCount = [...bucket.values()].sort((a, b) => b.count - a.count)
-  return byCount[0].count > byCount[1].count ? byCount[0] : null
+  // Several distinct DPs under one page. Rules, in order:
+  // 1) The most recently revised rate wins (a fresh ERP price change shows up
+  //    immediately, even while its sibling varieties still carry the old rate).
+  // 2) Same date (bulk update) — the rate the majority of variants carry wins,
+  //    so a deliberately pricier variant (Combind etc.) can't hijack the family.
+  // 3) A genuine tie stays unmatched (caller keeps the saved price).
+  const sorted = [...bucket.values()].sort((a, b) => (b.eff - a.eff) || (b.count - a.count))
+  const [a, b] = sorted
+  if (a.eff > b.eff) return a
+  return a.count > b.count ? a : null
 }
 
 // Resolve one catalog row to a live price. Conservative: only returns a value
@@ -339,12 +356,17 @@ export function buildCatalogFromApi(records, curated) {
     const bucket = fam.rows.get(label)
     const key = dp.toFixed(2)
     const cur = bucket.get(key) ||
-      { dp, mrp: Number(r.NewMRP) || null, odp: Number(r.OldDP) || 0, pack: r.Pack, crt: r.CRT, bld: r.Bld, count: 0 }
-    cur.count++; bucket.set(key, cur)
+      { dp, mrp: Number(r.NewMRP) || null, odp: Number(r.OldDP) || 0, pack: r.Pack, crt: r.CRT, bld: r.Bld, eff: 0, count: 0 }
+    cur.count++
+    const et = effTime(r.NewEffective)
+    if (et > cur.eff) cur.eff = et
+    bucket.set(key, cur)
   }
 
   const buildRows = (rowsMap) => [...rowsMap.entries()].map(([label, bucket]) => {
-    let best = null; for (const v of bucket.values()) if (!best || v.count > best.count) best = v
+    // newest revised rate first, then the majority rate (same rule as pick())
+    let best = null
+    for (const v of bucket.values()) if (!best || v.eff > best.eff || (v.eff === best.eff && v.count > best.count)) best = v
     const trend = best.odp && Math.abs(best.dp - best.odp) > 0.005 ? (best.dp > best.odp ? 'up' : 'down') : null
     return {
       label, mrp: best.mrp != null ? Math.round(best.mrp) : '', dp: best.dp.toFixed(2),
@@ -392,7 +414,10 @@ export function buildCatalogFromApi(records, curated) {
       for (const [label, bucket] of fam.rows) {
         if (!dst.has(label)) dst.set(label, new Map())
         const d = dst.get(label)
-        for (const [k, v] of bucket) { const e = d.get(k); if (e) e.count += v.count; else d.set(k, { ...v }) }
+        for (const [k, v] of bucket) {
+          const e = d.get(k)
+          if (e) { e.count += v.count; if (v.eff > e.eff) e.eff = v.eff } else d.set(k, { ...v })
+        }
       }
     }
 

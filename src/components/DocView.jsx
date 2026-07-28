@@ -13,13 +13,19 @@ const FIRM = {
   phones: '8349997670 · 8349997676 · 8349997674', web: 'www.acemark.in', mail: 'billing@acemark.in',
 }
 
-function DocPhotoPH({ w, h, label }) {
-  return (
-    <div style={{ width: w, height: h, flex: 'none', background: 'var(--bg-accent-tint)', border: '1px solid var(--border-subtle)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', fontSize: '8px', color: '#5b7d8c', padding: '3px', lineHeight: 1.3 }}>{label}</div>
-  )
-}
+// A4 sheet geometry (px @96dpi: 210×297mm). Categories are packed into real
+// fixed-height pages so screen, print and the cover index all agree.
+const PAGE_W = 794
+const PAGE_H = 1123
+const PAD_X = 34                              // page side padding (band + cols)
+const COL_GAP = 26
+const COL_W = (PAGE_W - PAD_X * 2 - COL_GAP) / 2 // 350
+const FAM_GAP = 18                            // gap between ranges in a column
+const COLS_PAD_TOP = 18                       // band → tables
+const CHUNK_PAD_BOTTOM = 14                   // after a category's tables
+const BODY_PAD_BOTTOM = 8                     // breathing room above footer
 
-function DocHeader({ pageNo, division, effective }) {
+function DocHeader({ pageNo, total, division, effective }) {
   return (
     <div className="doc-header">
       <div>
@@ -28,7 +34,7 @@ function DocHeader({ pageNo, division, effective }) {
       </div>
       <div style={{ textAlign: 'right' }}>
         <div className="doc-div">Price List (C.G.) · {division}</div>
-        <div className="doc-sub">Effective {effective}{pageNo ? ' · Page ' + pageNo : ''}</div>
+        <div className="doc-sub">Effective {effective}{pageNo ? ' · Page ' + pageNo + (total ? ' of ' + total : '') : ''}</div>
       </div>
     </div>
   )
@@ -71,37 +77,185 @@ function FamilyTable({ f }) {
   )
 }
 
-// A category as a flowing section (no page frame): band + its product tables.
-// Many sections pack onto each A4 sheet, filling the blank space.
-function CategorySection({ page, division }) {
+function NotesBlock({ notes }) {
   return (
-    <section className="cat-section" data-screen-label={page.catNo + ' ' + page.title}>
-      <div className="cat-band">
-        <div className="cat-no-badge">{page.catNo}</div>
-        <div className="cat-band-text">
-          <div className="cat-kicker">{division.toUpperCase()}</div>
-          <div className="cat-title">{page.title}</div>
-        </div>
-        <div className="cat-count">{page.families.length} {page.families.length === 1 ? 'range' : 'ranges'}</div>
-      </div>
-      <div className="cat-cols">
-        {page.families.map((f, i) => <FamilyTable key={i} f={f} />)}
-        {page.notes ? (
-          <div className="cat-notes">
-            <b>NOTES</b>
-            {page.notes.map((n, i) => <div key={i}>• {n}</div>)}
-          </div>
-        ) : null}
-      </div>
-    </section>
+    <div className="cat-notes">
+      <b>NOTES</b>
+      {notes.map((n, i) => <div key={i}>• {n}</div>)}
+    </div>
   )
 }
 
-function CoverPage({ catalog, effective }) {
-  let pg = 1
+function CatBand({ cat, cont }) {
+  return (
+    <div className="cat-band">
+      <div className="cat-no-badge">{cat.catNo}</div>
+      <div className="cat-band-text">
+        <div className="cat-kicker">{cat.division.toUpperCase()}</div>
+        <div className="cat-title">{cat.title}{cont ? <span className="cat-contd"> · contd.</span> : null}</div>
+      </div>
+      <div className="cat-count">{cont ? 'continued' : cat.families.length + (cat.families.length === 1 ? ' range' : ' ranges')}</div>
+    </div>
+  )
+}
+
+// A category's column blocks in order: its family tables, then its notes box.
+function blockEl(cat, idx) {
+  return idx < cat.families.length
+    ? <FamilyTable f={cat.families[idx]} />
+    : <NotesBlock notes={cat.notes} />
+}
+
+/* ------------------------------------------------------------------
+   Measurement: render every band + block hidden at true print width,
+   read heights, then pack them into pages.
+------------------------------------------------------------------ */
+function MeasureLayer({ cats, effective, onMeasured }) {
+  const ref = React.useRef(null)
+  const [fontTick, setFontTick] = React.useState(0)
+
+  // Heights change once webfonts arrive — re-measure then.
+  React.useEffect(() => {
+    let on = true
+    if (document.fonts?.ready) document.fonts.ready.then(() => { if (on) setFontTick((t) => t + 1) })
+    return () => { on = false }
+  }, [])
+
+  React.useLayoutEffect(() => {
+    const root = ref.current
+    if (!root) return
+    const m = { headerH: 0, footerH: 0, bands: {}, blocks: {} }
+    m.headerH = root.querySelector('.doc-header')?.offsetHeight || 0
+    m.footerH = root.querySelector('.doc-footer')?.offsetHeight || 0
+    for (const el of root.querySelectorAll('[data-m="band"]')) m.bands[el.dataset.cat] = el.offsetHeight
+    for (const el of root.querySelectorAll('[data-m="block"]')) {
+      ;(m.blocks[el.dataset.cat] = m.blocks[el.dataset.cat] || []).push(el.offsetHeight)
+    }
+    onMeasured(m)
+  }, [cats, fontTick, onMeasured])
+
+  return (
+    <div ref={ref} className="doc-page doc-measure" aria-hidden="true">
+      <DocHeader pageNo={9} total={99} division="Measure" effective={effective} />
+      <div style={{ position: 'relative', height: 40 }}><DocFooter /></div>
+      {cats.map((cat) => {
+        const n = cat.families.length + (cat.notes ? 1 : 0)
+        return (
+          <React.Fragment key={cat.catNo}>
+            <div data-m="band" data-cat={cat.catNo}><CatBand cat={cat} /></div>
+            {Array.from({ length: n }, (_, i) => (
+              <div key={i} data-m="block" data-cat={cat.catNo} style={{ width: COL_W }}>{blockEl(cat, i)}</div>
+            ))}
+          </React.Fragment>
+        )
+      })}
+    </div>
+  )
+}
+
+function sumH(blocks, idxs) {
+  return idxs.reduce((s, idx, j) => s + blocks[idx] + (j ? FAM_GAP : 0), 0)
+}
+
+// Pack categories into fixed A4 pages. Cover is page 1; sheets start at 2.
+// Returns { pages, ranges: {catNo: {from,to}}, total }.
+function paginate(cats, m) {
+  const bodyH = PAGE_H - m.headerH - m.footerH - BODY_PAD_BOTTOM
+  const pages = []
+  let cur = null
+  const newPage = () => { cur = { items: [] , used: 0 }; pages.push(cur) }
+  newPage()
+  const ranges = {}
+
+  for (const cat of cats) {
+    const blocks = m.blocks[cat.catNo] || []
+    const bandH = m.bands[cat.catNo] || 0
+    let i = 0
+    let cont = false
+
+    while (true) {
+      // Band + at least the next block must fit, else move to a fresh page.
+      const firstBlock = blocks[i] || 0
+      if (cur.items.length && cur.used + bandH + COLS_PAD_TOP + firstBlock > bodyH) newPage()
+      const cap = Math.max(0, bodyH - cur.used - bandH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM)
+
+      // Greedy reading-order fill: down column 1, then column 2.
+      const fill = (col) => {
+        let h = 0
+        while (i < blocks.length) {
+          const bh = blocks[i]
+          const nh = h + (col.length ? FAM_GAP : 0) + bh
+          if (col.length && nh > cap) break
+          col.push(i); i++; h = nh
+          if (bh > cap) break // oversized block sits alone
+        }
+        return h
+      }
+      let col1 = [], col2 = []
+      let h1 = fill(col1)
+      let h2 = fill(col2)
+
+      // Category finished on this page → re-split its last chunk so the two
+      // columns come out balanced instead of everything piling into column 1.
+      if (i >= blocks.length && col1.length + col2.length > 1) {
+        const placed = col1.concat(col2)
+        let best = null
+        for (let k = 0; k <= placed.length; k++) {
+          const a = placed.slice(0, k), b = placed.slice(k)
+          const ha = sumH(blocks, a), hb = sumH(blocks, b)
+          if (ha <= cap && hb <= cap) {
+            const mx = Math.max(ha, hb)
+            if (!best || mx < best.mx) best = { a, b, ha, hb, mx }
+          }
+        }
+        if (best) { col1 = best.a; col2 = best.b; h1 = best.ha; h2 = best.hb }
+      }
+
+      cur.items.push({ cat, cont, col1, col2 })
+      cur.used += bandH + COLS_PAD_TOP + Math.max(h1, h2) + CHUNK_PAD_BOTTOM
+
+      const pgNo = pages.length + 1 // + cover
+      if (!ranges[cat.catNo]) ranges[cat.catNo] = { from: pgNo, to: pgNo }
+      ranges[cat.catNo].to = pgNo
+
+      if (i >= blocks.length) break
+      cont = true
+      newPage()
+    }
+  }
+  return { pages, ranges, total: pages.length + 1 }
+}
+
+function SheetPage({ page, pageNo, total, effective }) {
+  const divisions = [...new Set(page.items.map((it) => it.cat.division))].join(' · ')
+  return (
+    <div className="doc-page doc-sheet" data-screen-label={'Page ' + pageNo}>
+      <DocHeader pageNo={pageNo} total={total} division={divisions} effective={effective} />
+      <div className="sheet-body">
+        {page.items.map((it, i) => (
+          <section className="cat-section" key={i}>
+            <CatBand cat={it.cat} cont={it.cont} />
+            <div className="sheet-cols">
+              <div className="sheet-col">{it.col1.map((b) => <React.Fragment key={b}>{blockEl(it.cat, b)}</React.Fragment>)}</div>
+              <div className="sheet-col">{it.col2.map((b) => <React.Fragment key={b}>{blockEl(it.cat, b)}</React.Fragment>)}</div>
+            </div>
+          </section>
+        ))}
+      </div>
+      <DocFooter />
+    </div>
+  )
+}
+
+function pgLabel(r) {
+  if (!r) return ''
+  return r.from === r.to ? String(r.from) : r.from + '–' + r.to
+}
+
+function CoverPage({ catalog, effective, ranges, total }) {
   const groups = catalog.map((d) => ({
     division: d.division,
-    cats: d.pages.map((p) => ({ no: p.catNo, title: p.title, pg: ++pg })),
+    cats: d.pages.map((p) => ({ no: p.catNo, title: p.title, pg: pgLabel(ranges?.[p.catNo]) })),
   }))
   return (
     <div className="doc-page doc-cover" data-screen-label="Cover">
@@ -111,7 +265,7 @@ function CoverPage({ catalog, effective }) {
         <div className="cover-rule" />
         <div className="cover-tag">Price List · Chhattisgarh (C.G.)</div>
         <div className="cover-sub2">{catalog.map((d) => d.division).join(' + ')}</div>
-        <div className="cover-eff">Effective {effective}</div>
+        <div className="cover-eff">Effective {effective}{total ? ' · ' + total + ' pages' : ''}</div>
       </div>
       <div className="cover-body">
         <div className="cover-index">
@@ -134,7 +288,7 @@ function CoverPage({ catalog, effective }) {
           <div className="cover-index-head">How to read this list</div>
           <p>All rates are <b>Dealer Price (DP)</b> per piece. One rate for all parties. MRP printed for reference.</p>
           <p><b>PKT</b> = pieces per packet · <b>CRT</b> = pieces per carton/bundle.</p>
-          <p>Pages and prices are subject to change without prior notice. Subject to Raipur jurisdiction. Sizes are approximate and may vary.</p>
+          <p>Page numbers in this index refer to the pages of this document. Pages and prices are subject to change without prior notice. Subject to Raipur jurisdiction. Sizes are approximate and may vary.</p>
         </div>
       </div>
       <div className="cover-foot">
@@ -190,24 +344,33 @@ function OrderFormPage({ pageNo, effective }) {
 
 export default function DocView({ catalog }) {
   const effective = catalog[0]?.effective
-  const divs = catalog.map((d) => d.division).join(' · ')
+  const cats = React.useMemo(
+    () => catalog.flatMap((d) => d.pages.map((p) => ({ ...p, division: d.division }))),
+    [catalog]
+  )
+  const [measures, setMeasures] = React.useState(null)
+  const onMeasured = React.useCallback((m) => {
+    setMeasures((old) => (old && JSON.stringify(old) === JSON.stringify(m) ? old : m))
+  }, [])
+  const result = React.useMemo(() => (measures ? paginate(cats, measures) : null), [cats, measures])
+
+  // On narrow screens (phone), scale the fixed-width A4 sheets to fit the
+  // viewport instead of cropping left/right. Layout/print stay at true size.
+  const [scale, setScale] = React.useState(1)
+  React.useEffect(() => {
+    const upd = () => setScale(Math.min(1, (window.innerWidth - 12) / PAGE_W))
+    upd()
+    window.addEventListener('resize', upd)
+    return () => window.removeEventListener('resize', upd)
+  }, [])
+
   return (
-    <div className="doc-stack">
-      <CoverPage catalog={catalog} effective={effective} />
-      {/* One A4-width sheet: categories flow and pack, paginating to real A4
-          pages on print instead of one category per (mostly blank) page. */}
-      <div className="doc-page doc-flow" data-screen-label="Price List">
-        <DocHeader division={divs} effective={effective} />
-        <div className="flow-body">
-          {catalog.map((d, di) =>
-            d.pages.map((p, i) => (
-              <CategorySection key={di + '-' + i} page={p} division={d.division} />
-            ))
-          )}
-        </div>
-        <DocFooter />
-      </div>
-      <OrderFormPage pageNo={0} effective={effective} />
+    <div className="doc-stack" style={{ '--doc-scale': scale }}>
+      <CoverPage catalog={catalog} effective={effective} ranges={result?.ranges} total={result?.total} />
+      {result?.pages.map((pg, i) => (
+        <SheetPage key={i} page={pg} pageNo={i + 2} total={result.total} effective={effective} />
+      ))}
+      <MeasureLayer cats={cats} effective={effective} onMeasured={onMeasured} />
     </div>
   )
 }
