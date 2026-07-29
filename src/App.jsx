@@ -37,41 +37,108 @@ export default function App() {
     setTimeout(() => window.print(), 250)
   }, [])
 
-  // Build a real PDF from the A4 sheets and hand it to the phone's share
-  // sheet (WhatsApp etc.). Falls back to a normal download on desktop.
-  const [pdfProg, setPdfProg] = React.useState(null) // {done, total} | null
-  const sharePdf = React.useCallback(async () => {
-    if (pdfProg) return
-    setMenuOpen(false)
-    setView('doc')
-    setPdfProg({ done: 0, total: 0 })
-    try {
-      await new Promise((r) => setTimeout(r, 700)) // doc render + pagination
-      const [{ jsPDF }, h2c] = await Promise.all([import('jspdf'), import('html2canvas')])
-      const html2canvas = h2c.default
-      const pages = [...document.querySelectorAll('.doc-stack > .doc-page:not(.doc-measure)')]
-      if (!pages.length) throw new Error('A4 pages not ready')
-      const pdf = new jsPDF({ unit: 'mm', format: 'a4', compress: true })
-      for (let i = 0; i < pages.length; i++) {
-        const canvas = await html2canvas(pages[i], { scale: 1.6, useCORS: true, backgroundColor: '#ffffff', logging: false })
-        if (i) pdf.addPage()
-        pdf.addImage(canvas.toDataURL('image/jpeg', 0.82), 'JPEG', 0, 0, 210, 297)
-        setPdfProg({ done: i + 1, total: pages.length })
+  // ---- Share PDF ----
+  // The share sheet must open inside the user's tap, but building the PDF
+  // takes ~20-30s. So the PDF is pre-built quietly in the background (from a
+  // hidden A4 render) and cached — by the time the user taps Share, the file
+  // is ready and the WhatsApp/email sheet opens directly.
+  const docCatalog = React.useMemo(() => catalog.filter((d) => DOC_DIVISIONS.includes(d.division)), [catalog])
+  const [pdfProg, setPdfProg] = React.useState(null)      // progress overlay
+  const [capturing, setCapturing] = React.useState(false) // hidden A4 render mounted
+  const [shareFallback, setShareFallback] = React.useState(null) // blob — share needs one fresh tap
+  const pdfCache = React.useRef({ cat: null, blob: null, running: null })
+
+  const buildPdf = React.useCallback((silent) => {
+    const cache = pdfCache.current
+    if (cache.cat === docCatalog && cache.blob) return Promise.resolve(cache.blob)
+    if (cache.running) {
+      if (!silent) {
+        setPdfProg({ done: 0, total: 0 })
+        cache.running.finally(() => setPdfProg(null))
       }
-      const name = 'ACEMARK Price List (C.G.) 01.08.2026.pdf'
-      const blob = pdf.output('blob')
-      const file = new File([blob], name, { type: 'application/pdf' })
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: 'ACEMARK Price List' }) } catch (e) { /* user closed share sheet */ }
-      } else {
-        pdf.save(name)
+      return cache.running
+    }
+    const job = (async () => {
+      setCapturing(true)
+      if (!silent) setPdfProg({ done: 0, total: 0 })
+      try {
+        const [{ jsPDF }, h2c] = await Promise.all([import('jspdf'), import('html2canvas')])
+        const html2canvas = h2c.default
+        // hidden A4 render mount + pagination settle
+        const t0 = Date.now()
+        let last = -1, stable = 0, pages = []
+        while (Date.now() - t0 < 20000) {
+          await new Promise((r) => setTimeout(r, 250))
+          pages = [...document.querySelectorAll('.pdf-capture .doc-stack > .doc-page:not(.doc-measure)')]
+          if (pages.length > 1 && pages.length === last) { if (++stable >= 3) break } else { stable = 0 }
+          last = pages.length
+        }
+        if (pages.length < 2) throw new Error('A4 pages not ready')
+        const pdf = new jsPDF({ unit: 'mm', format: 'a4', compress: true })
+        for (let i = 0; i < pages.length; i++) {
+          const canvas = await html2canvas(pages[i], { scale: 1.5, useCORS: true, backgroundColor: '#ffffff', logging: false })
+          if (i) pdf.addPage()
+          pdf.addImage(canvas.toDataURL('image/jpeg', 0.8), 'JPEG', 0, 0, 210, 297)
+          if (!silent) setPdfProg({ done: i + 1, total: pages.length })
+        }
+        const blob = pdf.output('blob')
+        pdfCache.current = { cat: docCatalog, blob, running: null }
+        return blob
+      } finally {
+        pdfCache.current.running = null
+        setCapturing(false)
+        if (!silent) setPdfProg(null)
+      }
+    })()
+    cache.running = job
+    job.catch(() => {})
+    return job
+  }, [docCatalog])
+
+  // pre-build quietly once ERP data settles — Share then opens instantly
+  React.useEffect(() => {
+    if (sync.state === 'loading') return
+    const t = setTimeout(() => { buildPdf(true).catch(() => {}) }, 2500)
+    return () => clearTimeout(t)
+  }, [sync.state, buildPdf])
+
+  const PDF_NAME = 'ACEMARK Price List (C.G.) 01.08.2026.pdf'
+  const deliverPdf = React.useCallback(async (blob) => {
+    const file = new File([blob], PDF_NAME, { type: 'application/pdf' })
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: 'ACEMARK Price List' })
+    } else {
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = PDF_NAME
+      document.body.appendChild(a)
+      a.click()
+      a.remove()
+      setTimeout(() => URL.revokeObjectURL(url), 30000)
+    }
+  }, [])
+
+  const sharePdf = React.useCallback(async () => {
+    setMenuOpen(false)
+    const cache = pdfCache.current
+    if (cache.cat === docCatalog && cache.blob) {
+      // cached — still inside the tap: share sheet opens directly
+      try { await deliverPdf(cache.blob) } catch (e) { /* user closed the sheet */ }
+      return
+    }
+    try {
+      const blob = await buildPdf(false)
+      try {
+        await deliverPdf(blob)
+      } catch (e) {
+        if (e && e.name === 'AbortError') return
+        setShareFallback(blob) // tap expired during build — one fresh Share tap
       }
     } catch (e) {
       alert('PDF banane me dikkat aayi: ' + (e.message || e))
-    } finally {
-      setPdfProg(null)
     }
-  }, [pdfProg])
+  }, [docCatalog, buildPdf, deliverPdf])
 
   const load = React.useCallback(async () => {
     setSync((s) => ({ ...s, state: 'loading' }))
@@ -112,8 +179,15 @@ export default function App() {
   return (
     <>
       {view === 'doc'
-        ? <DocView catalog={catalog.filter((d) => DOC_DIVISIONS.includes(d.division))} fullScale={!!pdfProg} />
+        ? <DocView catalog={docCatalog} />
         : <MobileView catalog={catalog} />}
+
+      {/* hidden true-size A4 render the PDF is captured from */}
+      {capturing ? (
+        <div className="pdf-capture" aria-hidden="true">
+          <DocView catalog={docCatalog} fullScale />
+        </div>
+      ) : null}
 
       {pdfProg ? (
         <div className="pdf-overlay">
@@ -121,6 +195,25 @@ export default function App() {
             <div className="pdf-spin" />
             <div className="pdf-title">PDF ban raha hai…</div>
             <div className="pdf-sub">{pdfProg.total ? `Page ${pdfProg.done} / ${pdfProg.total}` : 'Pages taiyar ho rahe hain'}</div>
+          </div>
+        </div>
+      ) : null}
+
+      {shareFallback ? (
+        <div className="pdf-overlay">
+          <div className="pdf-box">
+            <div className="pdf-title">PDF taiyar hai ✅</div>
+            <div className="pdf-actions">
+              <button
+                className="pdf-btn"
+                onClick={async () => {
+                  const b = shareFallback
+                  setShareFallback(null)
+                  try { await deliverPdf(b) } catch (e) { /* user closed the sheet */ }
+                }}
+              ><ShareIcon /> Share karo</button>
+              <button className="pdf-btn ghost" onClick={() => setShareFallback(null)}>Band karo</button>
+            </div>
           </div>
         </div>
       ) : null}
