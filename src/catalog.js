@@ -1937,11 +1937,11 @@ const CATALOG = [
       ]
      },
      {
-      "name": "Thesis Paper",
+      "name": "Graph Paper Sheet",
       "code": "GS",
       "size": "27\u00d721 cm",
       "tag": null,
-      "col": null,
+      "col": "SHEETS",
       "rows": [
        {
         "label": "100 Sheets",
@@ -2079,57 +2079,12 @@ const CATALOG = [
     "title": "Thisis Papers",
     "families": [
      {
-      "name": "Thesis Paper",
-      "code": "PP",
+      "name": "Thisis Paper",
+      "code": "TA/TAS/TC",
       "size": "28\u00d722 cm",
       "tag": null,
-      "col": null,
+      "col": "SHEETS",
       "rows": [
-       {
-        "label": "14 SHEET",
-        "mrp": 17,
-        "dp": "6.03",
-        "pkt": "",
-        "crt": 600,
-        "bld": "",
-        "id": 11079
-       },
-       {
-        "label": "25 SHEET",
-        "mrp": 36,
-        "dp": "18.22",
-        "pkt": 12,
-        "crt": 240,
-        "bld": "",
-        "id": 11072
-       },
-       {
-        "label": "50 SHEET",
-        "mrp": 62,
-        "dp": "31.37",
-        "pkt": 12,
-        "crt": 120,
-        "bld": "",
-        "id": 11075
-       },
-       {
-        "label": "480 SHET",
-        "mrp": 453,
-        "dp": "226.50",
-        "pkt": 18,
-        "crt": "",
-        "bld": 480,
-        "id": 11044
-       },
-       {
-        "label": "100 SHEET",
-        "mrp": 101,
-        "dp": "50.30",
-        "pkt": 100,
-        "crt": "",
-        "bld": 100,
-        "id": 11043
-       },
        {
         "label": "70 SHEET",
         "mrp": 40,
@@ -2158,7 +2113,7 @@ const CATALOG = [
         "id": 11066
        },
        {
-        "label": "70 SHEET",
+        "label": "70 SHEET (SPECIAL)",
         "mrp": 55,
         "dp": "27.46",
         "pkt": "",
@@ -2167,13 +2122,128 @@ const CATALOG = [
         "id": 11037
        },
        {
-        "label": "90 SHEET",
+        "label": "90 SHEET (SPECIAL)",
         "mrp": 72,
         "dp": "35.78",
         "pkt": "",
         "crt": 200,
         "bld": "",
         "id": 11030
+       }
+      ]
+     },
+     {
+      "name": "Project Paper (Set)",
+      "code": "PP",
+      "size": "28\u00d722 cm",
+      "tag": null,
+      "col": "SHEETS",
+      "rows": [
+       {
+        "label": "14 SHEET",
+        "mrp": 17,
+        "dp": "6.03",
+        "pkt": "",
+        "crt": 600,
+        "bld": "",
+        "id": 11079
+       },
+       {
+        "label": "25 SHEET",
+        "mrp": 36,
+        "dp": "18.22",
+        "pkt": 12,
+        "crt": 240,
+        "bld": "",
+        "id": 11072
+       },
+       {
+        "label": "50 SHEET",
+        "mrp": 62,
+        "dp": "31.37",
+        "pkt": 12,
+        "crt": 120,
+        "bld": "",
+        "id": 11075
+       }
+      ]
+     },
+     {
+      "name": "Practical Paper",
+      "code": "PP",
+      "size": "28\u00d722 cm",
+      "tag": null,
+      "col": "SHEETS",
+      "rows": [
+       {
+        "label": "100 SHEET",
+        "mrp": 101,
+        "dp": "50.30",
+        "pkt": 100,
+        "crt": "",
+        "bld": 100,
+        "id": 11043
+       },
+       {
+        "label": "480 SHET",
+        "mrp": 453,
+        "dp": "226.50",
+        "pkt": 18,
+        "crt": "",
+        "bld": 480,
+        "id": 11044
+       }
+      ]
+     }
+    ],
+    "notes": null
+   },
+   {
+    "catNo": "S-9",
+    "title": "Answer Sheets",
+    "families": [
+     {
+      "name": "Demi Answer Sheet (Net Rate)",
+      "code": "D4PK/D4P",
+      "size": "34.6\u00d711 cm",
+      "tag": null,
+      "col": "PAGES",
+      "rows": [
+       {
+        "label": "4P",
+        "mrp": 1097,
+        "dp": "415.98",
+        "pkt": "",
+        "crt": "",
+        "bld": 8,
+        "id": 11524
+       },
+       {
+        "label": "8P",
+        "mrp": 1122,
+        "dp": "424.71",
+        "pkt": "",
+        "crt": "",
+        "bld": 8,
+        "id": 11528
+       },
+       {
+        "label": "12P",
+        "mrp": 1614,
+        "dp": "626.53",
+        "pkt": "",
+        "crt": "",
+        "bld": 6,
+        "id": 11530
+       },
+       {
+        "label": "16P",
+        "mrp": 2117,
+        "dp": "850.40",
+        "pkt": "",
+        "crt": "",
+        "bld": 6,
+        "id": 11532
        }
       ]
      }
@@ -2185,20 +2255,20 @@ const CATALOG = [
     "title": "Colour Papers",
     "families": [
      {
-      "name": "Thesis Paper",
+      "name": "A4 Colour Paper",
       "code": "A4CP",
       "size": null,
       "tag": null,
-      "col": null,
+      "col": "SHEETS",
       "rows": [
        {
-        "label": "100 SHEET",
-        "mrp": 200,
-        "dp": "74.80",
+        "label": "20 SHEET",
+        "mrp": 50,
+        "dp": "17.86",
         "pkt": 60,
         "crt": 100,
         "bld": "",
-        "id": 11057
+        "id": 11055
        },
        {
         "label": "50 SHEET",
@@ -2210,16 +2280,25 @@ const CATALOG = [
         "id": 11056
        },
        {
-        "label": "20 SHEET",
-        "mrp": 50,
-        "dp": "17.86",
+        "label": "100 SHEET",
+        "mrp": 200,
+        "dp": "74.80",
         "pkt": 60,
         "crt": 100,
         "bld": "",
-        "id": 11055
-       },
+        "id": 11057
+       }
+      ]
+     },
+     {
+      "name": "Craft Paper Sheet Big",
+      "code": "CP-B",
+      "size": null,
+      "tag": null,
+      "col": "SHEETS",
+      "rows": [
        {
-        "label": "20",
+        "label": "20 SHEET",
         "mrp": 45,
         "dp": "23.90",
         "pkt": 25,
@@ -2228,7 +2307,7 @@ const CATALOG = [
         "id": 11058
        },
        {
-        "label": "40",
+        "label": "40 SHEET",
         "mrp": 65,
         "dp": "34.90",
         "pkt": 25,
@@ -2237,7 +2316,7 @@ const CATALOG = [
         "id": 11000
        },
        {
-        "label": "50",
+        "label": "50 SHEET",
         "mrp": 80,
         "dp": "42.40",
         "pkt": 25,
@@ -2246,16 +2325,25 @@ const CATALOG = [
         "id": 11001
        },
        {
-        "label": "80",
+        "label": "80 SHEET",
         "mrp": 115,
         "dp": "64.97",
         "pkt": 25,
         "crt": 100,
         "bld": "",
         "id": 11002
-       },
+       }
+      ]
+     },
+     {
+      "name": "Craft Paper Sheet Small",
+      "code": "CP-S",
+      "size": null,
+      "tag": null,
+      "col": "SHEETS",
+      "rows": [
        {
-        "label": "20",
+        "label": "20 SHEET",
         "mrp": 10,
         "dp": "7.42",
         "pkt": 25,
@@ -2264,7 +2352,7 @@ const CATALOG = [
         "id": 11003
        },
        {
-        "label": "25",
+        "label": "25 SHEET",
         "mrp": 15,
         "dp": "8.67",
         "pkt": 25,
@@ -2305,51 +2393,6 @@ const CATALOG = [
         "crt": 600,
         "bld": "",
         "id": 6348
-       }
-      ]
-     },
-     {
-      "name": "Thesis Paper",
-      "code": "ASP/D",
-      "size": "34.6\u00d711 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "4P",
-        "mrp": 1097,
-        "dp": "415.98",
-        "pkt": "",
-        "crt": "",
-        "bld": 8,
-        "id": 11524
-       },
-       {
-        "label": "8P",
-        "mrp": 1122,
-        "dp": "424.71",
-        "pkt": "",
-        "crt": "",
-        "bld": 8,
-        "id": 11528
-       },
-       {
-        "label": "12P",
-        "mrp": 1614,
-        "dp": "626.53",
-        "pkt": "",
-        "crt": "",
-        "bld": 6,
-        "id": 11530
-       },
-       {
-        "label": "16P",
-        "mrp": 2117,
-        "dp": "850.40",
-        "pkt": "",
-        "crt": "",
-        "bld": 6,
-        "id": 11532
        }
       ]
      }
@@ -2598,69 +2641,6 @@ const CATALOG = [
     "catNo": "O-2",
     "title": "Record / Cobra / 4 Flap / Pad / Lace File",
     "families": [
-     {
-      "name": "Thesis Paper",
-      "code": "4F",
-      "size": "36\u00d726.5 cm",
-      "tag": null,
-      "col": null,
-      "rows": [
-       {
-        "label": "4F36",
-        "mrp": 54,
-        "dp": "23.11",
-        "pkt": 6,
-        "crt": 192,
-        "bld": "",
-        "id": 3
-       },
-       {
-        "label": "4F45",
-        "mrp": 61,
-        "dp": "25.71",
-        "pkt": 96,
-        "crt": 192,
-        "bld": "",
-        "id": 4
-       },
-       {
-        "label": "4F55",
-        "mrp": 63,
-        "dp": "26.97",
-        "pkt": 6,
-        "crt": 192,
-        "bld": "",
-        "id": 5
-       },
-       {
-        "label": "4F63",
-        "mrp": 69,
-        "dp": "28.70",
-        "pkt": 96,
-        "crt": 192,
-        "bld": "",
-        "id": 6
-       },
-       {
-        "label": "4FL45",
-        "mrp": 64,
-        "dp": "27.62",
-        "pkt": 6,
-        "crt": 192,
-        "bld": "",
-        "id": 303
-       },
-       {
-        "label": "4FL36",
-        "mrp": 58,
-        "dp": "25.02",
-        "pkt": 96,
-        "crt": 192,
-        "bld": "",
-        "id": 304
-       }
-      ]
-     },
      {
       "name": "Copy Ledger",
       "code": "CL",
@@ -3089,8 +3069,62 @@ const CATALOG = [
       "code": "4F",
       "size": "36\u00d726.5 cm",
       "tag": null,
-      "col": "ITEM",
+      "col": "CODE",
       "rows": [
+       {
+        "label": "4F36",
+        "mrp": 54,
+        "dp": "23.11",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 3
+       },
+       {
+        "label": "4F45",
+        "mrp": 61,
+        "dp": "25.71",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 4
+       },
+       {
+        "label": "4F55",
+        "mrp": 63,
+        "dp": "26.97",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 5
+       },
+       {
+        "label": "4F63",
+        "mrp": 69,
+        "dp": "28.70",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 6
+       },
+       {
+        "label": "4FL36",
+        "mrp": 58,
+        "dp": "25.02",
+        "pkt": 96,
+        "crt": 192,
+        "bld": "",
+        "id": 304
+       },
+       {
+        "label": "4FL45",
+        "mrp": 64,
+        "dp": "27.62",
+        "pkt": 6,
+        "crt": 192,
+        "bld": "",
+        "id": 303
+       },
        {
         "label": "SPECIAL CLOTH",
         "mrp": 74,
