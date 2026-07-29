@@ -41,6 +41,12 @@ async function tryFetch(url) {
 
 const norm = (s) => String(s == null ? '' : s).toUpperCase().replace(/\s+/g, '')
 
+// ERP image URL fields — blank/N/A become '' so callers can just truthy-check.
+function imgUrl(u) {
+  const s = String(u == null ? '' : u).trim()
+  return s && s.toUpperCase() !== 'N/A' && /^https?:\/\//i.test(s) ? s : ''
+}
+
 // "28-Jul-26" -> timestamp (0 if unparseable). Used to prefer the most
 // recently revised rate when a product's varieties disagree on DP.
 function effTime(s) {
@@ -81,6 +87,7 @@ export function buildIndex(records) {
       eff: effTime(r.NewEffective),
       name: String(r.ProductName || '').toUpperCase(),
       variety: variety && variety.toUpperCase() !== 'N/A' ? variety : '',
+      img: imgUrl(r.ImgUrl1), grpImg: imgUrl(r.GroupImgUrl), catImg: imgUrl(r.CatImgURL),
     }
 
     // exact ProductID index — one record per id, no ambiguity possible
@@ -216,12 +223,19 @@ export function applyLivePrices(catalog, index) {
       ...p,
       families: p.families.map((f) => {
         const famVarieties = new Set()
+        const imgVotes = new Map() // GroupImgUrl -> votes (family photo = majority)
+        let catImg = ''
         const lookupCode = CODE_ALIAS[f.name] || f.code
         let rows = f.rows.map((row) => {
           attempted++
           // saved ProductID = exact ERP record; fall back to code/page matching
           const live = (row.id && index.byId.get(Number(row.id))) ||
             resolveRow(index, lookupCode, row.label, f.name)
+          // family photo: product photo (ImgUrl1) first — GroupImgUrl files are
+          // not uploaded on the server yet (404) — then category photo fallback
+          const iv = live && (live.img || live.grpImg)
+          if (iv) imgVotes.set(iv, (imgVotes.get(iv) || 0) + 1)
+          if (live && live.catImg && !catImg) catImg = live.catImg
           // PL item jo ERP me nahi mila — dikhega par highlight ke saath
           if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++
@@ -252,12 +266,15 @@ export function applyLivePrices(catalog, index) {
           rows = rows.map((r) => (!r._live && r.crt !== '' && r.crt != null && (r.bld === '' || r.bld == null))
             ? { ...r, bld: r.crt, crt: '' } : r)
         }
+        let famImg = ''
+        for (const [u, n] of imgVotes) if (!famImg || n > imgVotes.get(famImg)) famImg = u
         return {
           ...f,
           // size: curated first, else the product catalogue (API has no size)
           size: f.size && f.size !== '—' ? f.size : catalogueSize(f.code),
           rows,
           rulling: sortVarieties([...famVarieties]).join(', '),
+          img: famImg || catImg || f.img || null,
         }
       }),
     })),
@@ -351,9 +368,11 @@ export function buildCatalogFromApi(records, curated) {
     const sub = (String(r.SubCat || '').trim()) || erpCat
     if (!rawTree.has(div)) rawTree.set(div, new Map())
     const subs = rawTree.get(div)
-    if (!subs.has(sub)) subs.set(sub, { sub, erpCat, codes: [], rows: new Map(), varieties: new Set() })
+    if (!subs.has(sub)) subs.set(sub, { sub, erpCat, codes: [], rows: new Map(), varieties: new Set(), imgs: new Map() })
     const fam = subs.get(sub)
     fam.codes.push(String(r.ProductCode || ''))
+    const gi = imgUrl(r.ImgUrl1) || imgUrl(r.GroupImgUrl) || imgUrl(r.CatImgURL)
+    if (gi) fam.imgs.set(gi, (fam.imgs.get(gi) || 0) + 1)
     // rulling / variety list for this family (N/A excluded)
     const variety = String(r.ProdVariety || '').trim()
     if (variety && variety.toUpperCase() !== 'N/A') fam.varieties.add(variety)
@@ -414,9 +433,10 @@ export function buildCatalogFromApi(records, curated) {
       const cat = catMap.get(catTitle)
       if (catOrder < cat.order) cat.order = catOrder
       if (catNotes && !cat.notes) cat.notes = catNotes
-      if (!cat.fams.has(mergeKey)) cat.fams.set(mergeKey, { name, code, size, tag, rowsMap: new Map(), varieties: new Set() })
+      if (!cat.fams.has(mergeKey)) cat.fams.set(mergeKey, { name, code, size, tag, rowsMap: new Map(), varieties: new Set(), imgs: new Map() })
       const dstFam = cat.fams.get(mergeKey)
       for (const v of fam.varieties) dstFam.varieties.add(v)
+      for (const [u, n] of fam.imgs) dstFam.imgs.set(u, (dstFam.imgs.get(u) || 0) + n)
       const dst = dstFam.rowsMap
       for (const [label, bucket] of fam.rows) {
         if (!dst.has(label)) dst.set(label, new Map())
@@ -433,11 +453,16 @@ export function buildCatalogFromApi(records, curated) {
     const pages = cats.map(([title, cat]) => {
       catNo++
       const families = [...cat.fams.values()]
-        .map((f) => ({
-          name: f.name, code: f.code, size: f.size || catalogueSize(f.code), tag: f.tag || null, col: null,
-          rulling: sortVarieties([...f.varieties]).join(', '),
-          rows: buildRows(f.rowsMap),
-        }))
+        .map((f) => {
+          let img = ''
+          for (const [u, n] of f.imgs) if (!img || n > f.imgs.get(img)) img = u
+          return {
+            name: f.name, code: f.code, size: f.size || catalogueSize(f.code), tag: f.tag || null, col: null,
+            rulling: sortVarieties([...f.varieties]).join(', '),
+            rows: buildRows(f.rowsMap),
+            img: img || null,
+          }
+        })
         .sort((a, b) => a.name.localeCompare(b.name))
       return { catNo: letter + '-' + catNo, title, families, notes: cat.notes || null }
     })

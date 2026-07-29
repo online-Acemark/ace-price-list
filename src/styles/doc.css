@@ -113,36 +113,40 @@
 /* ============================================================
    Cover page
    ============================================================ */
-.doc-cover { justify-content: flex-start; padding: 0; }
+.doc-cover { justify-content: flex-start; padding: 0; overflow: hidden; }
 .cover-top {
   position: relative; background: var(--ink); color: #fff;
   border-bottom: 4px solid var(--ace-cyan);
-  padding: 92px 56px 54px; overflow: hidden;
+  padding: 46px 56px 34px; overflow: hidden;
 }
 .cover-top::after {
   content: ''; position: absolute; right: -80px; top: -80px; width: 320px; height: 320px;
   border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(16,178,228,0.35), transparent 62%);
 }
-.cover-year { position: absolute; top: 40px; right: 56px; font-size: 15px; font-weight: 700; letter-spacing: 0.35em; color: rgba(255,255,255,0.55); }
-.cover-firm { font-size: 50px; font-weight: 800; letter-spacing: 0.01em; line-height: 1; }
+.cover-year { position: absolute; top: 28px; right: 56px; font-size: 14px; font-weight: 700; letter-spacing: 0.35em; color: rgba(255,255,255,0.55); }
+.cover-firm { font-size: 40px; font-weight: 800; letter-spacing: 0.01em; line-height: 1; }
 .cover-firm span { color: var(--ace-cyan); }
-.cover-rule { width: 64px; height: 4px; background: var(--ace-cyan); margin: 20px 0; border-radius: 2px; }
-.cover-tag { font-size: 22px; font-weight: 800; letter-spacing: 0.01em; }
-.cover-sub2 { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); margin-top: 8px; letter-spacing: 0.02em; }
-.cover-eff { display: inline-block; margin-top: 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(16,178,228,0.22); border: 1px solid rgba(16,178,228,0.55); padding: 6px 14px; border-radius: 999px; }
+.cover-rule { width: 64px; height: 4px; background: var(--ace-cyan); margin: 14px 0; border-radius: 2px; }
+.cover-tag { font-size: 19px; font-weight: 800; letter-spacing: 0.01em; }
+.cover-sub2 { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.8); margin-top: 6px; letter-spacing: 0.02em; }
+.cover-eff { display: inline-block; margin-top: 12px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #fff; background: rgba(16,178,228,0.22); border: 1px solid rgba(16,178,228,0.55); padding: 5px 12px; border-radius: 999px; }
 
-.cover-body { flex: 1; display: grid; grid-template-columns: 1.25fr 1fr; gap: 46px; padding: 46px 56px; align-content: start; }
-.cover-index-head { font-size: 10px; font-weight: 800; color: var(--ace-cyan); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 16px; }
-.cover-index-div { font-size: 10px; font-weight: 800; color: var(--ink); letter-spacing: 0.1em; text-transform: uppercase; margin: 18px 0 4px; }
+/* Contents: two compact columns so all categories fit on the cover sheet */
+.cover-body { flex: 1; min-height: 0; display: block; padding: 26px 56px 10px; overflow: hidden; }
+.cover-index { column-count: 2; column-gap: 44px; }
+.cover-index-head { font-size: 10px; font-weight: 800; color: var(--ace-cyan); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; column-span: all; }
+.cover-index-div { font-size: 9px; font-weight: 800; color: var(--ink); letter-spacing: 0.1em; text-transform: uppercase; margin: 12px 0 2px; break-after: avoid; }
 .cover-index-div:first-of-type { margin-top: 0; }
-.cover-index-row { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--hair); }
-.ci-no { font-size: 10px; font-weight: 800; color: var(--ace-cyan); width: 34px; flex: none; }
-.ci-title { font-size: 13px; font-weight: 600; color: var(--ink); white-space: nowrap; }
-.ci-dots { flex: 1; border-bottom: 1px dotted #C7CED4; }
-.ci-pg { font-size: 11px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
-.cover-legend p { font-size: 10.5px; color: var(--ink); line-height: 1.65; margin: 0 0 12px; }
+.cover-index-row { display: flex; align-items: baseline; gap: 7px; padding: 3.5px 0; border-bottom: 1px solid var(--hair); break-inside: avoid; }
+.ci-no { font-size: 9px; font-weight: 800; color: var(--ace-cyan); width: 28px; flex: none; }
+.ci-title { font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 230px; }
+.ci-dots { flex: 1; border-bottom: 1px dotted #C7CED4; min-width: 12px; }
+.ci-pg { font-size: 10px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.cover-legend { margin-top: 14px; background: var(--tint); border-left: 3px solid var(--ace-cyan); border-radius: 4px; padding: 10px 14px 4px; }
+.cover-legend .cover-index-head { margin-bottom: 6px; }
+.cover-legend p { font-size: 9.5px; color: var(--ink); line-height: 1.55; margin: 0 0 6px; }
 .cover-legend b { color: var(--ink); }
-.cover-foot { border-top: 1px solid var(--hair); padding: 16px 56px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; color: var(--ink-soft); letter-spacing: 0.03em; }
+.cover-foot { border-top: 1px solid var(--hair); padding: 12px 56px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; color: var(--ink-soft); letter-spacing: 0.03em; margin-top: auto; }
 
 /* ============================================================
    Order form

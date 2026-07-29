@@ -11,12 +11,21 @@ function MTag({ kind }) {
   return <span className={'mtag mtag-' + kind.replace(/\s/g, '')}>{kind}</span>
 }
 
-function MFamilyCard({ f }) {
+function MFamilyCard({ f, onImage }) {
   return (
     <div className="mfam">
       <div className="mfam-head">
-        <div className="mfam-name">{f.name} <MTag kind={f.tag} /></div>
-        <div className="mfam-meta">Code {f.code}{f.size && f.size !== '—' ? ' · ' + f.size : ''}</div>
+        <div className="mfam-head-text">
+          <div className="mfam-name">{f.name} <MTag kind={f.tag} /></div>
+          <div className="mfam-meta">Code {f.code}{f.size && f.size !== '—' ? ' · ' + f.size : ''}</div>
+        </div>
+        {f.img ? (
+          <img
+            className="mfam-img" src={f.img} alt={f.name} loading="lazy"
+            onClick={() => onImage && onImage(f)}
+            onError={(e) => { e.currentTarget.style.display = 'none' }}
+          />
+        ) : null}
       </div>
       <table>
         <thead><tr><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>PKT</th><th>CRT</th><th>BLD</th></tr></thead>
@@ -39,7 +48,7 @@ function MFamilyCard({ f }) {
   )
 }
 
-function MCategory({ page }) {
+function MCategory({ page, onImage }) {
   return (
     <section className="mcat" id={'cat-' + page.catNo} data-screen-label={page.catNo + ' ' + page.title}>
       <div className="mcat-band">
@@ -47,7 +56,7 @@ function MCategory({ page }) {
         <span className="mcat-title">{page.title}</span>
       </div>
       <div className="mcat-body">
-        {page.families.map((f, i) => <MFamilyCard key={i} f={f} />)}
+        {page.families.map((f, i) => <MFamilyCard key={i} f={f} onImage={onImage} />)}
         {page.notes ? (
           <div className="mcat-notes">{page.notes.map((n, i) => <div key={i}>• {n}</div>)}</div>
         ) : null}
@@ -68,6 +77,7 @@ export default function MobileView({ catalog }) {
   })
   const [query, setQuery] = React.useState('')
   const [activeCat, setActiveCat] = React.useState(null) // null = All
+  const [zoom, setZoom] = React.useState(null) // family whose photo is enlarged
   const div = catalog[divIdx]
   const q = query.trim().toLowerCase()
 
@@ -133,15 +143,22 @@ export default function MobileView({ catalog }) {
           {searchResults.map((r, i) => (
             <div key={i}>
               <div className="msr-cat">{r.cat}</div>
-              <MFamilyCard f={r.f} />
+              <MFamilyCard f={r.f} onImage={setZoom} />
             </div>
           ))}
         </div>
       ) : (
         <main>
-          {shownPages.map((p, i) => <MCategory key={i} page={p} />)}
+          {shownPages.map((p, i) => <MCategory key={i} page={p} onImage={setZoom} />)}
         </main>
       )}
+
+      {zoom ? (
+        <div className="mimg-overlay" onClick={() => setZoom(null)}>
+          <img src={zoom.img} alt={zoom.name} />
+          <div className="mimg-caption">{zoom.name} · Code {zoom.code}</div>
+        </div>
+      ) : null}
 
       <footer className="mfoot">
         <div className="mfoot-note">Rates are Dealer Price (DP) per piece · One rate for all parties · Subject to Raipur jurisdiction</div>
