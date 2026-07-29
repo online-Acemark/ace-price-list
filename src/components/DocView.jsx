@@ -372,7 +372,7 @@ function splitFamilies(families) {
   })
 }
 
-export default function DocView({ catalog }) {
+export default function DocView({ catalog, fullScale }) {
   const effective = catalog[0]?.effective
   const cats = React.useMemo(
     () => catalog.flatMap((d) => d.pages.map((p) => ({
@@ -399,7 +399,8 @@ export default function DocView({ catalog }) {
   }, [])
 
   return (
-    <div className="doc-stack" style={{ '--doc-scale': scale }}>
+    // fullScale: PDF capture needs the sheets at true A4 size, not phone-fit
+    <div className="doc-stack" style={{ '--doc-scale': fullScale ? 1 : scale }}>
       <CoverPage catalog={catalog} effective={effective} ranges={result?.ranges} total={result?.total} />
       {result?.pages.map((pg, i) => (
         <SheetPage key={i} page={pg} pageNo={i + 2} total={result.total} effective={effective} />

@@ -37,6 +37,42 @@ export default function App() {
     setTimeout(() => window.print(), 250)
   }, [])
 
+  // Build a real PDF from the A4 sheets and hand it to the phone's share
+  // sheet (WhatsApp etc.). Falls back to a normal download on desktop.
+  const [pdfProg, setPdfProg] = React.useState(null) // {done, total} | null
+  const sharePdf = React.useCallback(async () => {
+    if (pdfProg) return
+    setMenuOpen(false)
+    setView('doc')
+    setPdfProg({ done: 0, total: 0 })
+    try {
+      await new Promise((r) => setTimeout(r, 700)) // doc render + pagination
+      const [{ jsPDF }, h2c] = await Promise.all([import('jspdf'), import('html2canvas')])
+      const html2canvas = h2c.default
+      const pages = [...document.querySelectorAll('.doc-stack > .doc-page:not(.doc-measure)')]
+      if (!pages.length) throw new Error('A4 pages not ready')
+      const pdf = new jsPDF({ unit: 'mm', format: 'a4', compress: true })
+      for (let i = 0; i < pages.length; i++) {
+        const canvas = await html2canvas(pages[i], { scale: 1.6, useCORS: true, backgroundColor: '#ffffff', logging: false })
+        if (i) pdf.addPage()
+        pdf.addImage(canvas.toDataURL('image/jpeg', 0.82), 'JPEG', 0, 0, 210, 297)
+        setPdfProg({ done: i + 1, total: pages.length })
+      }
+      const name = 'ACEMARK Price List (C.G.) 01.08.2026.pdf'
+      const blob = pdf.output('blob')
+      const file = new File([blob], name, { type: 'application/pdf' })
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try { await navigator.share({ files: [file], title: 'ACEMARK Price List' }) } catch (e) { /* user closed share sheet */ }
+      } else {
+        pdf.save(name)
+      }
+    } catch (e) {
+      alert('PDF banane me dikkat aayi: ' + (e.message || e))
+    } finally {
+      setPdfProg(null)
+    }
+  }, [pdfProg])
+
   const load = React.useCallback(async () => {
     setSync((s) => ({ ...s, state: 'loading' }))
     // PL (School/Office/Corporate) items come from the price-list xlsx (CATALOG);
@@ -76,8 +112,18 @@ export default function App() {
   return (
     <>
       {view === 'doc'
-        ? <DocView catalog={catalog.filter((d) => DOC_DIVISIONS.includes(d.division))} />
+        ? <DocView catalog={catalog.filter((d) => DOC_DIVISIONS.includes(d.division))} fullScale={!!pdfProg} />
         : <MobileView catalog={catalog} />}
+
+      {pdfProg ? (
+        <div className="pdf-overlay">
+          <div className="pdf-box">
+            <div className="pdf-spin" />
+            <div className="pdf-title">PDF ban raha hai…</div>
+            <div className="pdf-sub">{pdfProg.total ? `Page ${pdfProg.done} / ${pdfProg.total}` : 'Pages taiyar ho rahe hain'}</div>
+          </div>
+        </div>
+      ) : null}
 
       {/* Floating controls — sits above the WhatsApp order button */}
       <div className="fab-wrap">
@@ -96,6 +142,9 @@ export default function App() {
             </button>
             <button className="fab-item" onClick={printDoc} title="In the dialog choose “Save as PDF”">
               <DownloadIcon /> Download PDF
+            </button>
+            <button className="fab-item" onClick={sharePdf} disabled={!!pdfProg}>
+              <ShareIcon /> {pdfProg ? 'PDF ban raha hai…' : 'Share PDF'}
             </button>
             <button className="fab-item" onClick={load} disabled={sync.state === 'loading'}>
               <RefreshIcon /> {sync.state === 'loading' ? 'Refreshing…' : 'Refresh data'}
@@ -135,4 +184,7 @@ const PrintIcon = () => (
 )
 const DownloadIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 3v10.6l3.3-3.3 1.4 1.4L12 17.4l-4.7-4.7 1.4-1.4L12 13.6V3h0zM5 19h14v2H5z"/></svg>
+)
+const ShareIcon = () => (
+  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M18 16.1c-.8 0-1.5.3-2 .8l-7.1-4.2c.1-.2.1-.5.1-.7s0-.5-.1-.7L16 7.2c.5.5 1.2.8 2 .8a3 3 0 1 0-3-3c0 .2 0 .5.1.7L8 9.8a3 3 0 1 0 0 4.4l7.1 4.2c-.1.2-.1.4-.1.6a3 3 0 1 0 3-2.9z"/></svg>
 )
