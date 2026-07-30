@@ -60,6 +60,7 @@ input, button, select { font-family: inherit; font-size: 13px; }
 .upbtn { background: var(--tint); border: 1px solid var(--hair); border-radius: 8px; padding: 7px 12px; cursor: pointer; font-size: 12.5px; font-weight: 600; }
 .linkbtn { background: none; border: none; color: var(--cyan); cursor: pointer; font-size: 12.5px; padding: 4px; }
 
+.itbl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .itbl { width: 100%; border-collapse: collapse; margin-top: 4px; }
 .itbl th { text-align: left; font-size: 10px; color: var(--soft); padding: 4px 6px; border-bottom: 1px solid var(--hair); }
 .itbl td { padding: 3px 4px; border-bottom: 1px solid var(--tint); }
@@ -74,7 +75,57 @@ input, button, select { font-family: inherit; font-size: 13px; }
 .savebtn:disabled { opacity: 0.45; cursor: default; }
 .msg { font-size: 12.5px; }
 
+/* ============================================================
+   Mobile (phone) — responsive layout
+   ============================================================ */
 @media (max-width: 760px) {
-  .anav { display: none; }
-  .grid2 { grid-template-columns: 1fr; }
+  /* top bar: brand + buttons upar, search puri width niche */
+  .abar { flex-wrap: wrap; gap: 8px 10px; padding: 10px 12px; }
+  .abrand { font-size: 15px; margin-right: auto; }
+  .asearch { order: 3; flex-basis: 100%; max-width: none; padding: 10px 12px; font-size: 16px; }
+
+  /* sidebar -> horizontal scroll wali category chips */
+  .abody { display: block; }
+  .anav {
+    position: static; width: auto; max-height: none;
+    display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    padding: 8px 10px; border-right: none; border-bottom: 1px solid var(--hair);
+  }
+  .anav button {
+    width: auto; flex: none; white-space: nowrap;
+    border: 1px solid var(--hair); border-radius: 999px; padding: 7px 12px; font-size: 12px;
+  }
+  .anav button.on { background: var(--cyan); border-color: var(--cyan); color: #fff; }
+  .anav button.on b, .anav button.on small { color: #fff; }
+  .anav button small { margin-left: 4px; }
+
+  .amain { padding: 10px; }
+
+  /* family card */
+  .fcard-head { padding: 12px; gap: 10px; }
+  .fcard-photo { width: 42px; height: 42px; }
+  .fcard-title b { font-size: 13.5px; }
+  .fcard-body { padding: 12px 10px; }
+
+  /* edit fields: ek column, bade touch targets, 16px = iOS zoom nahi hota */
+  .grid2 { grid-template-columns: 1fr; gap: 10px; }
+  .grid2 input { padding: 11px 12px; font-size: 16px; }
+
+  .fcard-row2 { gap: 12px; }
+  .photo-actions { margin-left: 0; width: 100%; }
+  .upbtn { padding: 10px 14px; }
+  .ticks label { padding: 6px 13px; font-size: 13px; }
+
+  /* items table: side-swipe scroll, columns kabhi na dabein */
+  .itbl { min-width: 660px; }
+  .itbl td input[type=text], .itbl td input:not([type]) { padding: 8px; font-size: 15px; min-width: 56px; }
+  .itbl input[type=checkbox] { width: 18px; height: 18px; }
+
+  .savebtn { width: 100%; padding: 13px; font-size: 15px; }
+  .fcard-save { flex-direction: column; align-items: stretch; }
+  .fcard-save .msg { text-align: center; }
+
+  /* login */
+  .login-box { width: 100%; max-width: 340px; margin: 0 16px; }
+  .login-box input { font-size: 16px; }
 }

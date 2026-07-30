@@ -187,6 +187,7 @@ function FamilyCard({ fam, items, onSaved }) {
             </span>
           </div>
 
+          <div className="itbl-wrap">
           <table className="itbl">
             <thead>
               <tr><th>Label</th><th>ERP ID</th><th>MRP*</th><th>DP*</th><th>PKT*</th><th>CRT*</th><th>BLD*</th><th>State</th><th>Show</th></tr>
@@ -207,6 +208,7 @@ function FamilyCard({ fam, items, onSaved }) {
               ))}
             </tbody>
           </table>
+          </div>
           <div className="fcard-note">* MRP/DP/PKT/CRT/BLD fallback hain — jab ERP me item na mile tab dikhte hain. Live rate hamesha ERP ID se aata hai.</div>
 
           <div className="fcard-save">

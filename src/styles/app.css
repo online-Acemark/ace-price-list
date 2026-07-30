@@ -73,6 +73,15 @@ html, body { background: #4a4f55; }
 .fab-item:hover { background: var(--light-grey); }
 .fab-item:disabled { opacity: 0.5; cursor: default; }
 
+/* access gate — bina sahi link-code ke */
+.gate-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--charcoal); padding: 20px; }
+.gate-box { background: #fff; border-radius: 16px; padding: 34px 30px; max-width: 380px; text-align: center; }
+.gate-brand { font-size: 22px; font-weight: 800; color: var(--charcoal); }
+.gate-brand span { color: var(--ace-cyan); }
+.gate-title { font-size: 15px; font-weight: 700; margin: 14px 0 6px; }
+.gate-box p { font-size: 13px; color: #6B7178; line-height: 1.6; margin: 6px 0; }
+.gate-contact { font-weight: 600; color: var(--charcoal) !important; }
+
 .app-loading, .app-error { color: #fff; text-align: center; padding: 80px 20px; font-size: 15px; }
 .app-error { color: #F0A020; }
 

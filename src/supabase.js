@@ -104,10 +104,17 @@ export function filterByState(catalog, state) {
     .filter((d) => d.pages.length)
 }
 
-// URL se state: ?state=OD ya #od -> OD, warna CG
+// Secret link codes — price list SIRF inhi links se khulti hai:
+//   <app-url>/?list=<code>
+// Bina/galat code ke access screen dikhti hai. Kisi client se link leak ho
+// jaye to yahan code badal do — purana link turant band, naya bhej do.
+export const LIST_CODES = {
+  'cg-7kq4m92xa': 'CG',
+  'od-3prn86wz1': 'OD',
+}
+
+// URL ke ?list= code se state; galat/koi code nahi -> null (no access)
 export function stateFromUrl() {
-  const s = (new URLSearchParams(window.location.search).get('state') || '').toUpperCase()
-  if (s === 'OD' || s === 'CG') return s
-  if (/#od\b/i.test(window.location.hash)) return 'OD'
-  return 'CG'
+  const code = (new URLSearchParams(window.location.search).get('list') || '').trim().toLowerCase()
+  return LIST_CODES[code] || null
 }

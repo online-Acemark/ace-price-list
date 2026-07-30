@@ -13,12 +13,29 @@ const PL_DIVISIONS = ['School Stationery', 'Office Stationery']
 // Divisions shown in the A4 print document (Others stays mobile-only)
 const DOC_DIVISIONS = ['School Stationery', 'Office Stationery', 'Corporate']
 
-// Price list state from URL: ?state=OD -> Odisha list, default CG.
-// Do links: <app-url>/?state=CG  aur  <app-url>/?state=OD
+// Price list sirf secret link-code se khulti hai: <app-url>/?list=<code>
+// (codes: src/supabase.js -> LIST_CODES). Galat/bina code -> access screen.
 const STATE = stateFromUrl()
 const REGION_LABEL = STATE === 'OD' ? 'OD' : 'C.G.'
 
-export default function App() {
+function AccessGate() {
+  return (
+    <div className="gate-wrap">
+      <div className="gate-box">
+        <div className="gate-brand">ACEMARK <span>STATIONERS</span></div>
+        <div className="gate-title">Price list dekhne ke liye link chahiye</div>
+        <p>Ye link adhura ya purana hai. Sahi link ke liye hume contact kariye:</p>
+        <p className="gate-contact">📞 8349997670 · ✉️ billing@acemark.in</p>
+      </div>
+    </div>
+  )
+}
+
+export default function Root() {
+  return STATE ? <App /> : <AccessGate />
+}
+
+function App() {
   const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'mobile')
   const [catalog, setCatalog] = React.useState(CATALOG)
   const [sync, setSync] = React.useState({ state: 'loading', matched: 0, attempted: 0, at: null })
