@@ -79,7 +79,10 @@ export async function fetchSupabaseCatalog() {
   }))
 }
 
-// CG/OD filter: family/row jinke states me ye state ho wahi rahe.
+// CG/OD filter: family ka tick master hai — family pe state ho to wo dikhegi.
+// Rows ka tick sirf fine-tuning hai: agar family ke KISI row pe wo state hai
+// to sirf wahi rows aayengi; kisi pe nahi hai to POORI family aayegi (matlab
+// employee ne sirf family-level tick lagaya tha — usko blank mat karo).
 // (bundled catalog.js me states nahi hote — wo sab jagah dikhta hai)
 export function filterByState(catalog, state) {
   return catalog
@@ -90,10 +93,10 @@ export function filterByState(catalog, state) {
           ...p,
           families: p.families
             .filter((f) => !f.states || f.states.includes(state))
-            .map((f) => ({
-              ...f,
-              rows: f.rows.filter((r) => !r.states || r.states.includes(state)),
-            }))
+            .map((f) => {
+              const rows = f.rows.filter((r) => !r.states || r.states.includes(state))
+              return { ...f, rows: rows.length ? rows : f.rows }
+            })
             .filter((f) => f.rows.length),
         }))
         .filter((p) => p.families.length),

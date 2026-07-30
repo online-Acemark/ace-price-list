@@ -78,6 +78,7 @@ function FamilyTable({ f }) {
 }
 
 function NotesBlock({ notes }) {
+  if (!notes || !notes.length) return null
   return (
     <div className="cat-notes">
       <b>NOTES</b>
@@ -100,10 +101,11 @@ function CatBand({ cat, cont }) {
 }
 
 // A category's column blocks in order: its family tables, then its notes box.
+// Guarded: catalog update ke beech ek render me purani measurement naye (chhote)
+// category pe lag sakti hai — out-of-range index kabhi crash na kare.
 function blockEl(cat, idx) {
-  return idx < cat.families.length
-    ? <FamilyTable f={cat.families[idx]} />
-    : <NotesBlock notes={cat.notes} />
+  if (idx < cat.families.length) return <FamilyTable f={cat.families[idx]} />
+  return <NotesBlock notes={cat.notes} />
 }
 
 /* ------------------------------------------------------------------
@@ -171,7 +173,11 @@ function paginate(cats, m) {
   const ranges = {}
 
   for (const cat of cats) {
-    const blocks = m.blocks[cat.catNo] || []
+    // Clamp to the category's real block count: measures ek render purane ho
+    // sakte hain (catalog abhi-abhi badla) — extra indices render me crash
+    // karate the. Agla measure pass turant sahi layout bana deta hai.
+    const expected = cat.families.length + (cat.notes ? 1 : 0)
+    const blocks = (m.blocks[cat.catNo] || []).slice(0, expected)
     const bandH = m.bands[cat.catNo] || 0
     let i = 0
     let cont = false

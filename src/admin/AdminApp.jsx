@@ -80,9 +80,21 @@ function FamilyCard({ fam, items, onSaved }) {
         photo_url: f.photo_url || null,
       }).eq('id', f.id)
       if (error) throw error
-      for (const r of rows) {
+      // family ka CG/OD badla to uske SAB items pe wahi laga do — warna
+      // family aur items ke tick alag ho ke list blank ho jati hai
+      let outRows = rows
+      const famStatesChanged = JSON.stringify(f.states) !== JSON.stringify(fam.states)
+      if (famStatesChanged) {
+        const { error: e3 } = await sb.from('pl_items').update({ states: f.states }).eq('family_id', f.id)
+        if (e3) throw e3
+        outRows = rows.map((r) => ({ ...r, states: f.states }))
+        setRows(outRows)
+      }
+      for (const r of outRows) {
         const orig = items.find((x) => x.id === r.id)
-        if (JSON.stringify(orig) === JSON.stringify(r)) continue
+        const sameOther = orig && JSON.stringify({ ...orig, states: null }) === JSON.stringify({ ...r, states: null })
+        const sameStates = orig && (famStatesChanged || JSON.stringify(orig.states) === JSON.stringify(r.states))
+        if (sameOther && sameStates) continue
         const { error: e2 } = await sb.from('pl_items').update({
           label: r.label, states: r.states, visible: r.visible,
           mrp: r.mrp, dp: r.dp, pkt: r.pkt, crt: r.crt, bld: r.bld,
@@ -90,7 +102,7 @@ function FamilyCard({ fam, items, onSaved }) {
         if (e2) throw e2
       }
       setMsg('✅ Saved')
-      onSaved({ f, rows })
+      onSaved({ f, rows: outRows })
     } catch (e) {
       setMsg('❌ ' + (e.message || e))
     } finally {
