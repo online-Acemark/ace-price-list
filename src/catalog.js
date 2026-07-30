@@ -2203,7 +2203,7 @@ const CATALOG = [
     "title": "Answer Sheets",
     "families": [
      {
-      "name": "Demi Answer Sheet (Net Rate)",
+      "name": "Demi Answer Sheet (Net Rate Per 1000 pc)",
       "code": "D4PK/D4P",
       "size": "34.6\u00d711 cm",
       "tag": null,

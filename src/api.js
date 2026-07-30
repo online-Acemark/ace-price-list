@@ -291,13 +291,17 @@ export function applyLivePrices(catalog, index) {
         }
         let famImg = ''
         for (const [u, n] of imgVotes) if (!famImg || n > imgVotes.get(famImg)) famImg = u
+        // rulling: admin override jeet-ta hai ('HIDE' = line hatao), warna ERP auto
+        const autoRulling = sortVarieties([...famVarieties]).join(', ')
+        const rulling = f._rulesOv === 'HIDE' ? '' : (f._rulesOv || autoRulling)
         return {
           ...f,
           // size: curated first, else the product catalogue (API has no size)
           size: f.size && f.size !== '—' ? f.size : catalogueSize(f.code),
           rows,
-          rulling: sortVarieties([...famVarieties]).join(', '),
-          img: famImg || catImg || f.img || null,
+          rulling,
+          // photo: admin ki upload sabse upar, phir ERP group/category photo
+          img: (f._photoOverride && f.img) || famImg || catImg || f.img || null,
         }
       }),
     })),

@@ -1,6 +1,7 @@
 import React from 'react'
 import CATALOG from './catalog.js'
 import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices } from './api.js'
+import { fetchSupabaseCatalog, filterByState, stateFromUrl } from './supabase.js'
 import DocView from './components/DocView.jsx'
 import MobileView from './components/MobileView.jsx'
 import './styles/doc.css'
@@ -11,6 +12,11 @@ import './styles/mobile.css'
 const PL_DIVISIONS = ['School Stationery', 'Office Stationery']
 // Divisions shown in the A4 print document (Others stays mobile-only)
 const DOC_DIVISIONS = ['School Stationery', 'Office Stationery', 'Corporate']
+
+// Price list state from URL: ?state=OD -> Odisha list, default CG.
+// Do links: <app-url>/?state=CG  aur  <app-url>/?state=OD
+const STATE = stateFromUrl()
+const REGION_LABEL = STATE === 'OD' ? 'OD' : 'C.G.'
 
 export default function App() {
   const [view, setView] = React.useState(() => localStorage.getItem('ace-view') || 'mobile')
@@ -23,7 +29,7 @@ export default function App() {
   // Nice filename when the browser saves the print as PDF
   React.useEffect(() => {
     const orig = document.title
-    const before = () => { document.title = 'ACEMARK Price List (C.G.) 01.08.2026' }
+    const before = () => { document.title = `ACEMARK Price List (${REGION_LABEL}) 01.08.2026` }
     const after = () => { document.title = orig }
     window.addEventListener('beforeprint', before)
     window.addEventListener('afterprint', after)
@@ -102,7 +108,7 @@ export default function App() {
     return () => clearTimeout(t)
   }, [sync.state, buildPdf])
 
-  const PDF_NAME = 'ACEMARK Price List (C.G.) 01.08.2026.pdf'
+  const PDF_NAME = `ACEMARK Price List (${REGION_LABEL}) 01.08.2026.pdf`
   const deliverPdf = React.useCallback(async (blob) => {
     const file = new File([blob], PDF_NAME, { type: 'application/pdf' })
     if (navigator.canShare && navigator.canShare({ files: [file] })) {
@@ -142,21 +148,27 @@ export default function App() {
 
   const load = React.useCallback(async () => {
     setSync((s) => ({ ...s, state: 'loading' }))
-    // PL (School/Office/Corporate) items come from the price-list xlsx (CATALOG);
-    // every load overlays the ERP's latest MRP/DP/PKT/CRT/BLD on top of them.
+    // Base catalog: Supabase (admin panel yahi edit karta hai) — na mile to
+    // bundled catalog.js. Upar ERP ke live MRP/DP/PKT/CRT/BLD chadhte hain.
     // Rows the ERP can't match keep their saved price and get highlighted.
-    const plRows = CATALOG.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)
+    let base = CATALOG
+    let source = 'saved'
+    try {
+      base = filterByState(await fetchSupabaseCatalog(), STATE)
+      source = 'db'
+    } catch (e) { /* Supabase unreachable — bundled catalog chalega */ }
+    const plRows = base.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)
     try {
       const records = await fetchPriceList()
       const index = buildIndex(records)
-      const { catalog: merged, matched, attempted } = applyLivePrices(CATALOG, index)
+      const { catalog: merged, matched, attempted } = applyLivePrices(base, index)
       // "Others" isn't in the price list — pull it live from the ERP (mobile only).
       const others = buildCatalogFromApi(records, CATALOG).filter((d) => d.division === 'Others')
       setCatalog([...merged, ...others])
-      setSync({ state: 'live', divisions: merged.length + others.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
+      setSync({ state: 'live', source, divisions: merged.length + others.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
     } catch (e) {
-      setCatalog(CATALOG) // ERP unreachable — price list still shows (xlsx)
-      setSync({ state: 'offline', divisions: CATALOG.length, rows: plRows, at: null, error: String(e.message || e) })
+      setCatalog(base) // ERP unreachable — price list still shows
+      setSync({ state: 'offline', source, divisions: base.length, rows: plRows, at: null, error: String(e.message || e) })
     }
   }, [])
 
@@ -171,7 +183,7 @@ export default function App() {
   const syncText = {
     loading: 'Loading from ERP…',
     live: sync.at
-      ? `Live · ${sync.divisions} divisions · ${sync.rows} rows${sync.unmatched ? ` · ${sync.unmatched} not in ERP` : ''} · ${timeStr(sync.at)}`
+      ? `Live · ${STATE} · ${sync.divisions} divisions · ${sync.rows} rows${sync.unmatched ? ` · ${sync.unmatched} not in ERP` : ''} · ${timeStr(sync.at)}`
       : 'Live',
     offline: 'Offline — saved catalogue',
   }[sync.state]
@@ -179,13 +191,13 @@ export default function App() {
   return (
     <>
       {view === 'doc'
-        ? <DocView catalog={docCatalog} />
+        ? <DocView catalog={docCatalog} region={REGION_LABEL} />
         : <MobileView catalog={catalog} />}
 
       {/* hidden true-size A4 render the PDF is captured from */}
       {capturing ? (
         <div className="pdf-capture" aria-hidden="true">
-          <DocView catalog={docCatalog} fullScale />
+          <DocView catalog={docCatalog} region={REGION_LABEL} fullScale />
         </div>
       ) : null}
 

@@ -25,7 +25,7 @@ const COLS_PAD_TOP = 18                       // band → tables
 const CHUNK_PAD_BOTTOM = 14                   // after a category's tables
 const BODY_PAD_BOTTOM = 8                     // breathing room above footer
 
-function DocHeader({ pageNo, total, division, effective }) {
+function DocHeader({ pageNo, total, division, effective, region = 'C.G.' }) {
   return (
     <div className="doc-header">
       <div>
@@ -33,7 +33,7 @@ function DocHeader({ pageNo, total, division, effective }) {
         <div className="doc-sub">{FIRM.address} · {FIRM.phones} · {FIRM.web}</div>
       </div>
       <div style={{ textAlign: 'right' }}>
-        <div className="doc-div">Price List (C.G.) · {division}</div>
+        <div className="doc-div">Price List ({region}) · {division}</div>
         <div className="doc-sub">Effective {effective}{pageNo ? ' · Page ' + pageNo + (total ? ' of ' + total : '') : ''}</div>
       </div>
     </div>
@@ -240,11 +240,11 @@ function paginate(cats, m) {
   return { pages, ranges, total: pages.length + 1 }
 }
 
-function SheetPage({ page, pageNo, total, effective }) {
+function SheetPage({ page, pageNo, total, effective, region }) {
   const divisions = [...new Set(page.items.map((it) => it.cat.division))].join(' · ')
   return (
     <div className="doc-page doc-sheet" data-screen-label={'Page ' + pageNo}>
-      <DocHeader pageNo={pageNo} total={total} division={divisions} effective={effective} />
+      <DocHeader pageNo={pageNo} total={total} division={divisions} effective={effective} region={region} />
       <div className="sheet-body">
         {page.items.map((it, i) => (
           <section className="cat-section" key={i}>
@@ -266,7 +266,7 @@ function pgLabel(r) {
   return r.from === r.to ? String(r.from) : r.from + '–' + r.to
 }
 
-function CoverPage({ catalog, effective, ranges, total }) {
+function CoverPage({ catalog, effective, ranges, total, region = 'C.G.' }) {
   const groups = catalog.map((d) => ({
     division: d.division,
     cats: d.pages.map((p) => ({ no: p.catNo, title: p.title, pg: pgLabel(ranges?.[p.catNo]) })),
@@ -277,7 +277,7 @@ function CoverPage({ catalog, effective, ranges, total }) {
         <div className="cover-year">2026</div>
         <div className="cover-firm">{FIRM.name} <span>{FIRM.name2}</span></div>
         <div className="cover-rule" />
-        <div className="cover-tag">Price List · Chhattisgarh (C.G.)</div>
+        <div className="cover-tag">Price List · {region === 'OD' ? 'Odisha (OD)' : 'Chhattisgarh (C.G.)'}</div>
         <div className="cover-sub2">{catalog.map((d) => d.division).join(' + ')}</div>
         <div className="cover-eff">Effective {effective}{total ? ' · ' + total + ' pages' : ''}</div>
       </div>
@@ -372,7 +372,7 @@ function splitFamilies(families) {
   })
 }
 
-export default function DocView({ catalog, fullScale }) {
+export default function DocView({ catalog, fullScale, region = 'C.G.' }) {
   const effective = catalog[0]?.effective
   const cats = React.useMemo(
     () => catalog.flatMap((d) => d.pages.map((p) => ({
@@ -401,9 +401,9 @@ export default function DocView({ catalog, fullScale }) {
   return (
     // fullScale: PDF capture needs the sheets at true A4 size, not phone-fit
     <div className="doc-stack" style={{ '--doc-scale': fullScale ? 1 : scale }}>
-      <CoverPage catalog={catalog} effective={effective} ranges={result?.ranges} total={result?.total} />
+      <CoverPage catalog={catalog} effective={effective} ranges={result?.ranges} total={result?.total} region={region} />
       {result?.pages.map((pg, i) => (
-        <SheetPage key={i} page={pg} pageNo={i + 2} total={result.total} effective={effective} />
+        <SheetPage key={i} page={pg} pageNo={i + 2} total={result.total} effective={effective} region={region} />
       ))}
       <MeasureLayer cats={cats} effective={effective} onMeasured={onMeasured} />
     </div>
