@@ -170,6 +170,26 @@ function nameOk(tokens, hitName) {
   return false
 }
 
+// Union of every variety in the row's page-group (all rullings the family
+// comes in) — the byId exact match sees only its own record's single variety,
+// so the "Rulling:" line is collected from the whole group instead.
+export function collectVarieties(index, familyCode, rowLabel, familyName, into) {
+  const rawLabel = String(rowLabel)
+  const isPageLike = !/\d\s*[×x]\s*\d/i.test(rawLabel)
+  const pageMatch = isPageLike ? rawLabel.match(/\d+/) : null
+  const page = pageMatch ? String(Number(pageMatch[0])) : null
+  if (!page) return
+  const tokens = famTokens(familyName)
+  for (const c of String(familyCode || '').split('/').map(norm).filter(Boolean)) {
+    const bucket = index.groups.get(c + '|' + page)
+    if (!bucket) continue
+    for (const v of bucket.values()) {
+      if (!nameOk(tokens, v.name)) continue
+      for (const vy of v.varieties) into.add(vy)
+    }
+  }
+}
+
 export function resolveRow(index, familyCode, rowLabel, familyName) {
   const label = norm(rowLabel)
   const codes = String(familyCode || '').split('/').map(norm).filter(Boolean)
@@ -240,6 +260,9 @@ export function applyLivePrices(catalog, index) {
           if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++
           if (live.varieties) for (const v of live.varieties) famVarieties.add(v)
+          // full rulling list: every variety the page-group carries, not just
+          // the exact matched record's own variety
+          collectVarieties(index, lookupCode, row.label, f.name, famVarieties)
           // DP trend vs the ERP's previous dealer price (OldDP)
           const trend = live.odp && Math.abs(live.dp - live.odp) > 0.005
             ? (live.dp > live.odp ? 'up' : 'down') : null
