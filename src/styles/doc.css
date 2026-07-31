@@ -56,6 +56,14 @@
   padding: 9px 34px; display: flex; justify-content: space-between; align-items: center;
   font-size: 7.5px; letter-spacing: 0.03em; color: var(--ink-soft); background: #fff;
 }
+.doc-foot-right { display: flex; align-items: center; gap: 14px; }
+/* bada page number — bottom right */
+.pg-num {
+  font-size: 17px; font-weight: 800; color: #fff; background: var(--ink);
+  min-width: 30px; height: 24px; padding: 0 8px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
+}
 
 /* ---- category band ---- */
 .cat-band {
@@ -77,7 +85,11 @@
 .fam { break-inside: avoid; margin-bottom: 18px; }
 .fam-head { border-left: 3px solid var(--ace-cyan); padding-left: 9px; margin-bottom: 6px; }
 .fam-name { font-size: 12.5px; font-weight: 800; color: var(--ink); line-height: 1.22; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.fam-sn { color: var(--ace-cyan); font-weight: 800; }
 .fam-meta { font-size: 9px; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.02em; }
+/* serial number column — patli si */
+.fam th.sn, .fam td.sn { width: 22px; text-align: center; padding-left: 3px; padding-right: 3px; }
+.fam td.sn { color: var(--ink-soft); font-size: 8.5px; font-weight: 600; }
 
 .fam table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; border: 1px solid var(--ink); }
 .fam th {

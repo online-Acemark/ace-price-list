@@ -40,11 +40,14 @@ function DocHeader({ pageNo, total, division, effective, region = 'C.G.' }) {
   )
 }
 
-function DocFooter() {
+function DocFooter({ pageNo }) {
   return (
     <div className="doc-footer">
       <span>Rates are Dealer Price (DP) per piece · One rate for all parties · Subject to Raipur jurisdiction · Sizes are approximate</span>
-      <span>{FIRM.mail}</span>
+      <span className="doc-foot-right">
+        {FIRM.mail}
+        {pageNo ? <b className="pg-num">{pageNo}</b> : null}
+      </span>
     </div>
   )
 }
@@ -53,14 +56,15 @@ function FamilyTable({ f }) {
   return (
     <div className="fam">
       <div className="fam-head">
-        <div className="fam-name">{f.name}{f.tag ? <span className={'tag tag-' + f.tag.replace(/\s/g, '')}>{f.tag}</span> : null}</div>
-        <div className="fam-meta">Code {f.code}{f.size && f.size !== '—' ? ' · ' + f.size : ''}</div>
+        <div className="fam-name">{f._sn ? <span className="fam-sn">{f._sn}.</span> : null}{f.name}{f.tag ? <span className={'tag tag-' + f.tag.replace(/\s/g, '')}>{f.tag}</span> : null}</div>
+        {f.size && f.size !== '—' ? <div className="fam-meta">{f.size}</div> : null}
       </div>
       <table>
-        <thead><tr><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>PKT</th><th>CRT</th><th>BLD</th></tr></thead>
+        <thead><tr><th className="sn">#</th><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>PKT</th><th>CRT</th><th>BLD</th></tr></thead>
         <tbody>
           {f.rows.map((r, j) => (
             <tr key={j}>
+              <td className="sn">{r._sn ?? j + 1}</td>
               <td className="l">{r.label}</td>
               <td className={r.mrp === '' ? 'pending' : ''}>{r.mrp}</td>
               <td
@@ -142,7 +146,7 @@ function MeasureLayer({ cats, effective, onMeasured }) {
   return (
     <div ref={ref} className="doc-page doc-measure" aria-hidden="true">
       <DocHeader pageNo={9} total={99} division="Measure" effective={effective} />
-      <div style={{ position: 'relative', height: 40 }}><DocFooter /></div>
+      <div style={{ position: 'relative', height: 40 }}><DocFooter pageNo={99} /></div>
       {cats.map((cat) => {
         const n = cat.families.length + (cat.notes ? 1 : 0)
         return (
@@ -262,7 +266,7 @@ function SheetPage({ page, pageNo, total, effective, region }) {
           </section>
         ))}
       </div>
-      <DocFooter />
+      <DocFooter pageNo={pageNo} />
     </div>
   )
 }
@@ -364,11 +368,16 @@ function OrderFormPage({ pageNo, effective }) {
 
 // A table longer than one A4 column would get clipped — split big families
 // into balanced chunks of ≤ MAX_FAM_ROWS rows ("(contd.)" carries the name on).
+// Lambi label wali rows (corporate ke product-naam) 2 line me wrap hoti hain,
+// isliye unki chunk-limit chhoti rakhi jati hai.
 const MAX_FAM_ROWS = 22
+const MAX_FAM_ROWS_LONG = 15
 function splitFamilies(families) {
   return families.flatMap((f) => {
-    if (f.rows.length <= MAX_FAM_ROWS + 2) return [f]
-    const parts = Math.ceil(f.rows.length / MAX_FAM_ROWS)
+    const longLabels = f.rows.some((r) => String(r.label || '').length > 26)
+    const maxRows = longLabels ? MAX_FAM_ROWS_LONG : MAX_FAM_ROWS
+    if (f.rows.length <= maxRows + 2) return [f]
+    const parts = Math.ceil(f.rows.length / maxRows)
     const per = Math.ceil(f.rows.length / parts)
     return Array.from({ length: parts }, (_, i) => ({
       ...f,
@@ -384,7 +393,13 @@ export default function DocView({ catalog, fullScale, region = 'C.G.' }) {
     () => catalog.flatMap((d) => d.pages.map((p) => ({
       ...p,
       division: d.division,
-      families: splitFamilies(p.families),
+      // serial numbers: family ka number category ke andar, item ka number
+      // family ke andar — split hone par bhi wahi numbers chalte rehte hain
+      families: splitFamilies(p.families.map((f, fi) => ({
+        ...f,
+        _sn: fi + 1,
+        rows: f.rows.map((r, ri) => ({ ...r, _sn: ri + 1 })),
+      }))),
     }))),
     [catalog]
   )
