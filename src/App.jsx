@@ -171,7 +171,7 @@ function App() {
     let base = CATALOG
     let source = 'saved'
     try {
-      base = filterByState(await fetchSupabaseCatalog(), STATE)
+      base = filterByState(await fetchSupabaseCatalog(STATE), STATE)
       source = 'db'
     } catch (e) { /* Supabase unreachable — bundled catalog chalega */ }
     const plRows = base.reduce((n, d) => n + d.pages.reduce((m, p) => m + p.families.reduce((k, f) => k + f.rows.length, 0), 0), 0)

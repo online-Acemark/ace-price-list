@@ -245,12 +245,14 @@ export function applyLivePrices(catalog, index) {
         const famVarieties = new Set()
         const imgVotes = new Map() // GroupImgUrl -> votes (family photo = majority)
         let catImg = ''
-        const lookupCode = CODE_ALIAS[f.name] || f.code
+        // OD me display-naam alag ho sakta hai — ERP matching asli naam se
+        const matchName = f._matchName || f.name
+        const lookupCode = CODE_ALIAS[matchName] || f.code
         let rows = f.rows.map((row) => {
           attempted++
           // saved ProductID = exact ERP record; fall back to code/page matching
           const live = (row.id && index.byId.get(Number(row.id))) ||
-            resolveRow(index, lookupCode, row.label, f.name)
+            resolveRow(index, lookupCode, row.label, matchName)
           // family photo: product photo (ImgUrl1) first — GroupImgUrl files are
           // not uploaded on the server yet (404) — then category photo fallback
           const iv = live && (live.img || live.grpImg)
@@ -262,7 +264,7 @@ export function applyLivePrices(catalog, index) {
           if (live.varieties) for (const v of live.varieties) famVarieties.add(v)
           // full rulling list: every variety the page-group carries, not just
           // the exact matched record's own variety
-          collectVarieties(index, lookupCode, row.label, f.name, famVarieties)
+          collectVarieties(index, lookupCode, row.label, matchName, famVarieties)
           // DP trend vs the ERP's previous dealer price (OldDP)
           const trend = live.odp && Math.abs(live.dp - live.odp) > 0.005
             ? (live.dp > live.odp ? 'up' : 'down') : null
@@ -291,9 +293,12 @@ export function applyLivePrices(catalog, index) {
         }
         let famImg = ''
         for (const [u, n] of imgVotes) if (!famImg || n > imgVotes.get(famImg)) famImg = u
-        // rulling: admin override jeet-ta hai ('HIDE' = line hatao), warna ERP auto
+        // rulling: admin override jeet-ta hai — 'HIDE' / 'NA' / 'N/A' likho to
+        // line poori hat jati hai, koi aur text ho to wahi dikhta hai, khali
+        // ho to ERP se auto
         const autoRulling = sortVarieties([...famVarieties]).join(', ')
-        const rulling = f._rulesOv === 'HIDE' ? '' : (f._rulesOv || autoRulling)
+        const ov = String(f._rulesOv || '').trim()
+        const rulling = /^(hide|na|n\/a)$/i.test(ov) ? '' : (ov || autoRulling)
         return {
           ...f,
           // size: curated first, else the product catalogue (API has no size)

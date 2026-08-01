@@ -10,7 +10,7 @@ export function TrendArrow({ row }) {
 const FIRM = {
   name: 'ACEMARK', name2: 'STATIONERS',
   address: 'Infront of CSIDC Commercial Complex, Mahadev Ghat Road, Raipura Chowk, Raipur (C.G.)',
-  phones: '8349997670 · 8349997676 · 8349997674', web: 'www.acemark.in', mail: 'billing@acemark.in',
+  phones: '8349997670 · 8349997676 · 8349997674', web: 'www.acemark.in', mail: 'social@acemark.in',
 }
 
 // A4 sheet geometry (px @96dpi: 210×297mm). Categories are packed into real
@@ -43,7 +43,7 @@ function DocHeader({ pageNo, total, division, effective, region = 'C.G.' }) {
 function DocFooter({ pageNo }) {
   return (
     <div className="doc-footer">
-      <span>Rates are Dealer Price (DP) per piece · One rate for all parties · Subject to Raipur jurisdiction · Sizes are approximate</span>
+      <span>Rates are Dealer Price (DP) per piece · Subject to Raipur jurisdiction · Sizes are approximate</span>
       <span className="doc-foot-right">
         {FIRM.mail}
         {pageNo ? <b className="pg-num">{pageNo}</b> : null}

@@ -22,7 +22,10 @@ const DIV_ORDER = ['School Stationery', 'Office Stationery', 'Corporate', 'Other
 
 // pl_* tables -> catalog.js jaisa shape:
 // [{ division, effective, pages: [{catNo,title,notes,families:[{name,code,...,rows}]}] }]
-export async function fetchSupabaseCatalog() {
+// state = 'OD' ho to family apni od_category_id (agar set hai) ke andar
+// group hoti hai — CG me hamesha apni asli category me. Family ek hi hai,
+// bas OD list me alag jagah dikh sakti hai.
+export async function fetchSupabaseCatalog(state) {
   const [cats, fams, items] = await Promise.all([
     rest('pl_categories?select=*&visible=eq.true&order=sort_order'),
     rest('pl_families?select=*&visible=eq.true&order=sort_order'),
@@ -47,16 +50,26 @@ export async function fetchSupabaseCatalog() {
 
   const famsByCat = new Map()
   for (const f of fams) {
-    if (!famsByCat.has(f.category_id)) famsByCat.set(f.category_id, [])
-    famsByCat.get(f.category_id).push({
-      name: f.name, code: f.code, size: f.size, tag: f.tag, col: f.col,
+    // OD list me od_category_id jeet-ta hai (set ho to); CG me hamesha asli
+    const useOd = state === 'OD' && f.od_category_id
+    const catId = useOd ? f.od_category_id : f.category_id
+    const sortKey = useOd ? (f.od_sort_order ?? 1000 + f.sort_order) : f.sort_order
+    if (!famsByCat.has(catId)) famsByCat.set(catId, [])
+    famsByCat.get(catId).push({
+      // OD me alag naam ho sakta hai; ERP-matching hamesha asli naam se hoti
+      // hai (_matchName) taaki rulling/fallback na bigde
+      name: (state === 'OD' && f.od_name) ? f.od_name : f.name,
+      _matchName: f.name,
+      code: f.code, size: f.size, tag: f.tag, col: f.col,
       rows: itemsByFam.get(f.id) || [],
       states: f.states || ['CG', 'OD'],
       img: f.photo_url || null,          // admin ki upload photo — API photo se upar
       _photoOverride: !!f.photo_url,
       _rulesOv: f.rulling_override || null,
+      _sortKey: sortKey,
     })
   }
+  for (const list of famsByCat.values()) list.sort((a, b) => a._sortKey - b._sortKey)
 
   const byDiv = new Map()
   for (const c of cats) {

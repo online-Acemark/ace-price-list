@@ -31,6 +31,7 @@ input, button, select { font-family: inherit; font-size: 13px; }
 .anav button.on { background: var(--tint); font-weight: 700; }
 .amain { flex: 1; padding: 14px 18px; }
 .aload { text-align: center; color: var(--soft); padding: 30px; }
+.amain-actions { display: flex; justify-content: flex-end; margin-bottom: 10px; }
 
 /* ---- family card ---- */
 .fcard { background: #fff; border: 1px solid var(--hair); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
@@ -70,6 +71,46 @@ input, button, select { font-family: inherit; font-size: 13px; }
 .itbl .ticks label { margin-right: 4px; padding: 2px 7px; font-size: 10.5px; }
 
 .fcard-note { font-size: 10.5px; color: var(--soft); margin-top: 8px; }
+
+/* item add/delete */
+.addrow {
+  margin-top: 8px; background: var(--tint); border: 1px dashed #9fc7d8; color: var(--cyan);
+  border-radius: 8px; padding: 8px 14px; font-size: 12.5px; font-weight: 700; cursor: pointer;
+}
+.addrow:hover { background: #E8F6FC; }
+.rowdel { border: none; background: none; color: #C62828; cursor: pointer; font-size: 13px; padding: 2px 6px; }
+.itbl tr.new-row td { background: #F0FAF3; }
+
+/* family up/down order buttons */
+.fcard-updown { display: flex; flex-direction: column; gap: 2px; }
+.fcard-updown button {
+  border: 1px solid var(--hair); background: #fff; border-radius: 5px;
+  font-size: 9px; padding: 2px 7px; cursor: pointer; color: var(--soft); line-height: 1.2;
+}
+.fcard-updown button:hover { background: var(--tint); color: var(--ink); }
+
+/* ---- category manager ---- */
+.catmgr { max-width: 860px; }
+.catmgr-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.catmgr-head h3 { margin: 0; font-size: 17px; }
+.catmgr-note { font-size: 12px; color: var(--soft); margin-bottom: 14px; }
+.catmgr-div { font-size: 11px; font-weight: 800; color: var(--cyan); letter-spacing: 0.08em; text-transform: uppercase; margin: 18px 0 6px; }
+.catrow {
+  display: flex; align-items: center; gap: 8px; background: #fff;
+  border: 1px solid var(--hair); border-radius: 10px; padding: 8px 10px; margin-bottom: 6px; flex-wrap: wrap;
+}
+.catrow-move { display: flex; flex-direction: column; gap: 2px; }
+.catrow-move button { border: 1px solid var(--hair); background: #fff; border-radius: 5px; font-size: 8px; padding: 1px 6px; cursor: pointer; color: var(--soft); }
+.catrow-move button:hover { background: var(--tint); color: var(--ink); }
+.catrow input, .catrow select { padding: 8px 9px; border: 1px solid #CBD3DA; border-radius: 7px; font-size: 13px; }
+.catrow-no { width: 62px; font-weight: 800; color: var(--cyan); text-align: center; }
+.catrow-title { flex: 1; min-width: 140px; }
+.catrow-div { width: 165px; }
+.catrow-count { font-size: 11px; color: var(--soft); white-space: nowrap; }
+.savebtn.sm { padding: 8px 14px; font-size: 12.5px; }
+.linkbtn.danger { color: #C62828; }
+.linkbtn.danger:disabled { color: #bbb; cursor: not-allowed; }
+.abar .tab.on { background: rgba(16,178,228,0.25); border-radius: 7px; }
 .fcard-save { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
 .savebtn { background: var(--cyan); color: #fff; font-weight: 700; border: none; border-radius: 8px; padding: 10px 22px; cursor: pointer; }
 .savebtn:disabled { opacity: 0.45; cursor: default; }
@@ -128,4 +169,10 @@ input, button, select { font-family: inherit; font-size: 13px; }
   /* login */
   .login-box { width: 100%; max-width: 340px; margin: 0 16px; }
   .login-box input { font-size: 16px; }
+
+  /* category manager mobile */
+  .catrow { gap: 6px; }
+  .catrow-title { flex-basis: 100%; order: 5; }
+  .catrow input, .catrow select { font-size: 16px; }
+  .catrow-div { width: 150px; }
 }
