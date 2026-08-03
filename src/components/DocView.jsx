@@ -349,6 +349,17 @@ function paginate(cats, m) {
         fillCol(1, colAvail)
       }
 
+      // KHALI heading guard: band ke neeche ek bhi table nahi lagi to ye
+      // section chhodo hi mat — category seedha agle page se shuru hogi
+      // (warna page-end pe akeli heading + agle page pe duplicate heading aati thi)
+      const placedAny = section.cols[0].length || section.cols[1].length
+      if (!placedAny && i < blocks.length) {
+        if (cur.sections.length) { newPage(); continue }
+        // fresh page pe bhi kuch nahi laga (bahut bada unsplittable block) — force
+        pushE(0, { idx: i, from: from || undefined }, restH(partsArr[i] || null, from, blocks[i]))
+        i++; from = 0
+      }
+
       cur.sections.push(section)
       mark(cat)
       used += sectionExtra + bandH + COLS_PAD_TOP + Math.max(h[0], h[1]) + CHUNK_PAD_BOTTOM
