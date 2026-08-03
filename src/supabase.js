@@ -61,6 +61,9 @@ export async function fetchSupabaseCatalog(state) {
       name: (state === 'OD' && f.od_name) ? f.od_name : f.name,
       _matchName: f.name,
       code: f.code, size: f.size, tag: f.tag, col: f.col,
+      pktHeader: f.pkt_header || null,   // PKT column ka custom naam (jaise BOX)
+      pktValue: f.pkt_value || null,     // sab rows me fixed value (jaise 500)
+      availItems: f.available_items || null, // table ke neeche "Available:" list
       rows: itemsByFam.get(f.id) || [],
       states: f.states || ['CG', 'OD'],
       img: f.photo_url || null,          // admin ki upload photo — API photo se upar

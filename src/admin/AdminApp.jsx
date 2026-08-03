@@ -226,6 +226,9 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
         od_category_id: f.od_category_id || null,
         od_sort_order: f.od_category_id ? (f.od_sort_order ?? null) : null,
         od_name: (f.od_name || '').trim() || null,
+        pkt_header: (f.pkt_header || '').trim() || null,
+        pkt_value: (f.pkt_value || '').trim() || null,
+        available_items: (f.available_items || '').trim() || null,
       }
       // category badli ho to target ke aakhir me jodo
       if (f.category_id !== fam.category_id) {
@@ -335,9 +338,15 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
             <label>Size <input value={f.size || ''} onChange={(e) => set('size', e.target.value)} placeholder="24×18 cm" /></label>
             <label>Column header <input value={f.col || ''} onChange={(e) => set('col', e.target.value)} placeholder="PAGES / QUIRE / ITEM / CODE" /></label>
             <label>Tag <input value={f.tag || ''} onChange={(e) => set('tag', e.target.value)} placeholder="NEW / RATE REVISED" /></label>
+            <label>PKT column ka naam <input value={f.pkt_header || ''} onChange={(e) => set('pkt_header', e.target.value)} placeholder="khali = PKT · ya likho BOX" /></label>
+            <label>PKT fixed value <input value={f.pkt_value || ''} onChange={(e) => set('pkt_value', e.target.value)} placeholder="khali = ERP se · ya likho 500" /></label>
             <label>Rulling override
               <input value={f.rulling_override || ''} onChange={(e) => set('rulling_override', e.target.value)}
                 placeholder="khali = ERP auto · HIDE ya NA = line hatao · ya apna text" />
+            </label>
+            <label>Available items list (table ke neeche dikhegi)
+              <input value={f.available_items || ''} onChange={(e) => set('available_items', e.target.value)}
+                placeholder="khali = kuch nahi · jaise: Black, Blue, Green, Pink" />
             </label>
             <label>Category (move karne ke liye badlo)
               <select value={f.category_id} onChange={(e) => set('category_id', Number(e.target.value))}>
@@ -508,7 +517,7 @@ export default function AdminApp() {
   return (
     <div className="admin">
       <header className="abar">
-        <div className="abrand">ACEMARK <span>Admin</span></div>
+        <div className="abrand"><img className="abrand-logo" src="/Ace_Logo_bg.png" alt="ACE" />ACEMARK <span>Admin</span></div>
         <button className={'linkbtn tab' + (view === 'cats' ? ' on' : '')} onClick={() => setView(view === 'cats' ? 'fams' : 'cats')}>
           {view === 'cats' ? '← Items' : '🗂 Categories'}
         </button>

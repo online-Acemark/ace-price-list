@@ -28,7 +28,7 @@ function MFamilyCard({ f, onImage }) {
         ) : null}
       </div>
       <table>
-        <thead><tr><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>PKT</th><th>CRT</th><th>BLD</th></tr></thead>
+        <thead><tr><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>{f.pktHeader || 'PKT'}</th><th>CRT</th><th>BLD</th></tr></thead>
         <tbody>
           {f.rows.map((r, j) => (
             <tr key={j}>
@@ -38,12 +38,20 @@ function MFamilyCard({ f, onImage }) {
                 className={'dp' + (r.dp === '' ? ' pending' : '') + (r._unmatched ? ' nomatch' : '')}
                 title={r._unmatched ? 'ERP me nahi mila — saved price' : undefined}
               >{r.dp}<TrendArrow row={r} /></td>
-              <td>{r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
+              <td>{f.pktValue != null && f.pktValue !== '' ? f.pktValue : r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
             </tr>
           ))}
         </tbody>
       </table>
       {f.rulling ? <div className="mfam-rulling"><b>Rulling:</b> {f.rulling}</div> : null}
+      {f.availItems ? (
+        <div className="mfam-avail">
+          <b>Available in</b>
+          {String(f.availItems).split(/[,\n]/).map((s) => s.trim()).filter(Boolean).map((s, i) => (
+            <div key={i}>• {s}</div>
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -105,7 +113,7 @@ export default function MobileView({ catalog }) {
     <div className="mwrap">
       <header className="mhead">
         <div className="mhead-top">
-          <div className="mhead-firm">ACEMARK <span>STATIONERS</span></div>
+          <div className="mhead-firm"><img className="mhead-logo" src="/Ace_Logo_bg.png" alt="ACE" />ACEMARK <span>STATIONERS</span></div>
           <div className="mhead-eff">Effective {div.effective}</div>
         </div>
         <div className="mtabs">

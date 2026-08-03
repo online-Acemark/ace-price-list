@@ -2,8 +2,9 @@
 .mwrap { max-width: 480px; margin: 0 auto; min-height: 100vh; background: #fff; font-family: var(--font-sans); padding-bottom: 90px; position: relative; }
 
 .mhead { position: sticky; top: 0; z-index: 30; background: var(--charcoal); border-bottom: 3px solid var(--ace-cyan); }
-.mhead-top { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 16px 8px; }
-.mhead-firm { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: 0.02em; }
+.mhead-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px 8px; }
+.mhead-firm { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
+.mhead-logo { height: 26px; width: auto; background: #fff; border-radius: 6px; padding: 2px 6px; }
 .mhead-firm span { color: var(--ace-cyan); }
 .mhead-eff { font-size: 10px; color: rgba(255,255,255,0.7); }
 .mtabs { display: flex; gap: 6px; padding: 0 16px 10px; }
@@ -87,6 +88,13 @@
   padding: 7px 12px; background: #FAFBFC; border-top: 1px solid var(--border-subtle);
 }
 .mfam-rulling b { color: var(--charcoal); font-weight: 700; }
+
+/* "Available in" — vertical list, heading family-name jitna bada */
+.mfam-avail {
+  font-size: 12.5px; font-weight: 700; color: var(--charcoal); line-height: 1.65;
+  padding: 8px 12px; background: #FAFBFC; border-top: 1px solid var(--border-subtle);
+}
+.mfam-avail b { display: block; font-size: 13px; font-weight: 700; color: var(--ace-cyan); margin-bottom: 3px; }
 
 .mtag { display: inline-block; font-size: 8.5px; font-weight: 700; letter-spacing: 0.07em; padding: 2px 6px; border-radius: 3px; white-space: nowrap; }
 .mtag-NEW { background: var(--ace-cyan); color: #fff; }

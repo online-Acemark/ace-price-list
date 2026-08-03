@@ -19,8 +19,9 @@ input, button, select { font-family: inherit; font-size: 13px; }
 
 /* ---- frame ---- */
 .abar { position: sticky; top: 0; z-index: 10; background: var(--ink); color: #fff; display: flex; gap: 14px; align-items: center; padding: 10px 16px; }
-.abrand { font-weight: 800; font-size: 16px; }
+.abrand { font-weight: 800; font-size: 16px; display: flex; align-items: center; gap: 8px; }
 .abrand span { color: var(--cyan); }
+.abrand-logo { height: 24px; width: auto; background: #fff; border-radius: 6px; padding: 2px 6px; }
 .asearch { flex: 1; max-width: 420px; padding: 8px 12px; border-radius: 8px; border: none; }
 .abar .linkbtn { color: #fff; opacity: 0.85; }
 .abody { display: flex; min-height: calc(100vh - 52px); }

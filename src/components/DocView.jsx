@@ -28,12 +28,13 @@ const BODY_PAD_BOTTOM = 8                     // breathing room above footer
 function DocHeader({ pageNo, total, division, effective, region = 'C.G.' }) {
   return (
     <div className="doc-header">
-      <div>
+      {/* slim: address/phone sirf cover pe — har page pe repeat nahi */}
+      <div className="doc-head-left">
+        <img className="doc-logo" src="/Ace_Logo_bg.png" alt="ACE" />
         <div className="doc-firm">{FIRM.name} <span>{FIRM.name2}</span></div>
-        <div className="doc-sub">{FIRM.address} · {FIRM.phones} · {FIRM.web}</div>
       </div>
       <div style={{ textAlign: 'right' }}>
-        <div className="doc-div">Price List ({region}) · {division}</div>
+        <div className="doc-div">Price List ({region})</div>
         <div className="doc-sub">Effective {effective}{pageNo ? ' · Page ' + pageNo + (total ? ' of ' + total : '') : ''}</div>
       </div>
     </div>
@@ -60,7 +61,7 @@ function FamilyTable({ f, cont, showRull = true }) {
         {f.size && f.size !== '—' ? <div className="fam-meta">{f.size}</div> : null}
       </div>
       <table>
-        <thead><tr><th className="sn">#</th><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>PKT</th><th>CRT</th><th>BLD</th></tr></thead>
+        <thead><tr><th className="sn">#</th><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>{f.pktHeader || 'PKT'}</th><th>CRT</th><th>BLD</th></tr></thead>
         <tbody>
           {f.rows.map((r, j) => (
             <tr key={j}>
@@ -71,12 +72,20 @@ function FamilyTable({ f, cont, showRull = true }) {
                 className={'dp' + (r.dp === '' ? ' pending' : '') + (r._unmatched ? ' nomatch' : '')}
                 title={r._unmatched ? 'ERP me nahi mila — saved price' : undefined}
               >{r.dp}<TrendArrow row={r} /></td>
-              <td>{r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
+              <td>{f.pktValue != null && f.pktValue !== '' ? f.pktValue : r.pkt}</td><td>{r.crt}</td><td>{r.bld ?? ''}</td>
             </tr>
           ))}
         </tbody>
       </table>
       {showRull && f.rulling ? <div className="fam-rulling"><b>Rulling:</b> {f.rulling}</div> : null}
+      {showRull && f.availItems ? (
+        <div className="fam-avail">
+          <b>Available in</b>
+          {String(f.availItems).split(/[,\n]/).map((s) => s.trim()).filter(Boolean).map((s, i) => (
+            <div key={i} className="fam-avail-item">• {s}</div>
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -91,16 +100,17 @@ function NotesBlock({ notes }) {
   )
 }
 
-// Column-width category banner — pages continuous 2-column flow me packed
-// hain, isliye band bhi column ke andar hi baithta hai (koi blank strip nahi).
-function ColBand({ cat, cont }) {
+// Full-width category band — neeche uski families 2 columns me aati hain,
+// isliye clear rehta hai kaunsi tables kis category ki hain.
+function CatBandFull({ cat, cont }) {
   return (
-    <div className={'colband' + (cont ? ' contd' : '')}>
-      <div className="colband-no">{cat.catNo}</div>
-      <div className="colband-text">
-        <div className="colband-kicker">{cat.division.toUpperCase()}</div>
-        <div className="colband-title">{cat.title}{cont ? <span className="colband-contd"> · contd.</span> : null}</div>
+    <div className="cat-band">
+      <div className="cat-no-badge">{cat.catNo}</div>
+      <div className="cat-band-text">
+        <div className="cat-kicker">{cat.division.toUpperCase()}</div>
+        <div className="cat-title">{cat.title}{cont ? <span className="cat-contd"> · contd.</span> : null}</div>
       </div>
+      <div className="cat-count">{cont ? 'continued' : cat.families.length + (cat.families.length === 1 ? ' range' : ' ranges')}</div>
     </div>
   )
 }
@@ -154,7 +164,8 @@ function MeasureLayer({ cats, effective, onMeasured }) {
       if (fam) {
         const rows = [...fam.querySelectorAll('tbody tr')].map((tr) => tr.getBoundingClientRect().height)
         const rull = fam.querySelector('.fam-rulling')
-        const rullH = rull ? rull.getBoundingClientRect().height : 0
+        const avail = fam.querySelector('.fam-avail')
+        const rullH = (rull ? rull.getBoundingClientRect().height : 0) + (avail ? avail.getBoundingClientRect().height : 0)
         part = { headH: H(el) - rows.reduce((a, b) => a + b, 0) - rullH, rows, rullH }
       }
       ;(m.parts[el.dataset.cat] = m.parts[el.dataset.cat] || []).push(part)
@@ -170,7 +181,7 @@ function MeasureLayer({ cats, effective, onMeasured }) {
         const n = cat.families.length + (cat.notes ? 1 : 0)
         return (
           <React.Fragment key={cat.catNo}>
-            <div data-m="band" data-cat={cat.catNo} style={{ width: COL_W }}><ColBand cat={cat} /></div>
+            <div data-m="band" data-cat={cat.catNo}><CatBandFull cat={cat} /></div>
             {Array.from({ length: n }, (_, i) => (
               <div key={i} data-m="block" data-cat={cat.catNo} style={{ width: COL_W }}>{blockEl(cat, { idx: i })}</div>
             ))}
@@ -185,20 +196,19 @@ function sumH(blocks, idxs) {
   return idxs.reduce((s, idx, j) => s + blocks[idx] + (j ? FAM_GAP : 0), 0)
 }
 
-// Pack categories into fixed A4 pages — CONTINUOUS 2-column flow with
-// ROW-LEVEL table splitting: column me jitni rows fit hoti hain utni wahi
-// rukti hain, baaki agle column/page me "(contd.)" table me chalti hain —
-// isliye page me blank jagah nahi ke barabar bachti hai.
-// Cover is page 1; sheets start at 2. Returns { pages, ranges, total }.
+// Pack categories into fixed A4 pages — har category ek SECTION hai:
+// full-width band + uske neeche uski families 2 balanced columns me.
+// Tables row-level pe split hoti hain, isliye dono columns lagbhag barabar
+// bharte hain aur blank jagah kam se kam bachti hai.
 const SPLIT_SAFETY = 5   // measured row-heights ke rounding ka cushion
 const MIN_PART_ROWS = 3  // ek hisse me kam se kam itni rows
+const SECTION_EXTRA = 4  // .cat-section + .cat-section band ka margin-top
 
 function paginate(cats, m) {
-  const bodyH = PAGE_H - m.headerH - m.footerH
-  const colCap = bodyH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM
+  const bodyH = PAGE_H - m.headerH - m.footerH - BODY_PAD_BOTTOM
   const pages = []
-  let cur = null, colIdx = 0, colH = [0, 0]
-  const newPage = () => { cur = { cols: [[], []] }; pages.push(cur); colIdx = 0; colH = [0, 0] }
+  let cur = null, used = 0
+  const newPage = () => { cur = { sections: [] }; pages.push(cur); used = 0 }
   newPage()
   const ranges = {}
   const mark = (cat) => {
@@ -206,12 +216,7 @@ function paginate(cats, m) {
     if (!ranges[cat.catNo]) ranges[cat.catNo] = { from: pg, to: pg }
     ranges[cat.catNo].to = pg
   }
-  const gapFor = () => (cur.cols[colIdx].length ? FAM_GAP : 0)
-  const availNow = () => colCap - colH[colIdx] - gapFor()
-  const push = (entry, h) => { colH[colIdx] += gapFor() + h; cur.cols[colIdx].push(entry) }
-  const advance = () => { if (colIdx === 0) colIdx = 1; else newPage() }
-
-  // family ke bache hue hisse (from se aakhir tak) ki height
+  // family ke bache hisse (from se aakhir tak) ki height
   const restH = (part, from, whole) => {
     if (!part) return whole
     let h = part.headH + SPLIT_SAFETY + part.rullH
@@ -220,81 +225,155 @@ function paginate(cats, m) {
   }
 
   for (const cat of cats) {
-    // stale-measure guard: naya catalog + purani heights kabhi crash na kare
+    // stale-measure guard
     const expected = cat.families.length + (cat.notes ? 1 : 0)
     const blocks = (m.blocks[cat.catNo] || []).slice(0, expected)
-    const partsArr = (m.parts && m.parts[cat.catNo]) || []
+    const partsArr = ((m.parts && m.parts[cat.catNo]) || []).slice(0, expected)
     const bandH = m.bands[cat.catNo] || 0
 
-    // banner + pehle table ka kuch hissa ek saath aana chahiye
-    const p0 = partsArr[0]
-    const firstBit = blocks.length
-      ? (p0 ? p0.headH + SPLIT_SAFETY + (p0.rows[0] || 0) * Math.min(MIN_PART_ROWS, p0.rows.length) : blocks[0])
-      : 0
-    let guard = 0
-    while (bandH + FAM_GAP + firstBit > availNow() && cur.cols[colIdx].length && guard++ < 4) advance()
-    push({ cat, band: true, cont: false }, bandH)
-    mark(cat)
+    let i = 0, from = 0, cont = false
+    do {
+      const sectionExtra = cur.sections.length ? SECTION_EXTRA : 0
+      const colAvail = bodyH - used - sectionExtra - bandH - COLS_PAD_TOP - CHUNK_PAD_BOTTOM
 
-    let i = 0, from = 0
-    while (i < blocks.length) {
-      const part = partsArr[i] || null
-      const need = restH(part, from, blocks[i])
+      // band + pehle block ka chhota hissa bhi na aa sake to fresh page
+      const p0 = partsArr[i]
+      const minFirst = i >= blocks.length ? 0
+        : p0 ? p0.headH + SPLIT_SAFETY + p0.rows.slice(from, from + Math.min(2, p0.rows.length - from)).reduce((a, b) => a + b, 0)
+        : blocks[i]
+      if (colAvail < minFirst && cur.sections.length) { newPage(); continue }
 
-      if (need <= availNow() || (!cur.cols[colIdx].length && (!part || part.rows.length - from <= MIN_PART_ROWS))) {
-        // poora (bacha hua) block yahin aa jata hai — ya oversized unsplittable
-        push({ cat, idx: i, from: from || undefined }, need)
-        mark(cat)
-        i++; from = 0
-        continue
-      }
+      // is category ka bacha hua total content
+      let restTotal = 0
+      for (let b = i; b < blocks.length; b++) restTotal += restH(partsArr[b], b === i ? from : 0, blocks[b]) + FAM_GAP
 
-      // row-level split try karo
-      let placed = false
-      if (part && part.rows.length - from > MIN_PART_ROWS) {
-        const avail = availNow()
-        let acc = part.headH + SPLIT_SAFETY
-        let k = 0
-        while (from + k < part.rows.length && acc + part.rows[from + k] <= avail) {
-          acc += part.rows[from + k]; k++
+      const section = { cat, cont, cols: [[], []] }
+      const h = [0, 0]
+      const pushE = (c, e, hh) => { h[c] += (section.cols[c].length ? FAM_GAP : 0) + hh; section.cols[c].push(e) }
+
+      const fillCol = (c, cap) => {
+        while (i < blocks.length) {
+          const part = partsArr[i]
+          const rest = restH(part, from, blocks[i])
+          const gap = section.cols[c].length ? FAM_GAP : 0
+          if (h[c] + gap + rest <= cap) {
+            pushE(c, { idx: i, from: from || undefined }, rest)
+            i++; from = 0
+            continue
+          }
+          // oversized + akela column khali: force (safety, aage split hoga hi)
+          if (part && part.rows.length - from > MIN_PART_ROWS) {
+            const avail = cap - h[c] - gap
+            let acc = part.headH + SPLIT_SAFETY, k = 0
+            while (from + k < part.rows.length && acc + part.rows[from + k] <= avail) { acc += part.rows[from + k]; k++ }
+            if (part.rows.length - (from + k) < MIN_PART_ROWS) k = Math.min(k, part.rows.length - from - MIN_PART_ROWS)
+            if (k >= MIN_PART_ROWS) { pushE(c, { idx: i, from: from || undefined, to: from + k }, acc); from += k }
+          } else if (!section.cols[c].length && h[c] === 0 && rest > cap) {
+            pushE(c, { idx: i, from: from || undefined }, rest)
+            i++; from = 0
+            continue
+          }
+          break
         }
-        // dono taraf kam se kam MIN_PART_ROWS rahen
-        if (part.rows.length - (from + k) < MIN_PART_ROWS) k = part.rows.length - from - MIN_PART_ROWS
-        if (k >= MIN_PART_ROWS) {
-          push({ cat, idx: i, from: from || undefined, to: from + k }, acc)
-          mark(cat)
-          from += k
-          placed = true
-        }
       }
 
-      const toNewPage = colIdx === 1
-      advance()
-      if (toNewPage) push({ cat, band: true, cont: true }, bandH) // naye page pe "contd." banner
-      if (!placed && !cur.cols[colIdx].length && restH(part, from, blocks[i]) > colCap) {
-        // ekdam hi bada unsplittable block — akela push (safety)
-        push({ cat, idx: i, from: from || undefined }, colCap)
-        mark(cat)
-        i++; from = 0
+      // aakhri section ke liye: har mumkin split (block/row boundary) scan
+      // karke wo chuno jisme dono columns sabse barabar bharen
+      const balancedFill = () => {
+        const n = blocks.length
+        if (i >= n) return true
+        const start = i, from0 = from
+        const wholeH = [], fromArr = []
+        for (let b = start; b < n; b++) {
+          const fb = b === start ? from0 : 0
+          fromArr[b] = fb
+          wholeH[b] = restH(partsArr[b] || null, fb, blocks[b])
+        }
+        const suffix = []
+        suffix[n] = 0
+        for (let b = n - 1; b >= start; b--) suffix[b] = wholeH[b] + (b + 1 < n ? FAM_GAP + suffix[b + 1] : 0)
+        let best = null
+        const consider = (cand) => {
+          if (cand.h1 > colAvail + 0.5 || cand.h2 > colAvail + 0.5) return
+          const score = Math.max(cand.h1, cand.h2) + (cand.split ? 6 : 0)
+          if (!best || score < best.score) best = { ...cand, score }
+        }
+        let prefix = 0
+        for (let b = start; b < n; b++) {
+          const gap1 = b === start ? 0 : FAM_GAP
+          const part = partsArr[b]
+          if (part) {
+            const fb = fromArr[b]
+            const len = part.rows.length
+            if (len - fb >= MIN_PART_ROWS * 2) {
+              let acc = part.headH + SPLIT_SAFETY
+              for (let k = 1; fb + k <= len - MIN_PART_ROWS; k++) {
+                acc += part.rows[fb + k - 1]
+                if (k < MIN_PART_ROWS) continue
+                const part2 = part.headH + SPLIT_SAFETY + part.rullH + part.rows.slice(fb + k).reduce((a, x) => a + x, 0)
+                consider({ b, k, split: true, h1: prefix + gap1 + acc, h2: part2 + (b + 1 < n ? FAM_GAP + suffix[b + 1] : 0) })
+              }
+            }
+          }
+          prefix += gap1 + wholeH[b]
+          consider({ b, k: 0, split: false, h1: prefix, h2: b + 1 < n ? suffix[b + 1] : 0 })
+        }
+        if (!best) return false
+        for (let b = start; b < n; b++) {
+          const fb = fromArr[b]
+          if (b < best.b || (!best.split && b === best.b)) {
+            pushE(0, { idx: b, from: fb || undefined }, wholeH[b])
+          } else if (best.split && b === best.b) {
+            const part = partsArr[b]
+            const p1 = part.headH + SPLIT_SAFETY + part.rows.slice(fb, fb + best.k).reduce((a, x) => a + x, 0)
+            const p2 = part.headH + SPLIT_SAFETY + part.rullH + part.rows.slice(fb + best.k).reduce((a, x) => a + x, 0)
+            pushE(0, { idx: b, from: fb || undefined, to: fb + best.k }, p1)
+            pushE(1, { idx: b, from: fb + best.k }, p2)
+          } else {
+            pushE(1, { idx: b, from: fb || undefined }, wholeH[b])
+          }
+        }
+        i = n; from = 0
+        return true
       }
-    }
+
+      if (restTotal <= colAvail * 2) {
+        // aakhri section: optimal balance; na ho paye to normal fill
+        if (!balancedFill()) {
+          fillCol(0, colAvail)
+          fillCol(1, colAvail)
+        }
+      } else {
+        // beech ka section: dono columns poore bharo
+        fillCol(0, colAvail)
+        fillCol(1, colAvail)
+      }
+
+      cur.sections.push(section)
+      mark(cat)
+      used += sectionExtra + bandH + COLS_PAD_TOP + Math.max(h[0], h[1]) + CHUNK_PAD_BOTTOM
+      if (i < blocks.length) { cont = true; newPage() }
+    } while (i < blocks.length)
   }
   return { pages, ranges, total: pages.length + 1 }
 }
 
 function SheetPage({ page, pageNo, total, effective, region }) {
-  const divisions = [...new Set(page.cols.flat().map((e) => e.cat.division))].join(' · ')
-  const render = (e, i) => e.band
-    ? <ColBand key={i} cat={e.cat} cont={e.cont} />
-    : <React.Fragment key={i}>{blockEl(e.cat, e)}</React.Fragment>
+  const divisions = [...new Set(page.sections.map((sec) => sec.cat.division))].join(' · ')
+  const col = (sec, c) => sec.cols[c].map((e, i) => <React.Fragment key={i}>{blockEl(sec.cat, e)}</React.Fragment>)
   return (
     <div className="doc-page doc-sheet" data-screen-label={'Page ' + pageNo}>
       <DocHeader pageNo={pageNo} total={total} division={divisions} effective={effective} region={region} />
       <div className="sheet-body">
-        <div className="sheet-cols">
-          <div className="sheet-col">{page.cols[0].map(render)}</div>
-          <div className="sheet-col">{page.cols[1].map(render)}</div>
-        </div>
+        {page.sections.map((sec, si) => (
+          <section className="cat-section" key={si}>
+            <CatBandFull cat={sec.cat} cont={sec.cont} />
+            <div className="sheet-cols">
+              <div className="sheet-col">{col(sec, 0)}</div>
+              <div className="sheet-col">{col(sec, 1)}</div>
+            </div>
+          </section>
+        ))}
       </div>
       <DocFooter pageNo={pageNo} />
     </div>
@@ -315,10 +394,11 @@ function CoverPage({ catalog, effective, ranges, total, region = 'C.G.' }) {
     <div className="doc-page doc-cover" data-screen-label="Cover">
       <div className="cover-top">
         <div className="cover-year">2026</div>
+        <img className="cover-logo" src="/Ace_Logo_bg.png" alt="ACE" />
         <div className="cover-firm">{FIRM.name} <span>{FIRM.name2}</span></div>
         <div className="cover-rule" />
         <div className="cover-tag">Price List · {region === 'OD' ? 'Odisha (OD)' : 'Chhattisgarh (C.G.)'}</div>
-        <div className="cover-sub2">{catalog.map((d) => d.division).join(' + ')}</div>
+        <div className="cover-sub2">{catalog.map((d) => (d.division === 'Corporate' ? 'Corporate Stationery' : d.division)).join(' + ')}</div>
         <div className="cover-eff">Effective {effective}{total ? ' · ' + total + ' pages' : ''}</div>
       </div>
       <div className="cover-body">

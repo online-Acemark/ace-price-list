@@ -41,15 +41,17 @@
 .doc-measure { position: fixed; left: -10000px; top: 0; width: 794px; height: auto; visibility: hidden; box-shadow: none; z-index: -1; display: block; transform: none; margin-bottom: 0; }
 .doc-measure .doc-footer { position: static; }
 
-/* ---- running header (category pages) — slim & refined ---- */
+/* ---- running header — light & clean (dark category bands se alag dikhe) ---- */
 .doc-header {
-  background: var(--ink); color: #fff; border-bottom: 2px solid var(--ace-cyan);
-  padding: 11px 34px; display: flex; justify-content: space-between; align-items: center; flex: none;
+  background: #fff; color: var(--ink); border-bottom: 1px solid var(--hair);
+  padding: 9px 34px; display: flex; justify-content: space-between; align-items: center; flex: none;
 }
-.doc-firm { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; }
+.doc-head-left { display: flex; align-items: center; gap: 12px; }
+.doc-logo { height: 32px; width: auto; flex: none; }
+.doc-firm { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; color: var(--ink); }
 .doc-firm span { color: var(--ace-cyan); }
-.doc-div { font-size: 9.5px; font-weight: 600; letter-spacing: 0.06em; white-space: nowrap; text-transform: uppercase; }
-.doc-sub { font-size: 8px; opacity: 0.7; margin-top: 2px; letter-spacing: 0.02em; }
+.doc-div { font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; text-transform: uppercase; color: var(--ace-cyan); }
+.doc-sub { font-size: 8px; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.02em; }
 
 .doc-footer {
   position: absolute; bottom: 0; left: 0; right: 0; border-top: 1px solid var(--hair);
@@ -65,20 +67,23 @@
   font-variant-numeric: tabular-nums; letter-spacing: 0.02em;
 }
 
-/* ---- category band ---- */
+/* ---- category band — highlighted dark strip, cyan accent ---- */
 .cat-band {
-  padding: 20px 34px 14px; display: flex; align-items: center; gap: 16px; flex: none;
-  border-bottom: 1px solid var(--hair);
+  padding: 12px 34px; display: flex; align-items: center; gap: 16px; flex: none;
+  background: var(--ink);
+  border-left: 6px solid var(--ace-cyan);
+  border-bottom: 3px solid var(--ace-cyan);
 }
 .cat-no-badge {
-  flex: none; min-width: 46px; height: 46px; padding: 0 8px; border-radius: 10px;
-  background: var(--ace-cyan); color: #fff; font-size: 17px; font-weight: 800; letter-spacing: 0.02em;
+  flex: none; min-width: 44px; height: 42px; padding: 0 9px; border-radius: 9px;
+  background: var(--ace-cyan); color: #fff; font-size: 16px; font-weight: 800; letter-spacing: 0.02em;
   display: flex; align-items: center; justify-content: center;
 }
 .cat-band-text { flex: 1; }
 .cat-kicker { font-size: 9px; font-weight: 700; color: var(--ace-cyan); letter-spacing: 0.18em; }
-.cat-title { font-size: 25px; font-weight: 800; color: var(--ink); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.05; }
-.cat-count { flex: none; font-size: 9px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; }
+.cat-title { font-size: 22px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.05; }
+.cat-count { flex: none; font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.06em; text-transform: uppercase; }
+.cat-contd { color: rgba(255,255,255,0.7); }
 
 /* ---- column-width category banner (continuous 2-column flow) ---- */
 .colband {
@@ -122,6 +127,10 @@
 
 .fam-rulling { font-size: 8.5px; color: var(--ink-soft); line-height: 1.5; padding: 5px 8px 0; }
 .fam-rulling b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; }
+/* "Available in" — vertical list, heading family-name jitna bada */
+.fam-avail { padding: 6px 8px 0; }
+.fam-avail b { display: block; font-size: 12.5px; font-weight: 800; color: var(--ace-cyan); line-height: 1.22; margin-bottom: 3px; }
+.fam-avail-item { font-size: 10.5px; font-weight: 700; color: var(--ink); line-height: 1.6; }
 
 .cat-notes { break-inside: avoid; background: var(--tint); border-left: 3px solid var(--ace-cyan); border-radius: 4px; padding: 10px 13px; font-size: 9.5px; color: var(--ink); line-height: 1.6; }
 .cat-notes b { letter-spacing: 0.08em; display: block; margin-bottom: 3px; color: var(--ace-cyan); }
@@ -152,6 +161,7 @@
   border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(16,178,228,0.35), transparent 62%);
 }
 .cover-year { position: absolute; top: 28px; right: 56px; font-size: 14px; font-weight: 700; letter-spacing: 0.35em; color: rgba(255,255,255,0.55); }
+.cover-logo { height: 58px; width: auto; display: block; margin-bottom: 14px; background: #fff; border-radius: 10px; padding: 6px 12px; }
 .cover-firm { font-size: 40px; font-weight: 800; letter-spacing: 0.01em; line-height: 1; }
 .cover-firm span { color: var(--ace-cyan); }
 .cover-rule { width: 64px; height: 4px; background: var(--ace-cyan); margin: 14px 0; border-radius: 2px; }
@@ -167,7 +177,8 @@
 .cover-index-div:first-of-type { margin-top: 0; }
 .cover-index-row { display: flex; align-items: baseline; gap: 7px; padding: 3.5px 0; border-bottom: 1px solid var(--hair); break-inside: avoid; }
 .ci-no { font-size: 9px; font-weight: 800; color: var(--ace-cyan); width: 28px; flex: none; }
-.ci-title { font-size: 11px; font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 230px; }
+.ci-title { font-size: 11px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+/* lambe naam wrap honge — kabhi "..." me cut nahi */
 .ci-dots { flex: 1; border-bottom: 1px dotted #C7CED4; min-width: 12px; }
 .ci-pg { font-size: 10px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 .cover-legend { margin-top: 14px; background: var(--tint); border-left: 3px solid var(--ace-cyan); border-radius: 4px; padding: 10px 14px 4px; }
