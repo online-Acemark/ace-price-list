@@ -80,6 +80,22 @@
 .cat-title { font-size: 25px; font-weight: 800; color: var(--ink); text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.05; }
 .cat-count { flex: none; font-size: 9px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0.06em; text-transform: uppercase; }
 
+/* ---- column-width category banner (continuous 2-column flow) ---- */
+.colband {
+  background: var(--ink); color: #fff; border-radius: 9px;
+  border-left: 4px solid var(--ace-cyan);
+  padding: 8px 12px; display: flex; align-items: center; gap: 11px;
+}
+.colband-no {
+  flex: none; background: var(--ace-cyan); color: #fff; border-radius: 7px;
+  padding: 5px 9px; font-size: 14px; font-weight: 800; letter-spacing: 0.02em;
+}
+.colband-text { min-width: 0; }
+.colband-kicker { font-size: 7.5px; font-weight: 700; letter-spacing: 0.16em; color: rgba(255,255,255,0.6); }
+.colband-title { font-size: 13.5px; font-weight: 800; text-transform: uppercase; line-height: 1.15; }
+.colband-contd { font-size: 10.5px; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: none; letter-spacing: 0; }
+.colband.contd { opacity: 0.92; }
+
 /* ---- tables: two balanced columns of product ranges ---- */
 .cat-cols { padding: 18px 34px 46px; column-count: 2; column-gap: 26px; }
 .fam { break-inside: avoid; margin-bottom: 18px; }
@@ -118,8 +134,8 @@
 
 .live-dot { display: none; }
 .trend { margin-left: 4px; font-size: 0.82em; vertical-align: middle; }
-.trend-up { color: #E23D3D; }
-.trend-down { color: #1FA85A; }
+.trend-up { color: #1FA85A; }   /* rate badha = green */
+.trend-down { color: #E23D3D; } /* rate ghata = red */
 .fam td.dp.nomatch { background: #FFF6E4; box-shadow: inset 2px 0 0 #F0A020; }
 
 /* ============================================================

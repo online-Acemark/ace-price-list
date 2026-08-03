@@ -8,8 +8,8 @@ html, body { background: #4a4f55; }
 
 /* DP trend vs previous ERP price — up = increased, down = decreased */
 .trend { margin-left: 3px; font-size: 0.85em; line-height: 1; vertical-align: middle; }
-.trend-up { color: #E23D3D; }
-.trend-down { color: #1FA85A; }
+.trend-up { color: #1FA85A; }   /* rate badha = green */
+.trend-down { color: #E23D3D; } /* rate ghata = red */
 
 /* status dot colours (shared by menu + FAB badge) */
 .app-dot, .fab-dot { border-radius: 50%; flex: none; }
