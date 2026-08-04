@@ -160,7 +160,6 @@ export default function MobileView({ catalog }) {
         </div>
       ) : (
         <main>
-          <div className="mdisclaimer"><b>Disclaimer:</b> {DISCLAIMER}</div>
           {shownPages.map((p, i) => <MCategory key={i} page={p} onImage={setZoom} />)}
         </main>
       )}
