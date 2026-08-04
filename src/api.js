@@ -236,7 +236,14 @@ const CODE_ALIAS = {
 export function applyLivePrices(catalog, index) {
   let matched = 0, attempted = 0
   const fmt = (n) => (n == null ? '' : Number(n).toFixed(2))
-  const cInt = (n) => (n == null || n === '' ? '' : Math.round(Number(n)))
+  // packing (PKT/CRT/BLD): ERP me decimal ho sakta hai (jaise CRT 21.85) — use
+  // waisa hi dikhao. Round nahi karte; sirf 2 decimal tak clean karke trailing
+  // zero hata dete hain (240.00 -> 240, 21.85 -> 21.85, 2.20 -> 2.2).
+  const cInt = (n) => {
+    if (n == null || n === '') return ''
+    const x = Number(n)
+    return isNaN(x) ? n : Math.round(x * 100) / 100
+  }
   const next = catalog.map((div) => ({
     ...div,
     pages: div.pages.map((p) => ({
@@ -258,6 +265,25 @@ export function applyLivePrices(catalog, index) {
           const iv = live && (live.img || live.grpImg)
           if (iv) imgVotes.set(iv, (imgVotes.get(iv) || 0) + 1)
           if (live && live.catImg && !catImg) catImg = live.catImg
+          // Manual DP override: set ho to ERP/fallback dono ke upar jeet-ta hai
+          // (bina yellow). Baaki fields (MRP/PKT/CRT/BLD) matched ho to ERP se,
+          // warna saved. Khali override -> normal ERP logic (neeche).
+          const ovRaw = row._dpOverride
+          if (ovRaw != null && String(ovRaw).trim() !== '') {
+            matched++
+            if (live && live.varieties) for (const v of live.varieties) famVarieties.add(v)
+            if (live) collectVarieties(index, lookupCode, row.label, matchName, famVarieties)
+            const ovStr = isNaN(Number(ovRaw)) ? String(ovRaw).trim() : fmt(ovRaw)
+            return {
+              ...row,
+              mrp: live && live.mrp != null ? Math.round(live.mrp) : row.mrp,
+              dp: ovStr,
+              pkt: live && live.pack != null ? cInt(live.pack) : row.pkt,
+              crt: live && live.crt != null ? cInt(live.crt) : (live && live.bld != null ? '' : row.crt),
+              bld: live && live.bld != null ? cInt(live.bld) : (row.bld ?? ''),
+              _live: true, _dpOv: true,
+            }
+          }
           // PL item jo ERP me nahi mila — dikhega par highlight ke saath
           if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
           matched++

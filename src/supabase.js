@@ -40,6 +40,8 @@ export async function fetchSupabaseCatalog(state) {
       label: it.label,
       mrp: it.mrp == null ? '' : (isNaN(Number(it.mrp)) ? it.mrp : Number(it.mrp)),
       dp: it.dp == null ? '' : String(it.dp),
+      // manual DP override — set ho to ERP ke upar jeet-ta hai (api.js dekho)
+      _dpOverride: it.dp_override == null ? '' : String(it.dp_override),
       pkt: it.pkt == null ? '' : it.pkt,
       crt: it.crt == null ? '' : it.crt,
       bld: it.bld == null ? '' : it.bld,

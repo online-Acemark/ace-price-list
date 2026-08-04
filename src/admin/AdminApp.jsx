@@ -199,7 +199,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
     setOpen(true)
     setRows((rs) => [...rs, {
       id: -Date.now(), family_id: fam.id, sort_order: rs.length,
-      label: '', product_id: '', mrp: '', dp: '', pkt: '', crt: '', bld: '',
+      label: '', product_id: '', mrp: '', dp: '', dp_override: '', pkt: '', crt: '', bld: '',
       states: f.states || ['CG', 'OD'], visible: true, _new: true,
     }])
   }
@@ -247,7 +247,8 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
             family_id: fam.id, sort_order: r.sort_order,
             label: r.label.trim(),
             product_id: pid && !isNaN(Number(pid)) ? Number(pid) : null,
-            mrp: r.mrp || null, dp: r.dp || null, pkt: r.pkt || null, crt: r.crt || null, bld: r.bld || null,
+            mrp: r.mrp || null, dp: r.dp || null, dp_override: String(r.dp_override || '').trim() || null,
+            pkt: r.pkt || null, crt: r.crt || null, bld: r.bld || null,
             states: r.states, visible: r.visible,
           })
           if (e3) throw e3
@@ -258,7 +259,8 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
         if (JSON.stringify(orig) === JSON.stringify(r)) continue
         const { error: e2 } = await sb.from('pl_items').update({
           label: r.label, states: r.states, visible: r.visible,
-          mrp: r.mrp, dp: r.dp, pkt: r.pkt, crt: r.crt, bld: r.bld,
+          mrp: r.mrp, dp: r.dp, dp_override: String(r.dp_override || '').trim() || null,
+          pkt: r.pkt, crt: r.crt, bld: r.bld,
         }).eq('id', r.id)
         if (e2) throw e2
       }
@@ -387,7 +389,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
           <div className="itbl-wrap">
           <table className="itbl">
             <thead>
-              <tr><th>Label</th><th>ERP ID</th><th>MRP*</th><th>DP*</th><th>PKT*</th><th>CRT*</th><th>BLD*</th><th>State</th><th>Show</th><th></th></tr>
+              <tr><th>Label</th><th>ERP ID</th><th>MRP*</th><th>DP*</th><th title="Set ho to ERP ke upar yahi DP dikhega. Khali = ERP se.">DP force</th><th>PKT*</th><th>CRT*</th><th>BLD*</th><th>State</th><th>Show</th><th></th></tr>
             </thead>
             <tbody>
               {rows.map((r, i) => (
@@ -400,6 +402,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
                   </td>
                   <td><input value={r.mrp ?? ''} onChange={(e) => setRow(i, 'mrp', e.target.value)} /></td>
                   <td><input value={r.dp ?? ''} onChange={(e) => setRow(i, 'dp', e.target.value)} /></td>
+                  <td><input className={'ovdp' + (String(r.dp_override ?? '').trim() ? ' set' : '')} value={r.dp_override ?? ''} onChange={(e) => setRow(i, 'dp_override', e.target.value)} placeholder="ERP" title="Value dalo to wahi DP dikhega (ERP ke upar). Khali = ERP live rate." /></td>
                   <td><input value={r.pkt ?? ''} onChange={(e) => setRow(i, 'pkt', e.target.value)} /></td>
                   <td><input value={r.crt ?? ''} onChange={(e) => setRow(i, 'crt', e.target.value)} /></td>
                   <td><input value={r.bld ?? ''} onChange={(e) => setRow(i, 'bld', e.target.value)} /></td>
@@ -412,7 +415,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
           </table>
           </div>
           <button className="addrow" onClick={addRow}>+ Item add karo</button>
-          <div className="fcard-note">* MRP/DP/PKT/CRT/BLD fallback hain — jab ERP me item na mile tab dikhte hain. Live rate hamesha ERP ID se aata hai.</div>
+          <div className="fcard-note">* MRP/DP/PKT/CRT/BLD fallback hain — jab ERP me item na mile tab dikhte hain. Live rate hamesha ERP ID se aata hai.<br /><b>DP force</b> = manual DP jo ERP ke <b>upar</b> jeet-ta hai (yellow highlight nahi). Value dalo to wahi dikhega; khali karo to fir ERP ka live rate aa jayega.</div>
 
           <div className="fcard-save">
             <button className="savebtn" disabled={busy || !dirty} onClick={save}>{busy ? 'Saving…' : dirty ? 'Save changes' : 'Saved'}</button>
