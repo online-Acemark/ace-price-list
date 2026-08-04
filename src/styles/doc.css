@@ -58,7 +58,9 @@
   padding: 9px 34px; display: flex; justify-content: space-between; align-items: center;
   font-size: 7.5px; letter-spacing: 0.03em; color: var(--ink-soft); background: #fff;
 }
-.doc-foot-right { display: flex; align-items: center; gap: 14px; }
+.doc-foot-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+.doc-foot-disc { flex: 1; padding-right: 16px; line-height: 1.4; }
+.doc-foot-disc b { color: var(--ink); }
 /* bada page number — bottom right */
 .pg-num {
   font-size: 17px; font-weight: 800; color: #fff; background: var(--ink);
@@ -185,6 +187,8 @@
 .cover-legend .cover-index-head { margin-bottom: 6px; }
 .cover-legend p { font-size: 9.5px; color: var(--ink); line-height: 1.55; margin: 0 0 6px; }
 .cover-legend b { color: var(--ink); }
+.cover-disclaimer { margin: 12px 56px 0; background: var(--tint); border: 1px solid var(--ace-cyan); border-radius: 4px; padding: 10px 14px; font-size: 9.5px; line-height: 1.55; color: var(--ink); }
+.cover-disclaimer b { color: var(--ace-cyan); }
 .cover-foot { border-top: 1px solid var(--hair); padding: 12px 56px 18px; display: flex; justify-content: space-between; align-items: center; font-size: 8.5px; color: var(--ink-soft); letter-spacing: 0.03em; margin-top: auto; }
 
 /* ============================================================

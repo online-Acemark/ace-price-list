@@ -13,6 +13,9 @@ const FIRM = {
   phones: '8349997670 · 8349997676 · 8349997674', web: 'www.acemark.in', mail: 'social@acemark.in',
 }
 
+// Client-facing disclaimer — cover (index) page aur har page ke footer me.
+const DISCLAIMER = 'Shared exclusively for your reference. Prices are indicative and subject to revision. Preferential discounts available on volume — please feel free to connect with us for the best rates and to confirm prices before ordering. 📞 8349997670 — ACE'
+
 // A4 sheet geometry (px @96dpi: 210×297mm). Categories are packed into real
 // fixed-height pages so screen, print and the cover index all agree.
 const PAGE_W = 794
@@ -44,7 +47,7 @@ function DocHeader({ pageNo, total, division, effective, region = 'C.G.' }) {
 function DocFooter({ pageNo }) {
   return (
     <div className="doc-footer">
-      <span>Rates are Dealer Price (DP) per piece · Subject to Raipur jurisdiction · Sizes are approximate</span>
+      <span className="doc-foot-disc"><b>Disclaimer:</b> {DISCLAIMER}</span>
       <span className="doc-foot-right">
         {FIRM.mail}
         {pageNo ? <b className="pg-num">{pageNo}</b> : null}
@@ -440,6 +443,7 @@ function CoverPage({ catalog, effective, ranges, total, region = 'C.G.' }) {
           <p>Page numbers in this index refer to the pages of this document. Pages and prices are subject to change without prior notice. Subject to Raipur jurisdiction. Sizes are approximate and may vary.</p>
         </div>
       </div>
+      <div className="cover-disclaimer"><b>Disclaimer:</b> {DISCLAIMER}</div>
       <div className="cover-foot">
         <span>{FIRM.address}</span>
         <span className="doc-foot-right">

@@ -1,6 +1,6 @@
 import React from 'react'
 import CATALOG from './catalog.js'
-import { fetchPriceList, buildCatalogFromApi, buildIndex, applyLivePrices } from './api.js'
+import { fetchPriceList, buildIndex, applyLivePrices } from './api.js'
 import { fetchSupabaseCatalog, filterByState, stateFromUrl } from './supabase.js'
 import DocView from './components/DocView.jsx'
 import MobileView from './components/MobileView.jsx'
@@ -179,10 +179,8 @@ function App() {
       const records = await fetchPriceList()
       const index = buildIndex(records)
       const { catalog: merged, matched, attempted } = applyLivePrices(base, index)
-      // "Others" isn't in the price list — pull it live from the ERP (mobile only).
-      const others = buildCatalogFromApi(records, CATALOG).filter((d) => d.division === 'Others')
-      setCatalog([...merged, ...others])
-      setSync({ state: 'live', source, divisions: merged.length + others.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
+      setCatalog(merged)
+      setSync({ state: 'live', source, divisions: merged.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
     } catch (e) {
       setCatalog(base) // ERP unreachable — price list still shows
       setSync({ state: 'offline', source, divisions: base.length, rows: plRows, at: null, error: String(e.message || e) })

@@ -6,6 +6,9 @@ const M_FIRM = {
   wa: 'https://wa.me/918349997670',
 }
 
+// Client-facing disclaimer — index (top) aur footer dono jagah dikhta hai.
+const DISCLAIMER = 'Shared exclusively for your reference. Prices are indicative and subject to revision. Preferential discounts available on volume — please feel free to connect with us for the best rates and to confirm prices before ordering. 📞 8349997670 — ACE'
+
 function MTag({ kind }) {
   if (!kind) return null
   return <span className={'mtag mtag-' + kind.replace(/\s/g, '')}>{kind}</span>
@@ -17,7 +20,7 @@ function MFamilyCard({ f, onImage }) {
       <div className="mfam-head">
         <div className="mfam-head-text">
           <div className="mfam-name">{f.name} <MTag kind={f.tag} /></div>
-          <div className="mfam-meta">Code {f.code}{f.size && f.size !== '—' ? ' · ' + f.size : ''}</div>
+          <div className="mfam-meta">{[f.code ? 'Code ' + f.code : null, f.size && f.size !== '—' ? f.size : null].filter(Boolean).join(' · ')}</div>
         </div>
         {f.img ? (
           <img
@@ -157,6 +160,7 @@ export default function MobileView({ catalog }) {
         </div>
       ) : (
         <main>
+          <div className="mdisclaimer"><b>Disclaimer:</b> {DISCLAIMER}</div>
           {shownPages.map((p, i) => <MCategory key={i} page={p} onImage={setZoom} />)}
         </main>
       )}
@@ -169,6 +173,7 @@ export default function MobileView({ catalog }) {
       ) : null}
 
       <footer className="mfoot">
+        <div className="mfoot-disclaimer"><b>Disclaimer:</b> {DISCLAIMER}</div>
         <div className="mfoot-note">Rates are Dealer Price (DP) per piece · One rate for all parties · Subject to Raipur jurisdiction</div>
         <div className="mfoot-contact">{M_FIRM.phones} · {M_FIRM.mail} · {M_FIRM.web}</div>
       </footer>
