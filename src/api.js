@@ -233,9 +233,23 @@ const CODE_ALIAS = {
 }
 
 // Apply live prices onto a copy of the catalog. Returns { catalog, matched }.
-export function applyLivePrices(catalog, index) {
+// state === 'OD' => Odisha list. OD ka Dealer Price = CG DP + 4.25% (freight/tax
+// uplift). Ye SIRF display par lagta hai — data (Supabase/ERP) ek hi rehta hai,
+// CG me multiplier 1 hai, isliye CG/OD kabhi aapas me nahi bigadte. MRP par
+// koi uplift nahi (wahi rehta hai), sirf DP par.
+export const OD_DP_UPLIFT = 1.0425
+
+export function applyLivePrices(catalog, index, state) {
   let matched = 0, attempted = 0
   const fmt = (n) => (n == null ? '' : Number(n).toFixed(2))
+  // DP formatter — OD list par 4.25% uplift, phir 2 decimal. Non-numeric ho to
+  // jaisa hai waisa (jaise koi text DP).
+  const uplift = state === 'OD' ? OD_DP_UPLIFT : 1
+  const dpFmt = (n) => {
+    if (n == null || n === '') return ''
+    const x = Number(n)
+    return isNaN(x) ? n : (x * uplift).toFixed(2)
+  }
   // packing (PKT/CRT/BLD): ERP me decimal ho sakta hai (jaise CRT 21.85) — use
   // waisa hi dikhao. Round nahi karte; sirf 2 decimal tak clean karke trailing
   // zero hata dete hain (240.00 -> 240, 21.85 -> 21.85, 2.20 -> 2.2).
@@ -273,7 +287,7 @@ export function applyLivePrices(catalog, index) {
             matched++
             if (live && live.varieties) for (const v of live.varieties) famVarieties.add(v)
             if (live) collectVarieties(index, lookupCode, row.label, matchName, famVarieties)
-            const ovStr = isNaN(Number(ovRaw)) ? String(ovRaw).trim() : fmt(ovRaw)
+            const ovStr = isNaN(Number(ovRaw)) ? String(ovRaw).trim() : dpFmt(ovRaw)
             return {
               ...row,
               mrp: live && live.mrp != null ? Math.round(live.mrp) : row.mrp,
@@ -284,8 +298,9 @@ export function applyLivePrices(catalog, index) {
               _live: true, _dpOv: true,
             }
           }
-          // PL item jo ERP me nahi mila — dikhega par highlight ke saath
-          if (!live) return { ...row, bld: row.bld ?? '', _unmatched: true }
+          // PL item jo ERP me nahi mila — dikhega par highlight ke saath.
+          // Saved DP par bhi OD uplift lagta hai (CG/OD consistent rahe).
+          if (!live) return { ...row, dp: dpFmt(row.dp), bld: row.bld ?? '', _unmatched: true }
           matched++
           if (live.varieties) for (const v of live.varieties) famVarieties.add(v)
           // full rulling list: every variety the page-group carries, not just
@@ -297,9 +312,9 @@ export function applyLivePrices(catalog, index) {
           return {
             ...row,
             mrp: live.mrp != null ? Math.round(live.mrp) : row.mrp,
-            dp: fmt(live.dp),
+            dp: dpFmt(live.dp),
             _trend: trend,
-            _odp: live.odp ? fmt(live.odp) : null,
+            _odp: live.odp ? dpFmt(live.odp) : null,
             pkt: live.pack != null ? cInt(live.pack) : row.pkt,
             // ERP splits carton (CRT) and bundle (BLD). Take its split for
             // matched rows; unmatched rows keep the saved value under CRT for now.

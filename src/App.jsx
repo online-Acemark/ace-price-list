@@ -178,7 +178,7 @@ function App() {
     try {
       const records = await fetchPriceList()
       const index = buildIndex(records)
-      const { catalog: merged, matched, attempted } = applyLivePrices(base, index)
+      const { catalog: merged, matched, attempted } = applyLivePrices(base, index, STATE)
       setCatalog(merged)
       setSync({ state: 'live', source, divisions: merged.length, rows: plRows, matched, unmatched: attempted - matched, at: new Date() })
     } catch (e) {

@@ -214,12 +214,15 @@
   .doc-stack { gap: 0; padding: 0; background: #fff; width: 100%; }
   .doc-page { box-shadow: none; transform: none; margin-bottom: 0; }
 
-  /* Every page (cover, sheets, order form) is one full-bleed A4 page kept at
-     its exact 794x1123 design size — print matches the screen 1:1, so the
-     cover-index page numbers stay true. */
+  /* Every page (cover, sheets, order form) is one A4 page at its exact
+     794x1123 design size. Har sheet ko center se halka scale-down karte hain
+     taaki chaaron taraf ek safe margin (~9mm top/bottom, ~6mm side) bane —
+     warna printer ki non-printable edge me header/footer/disclaimer/page-no
+     crop ho jaate hain. Box 1123px hi rehta hai, isliye 1 sheet = 1 page. */
   .doc-cover, .doc-page.doc-fixed, .doc-sheet {
     page: bleed; width: 794px; height: 1123px; overflow: hidden;
     break-inside: avoid; page-break-after: always;
+    transform: scale(0.94); transform-origin: center center;
   }
   .doc-stack > .doc-page:last-of-type { page-break-after: auto; }
 }

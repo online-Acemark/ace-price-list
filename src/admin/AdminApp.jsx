@@ -257,8 +257,10 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
         }
         const orig = items.find((x) => x.id === r.id)
         if (JSON.stringify(orig) === JSON.stringify(r)) continue
+        const rpid = String(r.product_id ?? '').trim()
         const { error: e2 } = await sb.from('pl_items').update({
           label: r.label, states: r.states, visible: r.visible,
+          product_id: rpid && !isNaN(Number(rpid)) ? Number(rpid) : null,
           mrp: r.mrp, dp: r.dp, dp_override: String(r.dp_override || '').trim() || null,
           pkt: r.pkt, crt: r.crt, bld: r.bld,
         }).eq('id', r.id)
@@ -396,9 +398,8 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
                 <tr key={r.id} className={(r.visible ? '' : 'hidden-row') + (r._new ? ' new-row' : '')}>
                   <td><input value={r.label || ''} onChange={(e) => setRow(i, 'label', e.target.value)} placeholder={r._new ? 'jaise 96P' : ''} /></td>
                   <td className="pid">
-                    {r._new
-                      ? <input value={r.product_id || ''} onChange={(e) => setRow(i, 'product_id', e.target.value)} placeholder="ERP ID" style={{ width: 70 }} />
-                      : (r.product_id || '—')}
+                    <input value={r.product_id ?? ''} onChange={(e) => setRow(i, 'product_id', e.target.value)}
+                      placeholder="ERP ID" inputMode="numeric" style={{ width: 74 }} />
                   </td>
                   <td><input value={r.mrp ?? ''} onChange={(e) => setRow(i, 'mrp', e.target.value)} /></td>
                   <td><input value={r.dp ?? ''} onChange={(e) => setRow(i, 'dp', e.target.value)} /></td>
