@@ -199,7 +199,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
     setOpen(true)
     setRows((rs) => [...rs, {
       id: -Date.now(), family_id: fam.id, sort_order: rs.length,
-      label: '', product_id: '', mrp: '', dp: '', dp_override: '', pkt: '', crt: '', bld: '',
+      label: '', product_id: '', mrp: '', dp: '', dp_override: '', pkt: '', pkt_override: '', crt: '', bld: '',
       states: f.states || ['CG', 'OD'], visible: true, _new: true,
     }])
   }
@@ -227,6 +227,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
         od_sort_order: f.od_category_id ? (f.od_sort_order ?? null) : null,
         od_name: (f.od_name || '').trim() || null,
         pkt_header: (f.pkt_header || '').trim() || null,
+        dp_header: (f.dp_header || '').trim() || null,
         pkt_value: (f.pkt_value || '').trim() || null,
         available_items: (f.available_items || '').trim() || null,
       }
@@ -248,7 +249,8 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
             label: r.label.trim(),
             product_id: pid && !isNaN(Number(pid)) ? Number(pid) : null,
             mrp: r.mrp || null, dp: r.dp || null, dp_override: String(r.dp_override || '').trim() || null,
-            pkt: r.pkt || null, crt: r.crt || null, bld: r.bld || null,
+            pkt: r.pkt || null, pkt_override: String(r.pkt_override || '').trim() || null,
+            crt: r.crt || null, bld: r.bld || null,
             states: r.states, visible: r.visible,
           })
           if (e3) throw e3
@@ -262,7 +264,8 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
           label: r.label, states: r.states, visible: r.visible,
           product_id: rpid && !isNaN(Number(rpid)) ? Number(rpid) : null,
           mrp: r.mrp, dp: r.dp, dp_override: String(r.dp_override || '').trim() || null,
-          pkt: r.pkt, crt: r.crt, bld: r.bld,
+          pkt: r.pkt, pkt_override: String(r.pkt_override || '').trim() || null,
+          crt: r.crt, bld: r.bld,
         }).eq('id', r.id)
         if (e2) throw e2
       }
@@ -343,6 +346,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
             <label>Column header <input value={f.col || ''} onChange={(e) => set('col', e.target.value)} placeholder="PAGES / QUIRE / ITEM / CODE" /></label>
             <label>Tag <input value={f.tag || ''} onChange={(e) => set('tag', e.target.value)} placeholder="NEW / RATE REVISED" /></label>
             <label>PKT column ka naam <input value={f.pkt_header || ''} onChange={(e) => set('pkt_header', e.target.value)} placeholder="khali = PKT · ya likho BOX" /></label>
+            <label>DP column ka naam <input value={f.dp_header || ''} onChange={(e) => set('dp_header', e.target.value)} placeholder="khali = DP · ya likho DP in Kg" /></label>
             <label>PKT fixed value <input value={f.pkt_value || ''} onChange={(e) => set('pkt_value', e.target.value)} placeholder="khali = ERP se · ya likho 500" /></label>
             <label>Rulling override
               <input value={f.rulling_override || ''} onChange={(e) => set('rulling_override', e.target.value)}
@@ -391,7 +395,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
           <div className="itbl-wrap">
           <table className="itbl">
             <thead>
-              <tr><th>Label</th><th>ERP ID</th><th>MRP*</th><th>DP*</th><th title="Set ho to ERP ke upar yahi DP dikhega. Khali = ERP se.">DP force</th><th>PKT*</th><th>CRT*</th><th>BLD*</th><th>State</th><th>Show</th><th></th></tr>
+              <tr><th>Label</th><th>ERP ID</th><th>MRP*</th><th>DP*</th><th title="Set ho to ERP ke upar yahi DP dikhega. Khali = ERP se.">DP force</th><th>PKT*</th><th title="Set ho to ERP ke upar yahi PKT dikhega. Khali = ERP se.">PKT force</th><th>CRT*</th><th>BLD*</th><th>State</th><th>Show</th><th></th></tr>
             </thead>
             <tbody>
               {rows.map((r, i) => (
@@ -405,6 +409,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
                   <td><input value={r.dp ?? ''} onChange={(e) => setRow(i, 'dp', e.target.value)} /></td>
                   <td><input className={'ovdp' + (String(r.dp_override ?? '').trim() ? ' set' : '')} value={r.dp_override ?? ''} onChange={(e) => setRow(i, 'dp_override', e.target.value)} placeholder="ERP" title="Value dalo to wahi DP dikhega (ERP ke upar). Khali = ERP live rate." /></td>
                   <td><input value={r.pkt ?? ''} onChange={(e) => setRow(i, 'pkt', e.target.value)} /></td>
+                  <td><input className={'ovdp' + (String(r.pkt_override ?? '').trim() ? ' set' : '')} value={r.pkt_override ?? ''} onChange={(e) => setRow(i, 'pkt_override', e.target.value)} placeholder="ERP" title="Value dalo to wahi PKT dikhega (ERP ke upar). Khali = ERP." /></td>
                   <td><input value={r.crt ?? ''} onChange={(e) => setRow(i, 'crt', e.target.value)} /></td>
                   <td><input value={r.bld ?? ''} onChange={(e) => setRow(i, 'bld', e.target.value)} /></td>
                   <td><StateTicks value={r.states} onChange={(v) => setRow(i, 'states', v)} /></td>
@@ -416,7 +421,7 @@ function FamilyCard({ fam, items, cats, onSaved, onMoveFam, onReload }) {
           </table>
           </div>
           <button className="addrow" onClick={addRow}>+ Item add karo</button>
-          <div className="fcard-note">* MRP/DP/PKT/CRT/BLD fallback hain — jab ERP me item na mile tab dikhte hain. Live rate hamesha ERP ID se aata hai.<br /><b>DP force</b> = manual DP jo ERP ke <b>upar</b> jeet-ta hai (yellow highlight nahi). Value dalo to wahi dikhega; khali karo to fir ERP ka live rate aa jayega.</div>
+          <div className="fcard-note">* MRP/DP/PKT/CRT/BLD fallback hain — jab ERP me item na mile tab dikhte hain. Live rate hamesha ERP ID se aata hai.<br /><b>DP force</b> / <b>PKT force</b> = manual DP / PKT jo ERP ke <b>upar</b> jeet-ta hai. Value dalo to wahi dikhega; khali karo to fir ERP ka value aa jayega. (DP force me yellow highlight nahi aata.)</div>
 
           <div className="fcard-save">
             <button className="savebtn" disabled={busy || !dirty} onClick={save}>{busy ? 'Saving…' : dirty ? 'Save changes' : 'Saved'}</button>

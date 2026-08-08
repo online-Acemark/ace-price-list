@@ -64,7 +64,7 @@ function FamilyTable({ f, cont, showRull = true }) {
         {f.size && f.size !== '—' ? <div className="fam-meta">{f.size}</div> : null}
       </div>
       <table>
-        <thead><tr><th className="sn">#</th><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>DP</th><th>{f.pktHeader || 'PKT'}</th><th>CRT</th><th>BLD</th></tr></thead>
+        <thead><tr><th className="sn">#</th><th className="l">{f.col || 'PAGES'}</th><th>MRP</th><th>{f.dpHeader || 'DP'}</th><th>{f.pktHeader || 'PKT'}</th><th>CRT</th><th>BLD</th></tr></thead>
         <tbody>
           {f.rows.map((r, j) => (
             <tr key={j}>

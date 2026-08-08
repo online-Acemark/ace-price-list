@@ -279,6 +279,9 @@ export function applyLivePrices(catalog, index, state) {
           const iv = live && (live.img || live.grpImg)
           if (iv) imgVotes.set(iv, (imgVotes.get(iv) || 0) + 1)
           if (live && live.catImg && !catImg) catImg = live.catImg
+          // Manual PKT override: set ho to ERP/saved dono ke upar. Har branch me lagta hai.
+          const pktOvRaw = row._pktOverride
+          const pktOv = (pktOvRaw != null && String(pktOvRaw).trim() !== '') ? cInt(pktOvRaw) : null
           // Manual DP override: set ho to ERP/fallback dono ke upar jeet-ta hai
           // (bina yellow). Baaki fields (MRP/PKT/CRT/BLD) matched ho to ERP se,
           // warna saved. Khali override -> normal ERP logic (neeche).
@@ -288,19 +291,22 @@ export function applyLivePrices(catalog, index, state) {
             if (live && live.varieties) for (const v of live.varieties) famVarieties.add(v)
             if (live) collectVarieties(index, lookupCode, row.label, matchName, famVarieties)
             const ovStr = isNaN(Number(ovRaw)) ? String(ovRaw).trim() : dpFmt(ovRaw)
+            // Override item = manually managed. PKT/CRT/BLD bhi admin ke saved
+            // value se (ERP se nahi) — jaise DP. MRP saved ho to wahi, warna ERP.
             return {
               ...row,
-              mrp: live && live.mrp != null ? Math.round(live.mrp) : row.mrp,
+              mrp: (row.mrp !== '' && row.mrp != null) ? row.mrp
+                : (live && live.mrp != null ? Math.round(live.mrp) : row.mrp),
               dp: ovStr,
-              pkt: live && live.pack != null ? cInt(live.pack) : row.pkt,
-              crt: live && live.crt != null ? cInt(live.crt) : (live && live.bld != null ? '' : row.crt),
-              bld: live && live.bld != null ? cInt(live.bld) : (row.bld ?? ''),
+              pkt: pktOv != null ? pktOv : row.pkt,
+              crt: row.crt,
+              bld: row.bld ?? '',
               _live: true, _dpOv: true,
             }
           }
           // PL item jo ERP me nahi mila — dikhega par highlight ke saath.
           // Saved DP par bhi OD uplift lagta hai (CG/OD consistent rahe).
-          if (!live) return { ...row, dp: dpFmt(row.dp), bld: row.bld ?? '', _unmatched: true }
+          if (!live) return { ...row, dp: dpFmt(row.dp), pkt: pktOv != null ? pktOv : row.pkt, bld: row.bld ?? '', _unmatched: true }
           matched++
           if (live.varieties) for (const v of live.varieties) famVarieties.add(v)
           // full rulling list: every variety the page-group carries, not just
@@ -315,7 +321,7 @@ export function applyLivePrices(catalog, index, state) {
             dp: dpFmt(live.dp),
             _trend: trend,
             _odp: live.odp ? dpFmt(live.odp) : null,
-            pkt: live.pack != null ? cInt(live.pack) : row.pkt,
+            pkt: pktOv != null ? pktOv : (live.pack != null ? cInt(live.pack) : row.pkt),
             // ERP splits carton (CRT) and bundle (BLD). Take its split for
             // matched rows; unmatched rows keep the saved value under CRT for now.
             crt: live.crt != null ? cInt(live.crt) : (live.bld != null ? '' : row.crt),

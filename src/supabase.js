@@ -42,6 +42,8 @@ export async function fetchSupabaseCatalog(state) {
       dp: it.dp == null ? '' : String(it.dp),
       // manual DP override — set ho to ERP ke upar jeet-ta hai (api.js dekho)
       _dpOverride: it.dp_override == null ? '' : String(it.dp_override),
+      // manual PKT override — set ho to ERP pack ke upar jeet-ta hai
+      _pktOverride: it.pkt_override == null ? '' : String(it.pkt_override),
       pkt: it.pkt == null ? '' : it.pkt,
       crt: it.crt == null ? '' : it.crt,
       bld: it.bld == null ? '' : it.bld,
@@ -64,6 +66,7 @@ export async function fetchSupabaseCatalog(state) {
       _matchName: f.name,
       code: f.code, size: f.size, tag: f.tag, col: f.col,
       pktHeader: f.pkt_header || null,   // PKT column ka custom naam (jaise BOX)
+      dpHeader: f.dp_header || null,     // DP column ka custom naam (jaise "DP in Kg")
       pktValue: f.pkt_value || null,     // sab rows me fixed value (jaise 500)
       availItems: f.available_items || null, // table ke neeche "Available:" list
       rows: itemsByFam.get(f.id) || [],
