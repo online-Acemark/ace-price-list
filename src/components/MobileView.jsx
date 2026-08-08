@@ -81,7 +81,8 @@ function matches(f, q) {
   return q.split(/\s+/).every((w) => hay.includes(w))
 }
 
-export default function MobileView({ catalog }) {
+export default function MobileView({ catalog, region }) {
+  const regionLabel = region === 'OD' ? 'Odisha · OD' : 'Chhattisgarh · C.G.'
   const [divIdx, setDivIdx] = React.useState(() => {
     const s = parseInt(localStorage.getItem('aceml-div') || '0', 10)
     return s >= 0 && s < catalog.length ? s : 0
@@ -117,7 +118,10 @@ export default function MobileView({ catalog }) {
       <header className="mhead">
         <div className="mhead-top">
           <div className="mhead-firm"><img className="mhead-logo" src="/Ace_Logo_bg.png" alt="ACE" />ACEMARK <span>STATIONERS</span></div>
-          <div className="mhead-eff">Effective {div.effective}</div>
+          <div className="mhead-meta">
+            <div className={'mhead-region' + (region === 'OD' ? ' od' : '')}>{regionLabel}</div>
+            <div className="mhead-eff">Effective {div.effective}</div>
+          </div>
         </div>
         <div className="mtabs">
           {catalog.map((d, i) => (

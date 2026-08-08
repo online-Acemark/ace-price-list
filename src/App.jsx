@@ -207,7 +207,7 @@ function App() {
     <>
       {view === 'doc'
         ? <DocView catalog={docCatalog} region={REGION_LABEL} />
-        : <MobileView catalog={catalog} />}
+        : <MobileView catalog={catalog} region={REGION_LABEL} />}
 
       {/* hidden true-size A4 render the PDF is captured from */}
       {capturing ? (

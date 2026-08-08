@@ -6,6 +6,12 @@
 .mhead-firm { font-size: 17px; font-weight: 700; color: #fff; letter-spacing: 0.02em; display: flex; align-items: center; gap: 8px; }
 .mhead-logo { height: 26px; width: auto; background: #fff; border-radius: 6px; padding: 2px 6px; }
 .mhead-firm span { color: var(--ace-cyan); }
+.mhead-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.mhead-region {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.03em; color: #fff;
+  background: var(--ace-cyan); padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+}
+.mhead-region.od { background: #F0A020; }
 .mhead-eff { font-size: 10px; color: rgba(255,255,255,0.7); }
 .mtabs { display: flex; gap: 6px; padding: 0 16px 10px; }
 .mtab {
